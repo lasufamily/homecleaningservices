@@ -2,6 +2,8 @@
 
 A production-ready static directory for home cleaning services in Singapore. The site is built with Astro, Tailwind CSS, Airtable, Cloudflare Pages, and Pagefind.
 
+Canonical production domain: `https://homecleaningservices.sg`
+
 ## Pages
 
 - `/` homepage with editorial intro, search, featured companies, towns, and service categories
