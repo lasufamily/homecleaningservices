@@ -69,15 +69,26 @@ Use these Cloudflare Pages settings:
 
 - Build command: `npm run build`
 - Output directory: `dist`
-- Node.js version: 20 or newer
+- Node.js version: 22.12.0 or newer
+- Production branch: `main`
 
 Add these environment variables in Cloudflare Pages:
 
+- `NODE_VERSION` set to `22.12.0`
 - `AIRTABLE_API_KEY`
 - `AIRTABLE_BASE_ID`
 - `AIRTABLE_TABLE_NAME`
 
 `AIRTABLE_TABLE_NAME` is optional when the table is named `Businesses`.
+
+This repo also includes `wrangler.toml` with the Pages project name and build output directory. If you prefer direct uploads from your computer after logging in to Cloudflare, run:
+
+```bash
+npm run build
+npm run pages:deploy
+```
+
+For Git-based deploys, connect the GitHub repository to Cloudflare Pages and Cloudflare will rebuild the site whenever `main` is updated.
 
 ## Deploy Hook
 
