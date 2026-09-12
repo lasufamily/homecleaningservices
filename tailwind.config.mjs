@@ -4,19 +4,19 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: "#20201d",
-        moss: "#53624d",
-        clay: "#a8694b",
-        linen: "#ffffff",
+        ink: "#151512",
+        moss: "#595950",
+        clay: "#3079c8",
+        linen: "#f8f8f6",
         pearl: "#ffffff",
-        border: "#ded8cc"
+        border: "#e4e4df"
       },
       fontFamily: {
         serif: ["Cormorant Garamond", "Georgia", "serif"],
         sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"]
       },
       boxShadow: {
-        soft: "0 18px 45px rgba(32, 32, 29, 0.08)"
+        soft: "0 18px 45px rgba(21, 21, 18, 0.08)"
       }
     }
   },
