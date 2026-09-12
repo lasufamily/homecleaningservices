@@ -1,8 +1,9 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import {
   filterBusinesses,
   getCategories,
   getInitials,
+  loadBusinessesFromAirtable,
   getTowns,
   normalizeBusiness,
   sortBusinesses,
@@ -47,6 +48,18 @@ describe("airtable business helpers", () => {
     expect(business.displayAddress).toBe("Bedok North Street 3");
   });
 
+  it("uses the live Services field when Category is not present", () => {
+    const business = normalizeBusiness({
+      id: "rec_services",
+      fields: {
+        Name: "Live Cleaner",
+        Services: "Deep Cleaning, Weekly Cleaning"
+      }
+    });
+
+    expect(business.categories).toEqual(["Deep Cleaning", "Weekly Cleaning"]);
+  });
+
   it("filters businesses by town and category", () => {
     const businesses = records.map(normalizeBusiness);
 
@@ -72,5 +85,45 @@ describe("airtable business helpers", () => {
     expect(getInitials("Pearl Clean Co")).toBe("PC");
     expect(getInitials("Bright")).toBe("B");
     expect(getInitials("  ")).toBe("HC");
+  });
+
+  it("requires Airtable credentials for build data", async () => {
+    await expect(
+      loadBusinessesFromAirtable({ apiKey: "", baseId: "", tableName: "Businesses" }, vi.fn())
+    ).rejects.toThrow("AIRTABLE_API_KEY and AIRTABLE_BASE_ID are required");
+  });
+
+  it("throws when Airtable cannot be reached successfully", async () => {
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: false,
+      status: 403,
+      text: async () => "Forbidden"
+    });
+
+    await expect(
+      loadBusinessesFromAirtable({ apiKey: "pat_test", baseId: "app_test", tableName: "Businesses" }, fetchMock)
+    ).rejects.toThrow("Airtable request failed with 403");
+  });
+
+  it("loads and normalizes all Airtable pages", async () => {
+    const fetchMock = vi
+      .fn()
+      .mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({ records: [records[0]], offset: "next-page" })
+      })
+      .mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({ records: [records[1]] })
+      });
+
+    const businesses = await loadBusinessesFromAirtable(
+      { apiKey: "pat_test", baseId: "app_test", tableName: "Businesses" },
+      fetchMock
+    );
+
+    expect(businesses.map((business) => business.name)).toEqual(["Pearl Clean Co", "Bright Nest"]);
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(fetchMock.mock.calls[1][0].toString()).toContain("offset=next-page");
   });
 });

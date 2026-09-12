@@ -31,55 +31,14 @@ type AirtableResponse = {
 
 const TABLE_NAME = "Businesses";
 let businessesCache: Promise<Business[]> | undefined;
-let warnedAboutAirtable = false;
 
-export const mockBusinesses: Business[] = [
-  {
-    id: "mock-pearl",
-    name: "Pearl Clean Co",
-    slug: "pearl-clean-co",
-    town: "Tampines",
-    categories: ["Regular Home Cleaning", "Deep Cleaning"],
-    streetName: "Tampines Central",
-    address: "12 Tampines Central, Singapore",
-    displayAddress: "12 Tampines Central, Singapore",
-    openingHours: "Monday to Saturday, 9 AM to 6 PM",
-    phone: "+65 6123 4567",
-    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Tampines%20Central%20Singapore",
-    instagramUrl: "https://www.instagram.com/",
-    galleryImages: []
-  },
-  {
-    id: "mock-bright",
-    name: "Bright Nest Studio",
-    slug: "bright-nest-studio",
-    town: "Bedok",
-    categories: ["Move In Cleaning", "Post Renovation Cleaning"],
-    streetName: "Bedok North Street 3",
-    address: "Bedok North Street 3, Singapore",
-    displayAddress: "Bedok North Street 3, Singapore",
-    openingHours: "Daily, 8 AM to 8 PM",
-    phone: "+65 6234 7788",
-    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Bedok%20North%20Street%203%20Singapore",
-    facebookUrl: "https://www.facebook.com/",
-    galleryImages: []
-  },
-  {
-    id: "mock-calm",
-    name: "Calm Home Care",
-    slug: "calm-home-care",
-    town: "Queenstown",
-    categories: ["Weekly Cleaning", "Elderly Home Support"],
-    streetName: "Dawson Road",
-    address: "Dawson Road, Singapore",
-    displayAddress: "Dawson Road, Singapore",
-    openingHours: "Monday to Friday, 8:30 AM to 6 PM",
-    phone: "+65 6345 8899",
-    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Dawson%20Road%20Singapore",
-    tiktokUrl: "https://www.tiktok.com/",
-    galleryImages: []
-  }
-];
+export type AirtableConfig = {
+  apiKey?: string;
+  baseId?: string;
+  tableName?: string;
+};
+
+type Fetcher = typeof fetch;
 
 export function slugify(value: string): string {
   return value
@@ -126,7 +85,7 @@ export function normalizeBusiness(record: AirtableRecord): Business {
   const name = asString(fields.Name) ?? "Unnamed Cleaning Service";
   const slug = slugify(asString(fields.Slug) ?? name) || record.id;
   const town = asString(fields.Town) ?? "Singapore";
-  const categories = asStringList(fields.Category);
+  const categories = asStringList(fields.Category ?? fields.Services);
   const streetName = asString(fields["Street Name"]);
   const address = asString(fields.Address);
   const displayAddress = address ?? streetName;
@@ -151,56 +110,64 @@ export function normalizeBusiness(record: AirtableRecord): Business {
   };
 }
 
-async function fetchAirtablePage(apiKey: string, baseId: string, tableName: string, offset?: string) {
+async function fetchAirtablePage(
+  apiKey: string,
+  baseId: string,
+  tableName: string,
+  offset: string | undefined,
+  fetcher: Fetcher
+) {
   const params = new URLSearchParams({ pageSize: "100" });
   if (offset) params.set("offset", offset);
 
-  const response = await fetch(`https://api.airtable.com/v0/${baseId}/${encodeURIComponent(tableName)}?${params}`, {
-    headers: {
-      Authorization: `Bearer ${apiKey}`
+  const response = await fetcher(
+    `https://api.airtable.com/v0/${baseId}/${encodeURIComponent(tableName)}?${params}`,
+    {
+      headers: {
+        Authorization: `Bearer ${apiKey}`
+      }
     }
-  });
+  );
 
   if (!response.ok) {
-    throw new Error(`Airtable request failed with ${response.status}`);
+    const detail = await response.text().catch(() => "");
+    throw new Error(`Airtable request failed with ${response.status}${detail ? `: ${detail}` : ""}`);
   }
 
   return response.json() as Promise<AirtableResponse>;
 }
 
 export async function getBusinesses(): Promise<Business[]> {
-  businessesCache ??= loadBusinesses();
+  businessesCache ??= loadBusinessesFromAirtable({
+    apiKey: import.meta.env.AIRTABLE_API_KEY,
+    baseId: import.meta.env.AIRTABLE_BASE_ID,
+    tableName: import.meta.env.AIRTABLE_TABLE_NAME
+  });
   return businessesCache;
 }
 
-async function loadBusinesses(): Promise<Business[]> {
-  const apiKey = import.meta.env.AIRTABLE_API_KEY;
-  const baseId = import.meta.env.AIRTABLE_BASE_ID;
-  const tableName = import.meta.env.AIRTABLE_TABLE_NAME ?? TABLE_NAME;
+export async function loadBusinessesFromAirtable(
+  config: AirtableConfig,
+  fetcher: Fetcher = fetch
+): Promise<Business[]> {
+  const apiKey = config.apiKey?.trim();
+  const baseId = config.baseId?.trim();
+  const tableName = config.tableName?.trim() || TABLE_NAME;
 
   if (!apiKey || !baseId) {
-    return mockBusinesses;
+    throw new Error("AIRTABLE_API_KEY and AIRTABLE_BASE_ID are required to build the directory.");
   }
 
-  try {
-    const records: AirtableRecord[] = [];
-    let offset: string | undefined;
+  const records: AirtableRecord[] = [];
+  let offset: string | undefined;
 
-    do {
-      const page = await fetchAirtablePage(apiKey, baseId, tableName, offset);
-      records.push(...page.records);
-      offset = page.offset;
-    } while (offset);
+  do {
+    const page = await fetchAirtablePage(apiKey, baseId, tableName, offset, fetcher);
+    records.push(...page.records);
+    offset = page.offset;
+  } while (offset);
 
-    return records.map(normalizeBusiness).filter((business) => business.name);
-  } catch (error) {
-    if (!warnedAboutAirtable) {
-      const message = error instanceof Error ? error.message : "Unknown Airtable error";
-      console.warn(`Using mock business data because Airtable could not be reached: ${message}`);
-      warnedAboutAirtable = true;
-    }
-    return mockBusinesses;
-  }
+  return records.map(normalizeBusiness).filter((business) => business.name);
 }
 
 export function getBusinessBySlug(businesses: Business[], slug: string): Business | undefined {

@@ -4,7 +4,7 @@
 
 **Goal:** Build a production-ready Astro static website for a Singapore home cleaning services directory powered by Airtable.
 
-**Architecture:** Airtable records are fetched at build time through a reusable library, normalized into a stable `Business` model, and rendered into static Astro routes. Directory filters use query parameters for town and category, while Pagefind indexes the final `dist` output for site search.
+**Architecture:** Airtable records are fetched at build time through a reusable library, normalized into a stable `Business` model, and rendered into static Astro routes. The build requires valid Airtable credentials and fails instead of publishing fallback data. Directory filters use query parameters for town and category, while Pagefind indexes the final `dist` output for site search.
 
 **Tech Stack:** Astro, Tailwind CSS, TypeScript, Vitest, Pagefind, Airtable REST API, Cloudflare Pages.
 
@@ -36,11 +36,11 @@ Define the premium editorial theme, typography, spacing rhythm, and responsive b
 
 - [x] **Step 1: Write tests first**
 
-Cover slug fallback, optional fields, town/category normalization, query filters, and sorting.
+Cover slug fallback, optional fields, town/category normalization, query filters, sorting, required Airtable credentials, request failures, and paginated live record loading.
 
 - [x] **Step 2: Implement Airtable data helpers**
 
-Fetch Airtable records when credentials are present, use mock records locally, and normalize every record into the site model.
+Fetch Airtable records from the live Businesses table and normalize every record into the site model.
 
 ### Task 3: Reusable Interface Components
 

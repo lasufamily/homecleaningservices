@@ -18,7 +18,7 @@ Expected fields:
 - `Name`
 - `Slug`
 - `Town`
-- `Category`
+- `Category` or `Services`
 - `Street Name`
 - `Address`
 - `Opening Hours`
@@ -30,7 +30,7 @@ Expected fields:
 - `Image URL`
 - `Gallery Images URL`
 
-`Name` is required for a useful listing. All other fields are optional and hidden cleanly when empty. If `Slug` is missing, the site creates a safe slug from the company name.
+`Name` is required for a useful listing. Use `Category` for the service category, or `Services` if your current Airtable uses that field name. All other fields are optional and hidden cleanly when empty. If `Slug` is missing, the site creates a safe slug from the company name.
 
 ## Local Development
 
@@ -39,10 +39,10 @@ Copy `.env.example` to `.env` and add your Airtable values:
 ```bash
 AIRTABLE_API_KEY=pat_your_airtable_token
 AIRTABLE_BASE_ID=app_your_base_id
-AIRTABLE_TABLE_NAME=Businesses
+AIRTABLE_TABLE_NAME=Companies
 ```
 
-If Airtable is not configured or cannot be reached, the site uses sample listings so it can run locally.
+The build requires Airtable access. If `AIRTABLE_API_KEY` or `AIRTABLE_BASE_ID` is missing, or if Airtable rejects the request, the build stops so stale directory data is not published.
 
 Install dependencies and start the local site:
 
@@ -77,9 +77,9 @@ Add these environment variables in Cloudflare Pages:
 - `NODE_VERSION` set to `22.12.0`
 - `AIRTABLE_API_KEY`
 - `AIRTABLE_BASE_ID`
-- `AIRTABLE_TABLE_NAME`
+- `AIRTABLE_TABLE_NAME` set to `Companies`
 
-`AIRTABLE_TABLE_NAME` is optional when the table is named `Businesses`.
+`AIRTABLE_TABLE_NAME` is optional only when the table is named `Businesses`. Your current Airtable table is named `Companies`, so set it explicitly.
 
 This repo also includes `wrangler.toml` with the Pages project name and build output directory. If you prefer direct uploads from your computer after logging in to Cloudflare, run:
 
