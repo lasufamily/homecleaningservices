@@ -1,0 +1,59 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import FilterBar from "../../components/FilterBar.astro";
+import ListingCard from "../../components/ListingCard.astro";
+import SearchBox from "../../components/SearchBox.astro";
+import { filterBusinesses, getBusinesses, getCategories, getTowns, sortBusinesses, type SortOption } from "../../lib/airtable";
+
+const businesses = await getBusinesses();
+const url = Astro.url;
+const town = url.searchParams.get("town");
+const category = url.searchParams.get("category");
+const search = url.searchParams.get("search");
+const sortParam = url.searchParams.get("sort");
+const sort: SortOption = sortParam === "town" ? "town" : "name";
+const filtered = sortBusinesses(filterBusinesses(businesses, { town, category, search }), sort);
+const towns = getTowns(businesses);
+const categories = getCategories(businesses);
+---
+
+<Layout
+  title="Companies | Home Cleaning Services Singapore"
+  description="Browse home cleaning companies in Singapore by town, service category, address, and phone number."
+>
+  <section class="container py-12">
+    <p class="eyebrow">Directory</p>
+    <div class="mt-4 grid gap-6 md:grid-cols-[1fr_auto] md:items-end">
+      <div>
+        <h1 class="serif text-5xl font-semibold leading-none text-ink md:text-7xl">Companies</h1>
+        <p class="mt-5 max-w-2xl text-lg text-ink/68">
+          Browse every company currently listed in the Singapore home cleaning services directory.
+        </p>
+      </div>
+      <SearchBox compact={true} />
+    </div>
+  </section>
+
+  <section class="container">
+    <FilterBar towns={towns} categories={categories} selectedTown={town} selectedCategory={category} selectedSort={sort} search={search} />
+  </section>
+
+  <section class="container py-10" data-pagefind-body>
+    <div class="mb-6 flex items-center justify-between gap-4 text-sm text-ink/60">
+      <p>{filtered.length} {filtered.length === 1 ? "company" : "companies"} found</p>
+      {(town || category || search) && <a class="focus-ring font-semibold text-clay hover:text-ink" href="/companies">Clear filters</a>}
+    </div>
+    {
+      filtered.length > 0 ? (
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {filtered.map((business) => <ListingCard business={business} />)}
+        </div>
+      ) : (
+        <div class="border border-border bg-white p-10 text-center">
+          <h2 class="serif text-4xl font-semibold text-ink">No companies found</h2>
+          <p class="mx-auto mt-3 max-w-xl text-ink/66">Try another town or service category.</p>
+        </div>
+      )
+    }
+  </section>
+</Layout>

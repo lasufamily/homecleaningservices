@@ -1,0 +1,56 @@
+---
+import { Clock, Map, MapPin, Phone } from "@lucide/astro";
+import type { Business } from "../lib/airtable";
+import SocialLinks from "./SocialLinks.astro";
+
+type Props = {
+  business: Business;
+};
+
+const { business } = Astro.props;
+---
+
+<section class="container grid gap-10 py-14 lg:grid-cols-[0.75fr_1.25fr]" data-pagefind-body>
+  <aside class="border border-border bg-white p-6">
+    <p class="eyebrow">Details</p>
+    <div class="mt-6 grid gap-5 text-sm text-ink/72">
+      {business.displayAddress && (
+        <p class="flex gap-3">
+          <MapPin size={18} class="mt-1 shrink-0 text-clay" aria-hidden="true" />
+          <span>{business.displayAddress}</span>
+        </p>
+      )}
+      {business.openingHours && (
+        <p class="flex gap-3">
+          <Clock size={18} class="mt-1 shrink-0 text-clay" aria-hidden="true" />
+          <span>{business.openingHours}</span>
+        </p>
+      )}
+      {business.phone && (
+        <p class="flex gap-3">
+          <Phone size={18} class="mt-1 shrink-0 text-clay" aria-hidden="true" />
+          <a class="focus-ring hover:text-clay" href={`tel:${business.phone.replace(/\s/g, "")}`}>{business.phone}</a>
+        </p>
+      )}
+      {business.googleMapsUrl && (
+        <p class="flex gap-3">
+          <Map size={18} class="mt-1 shrink-0 text-clay" aria-hidden="true" />
+          <a class="focus-ring font-semibold text-ink hover:text-clay" href={business.googleMapsUrl} target="_blank" rel="noreferrer">
+            View on Google Maps
+          </a>
+        </p>
+      )}
+    </div>
+    <div class="mt-7">
+      <SocialLinks business={business} />
+    </div>
+  </aside>
+  <div>
+    <p class="eyebrow">Services</p>
+    <h2 class="serif mt-3 text-4xl font-semibold leading-tight text-ink">Cleaning support for homes in {business.town}</h2>
+    <p class="mt-5 max-w-3xl text-lg text-ink/68">
+      {business.name} is listed for {business.categories.length ? business.categories.join(", ") : "home cleaning"} in {business.town}.
+      Contact the company directly for availability, service scope, and booking details.
+    </p>
+  </div>
+</section>

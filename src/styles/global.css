@@ -1,0 +1,76 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  background: #ffffff;
+  color: #20201d;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #ffffff;
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #20201d;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+::selection {
+  background: #e9dac9;
+}
+
+.container {
+  width: min(1120px, calc(100% - 32px));
+  margin-inline: auto;
+}
+
+.eyebrow {
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #a8694b;
+}
+
+.serif {
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+
+.focus-ring {
+  outline: 2px solid transparent;
+  outline-offset: 3px;
+}
+
+.focus-ring:focus-visible {
+  outline-color: #a8694b;
+}
+
+.pagefind-ui {
+  --pagefind-ui-primary: #20201d;
+  --pagefind-ui-text: #20201d;
+  --pagefind-ui-background: #ffffff;
+  --pagefind-ui-border: #ded8cc;
+  --pagefind-ui-tag: #ffffff;
+  --pagefind-ui-border-width: 1px;
+  --pagefind-ui-border-radius: 6px;
+  --pagefind-ui-font: "Inter", ui-sans-serif, system-ui, sans-serif;
+}

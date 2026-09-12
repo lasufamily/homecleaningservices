@@ -1,0 +1,27 @@
+---
+type Props = {
+  value?: string;
+  placeholder?: string;
+  compact?: boolean;
+};
+
+const { value = "", placeholder = "Search companies, towns, services, addresses or phone numbers", compact = false } =
+  Astro.props;
+---
+
+<form action="/search" method="get" class:list={["relative flex w-full items-stretch border border-border bg-white shadow-soft", compact ? "max-w-2xl" : "max-w-3xl"]}>
+  <label class="sr-only" for="site-search">Search the directory</label>
+  <input
+    id="site-search"
+    name="q"
+    value={value}
+    placeholder={placeholder}
+    class="min-h-14 flex-1 bg-transparent px-5 text-base text-ink outline-none placeholder:text-ink/42"
+  />
+  <button
+    type="submit"
+    class="focus-ring bg-ink px-5 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:bg-clay sm:px-7"
+  >
+    Search
+  </button>
+</form>

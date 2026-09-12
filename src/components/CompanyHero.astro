@@ -1,0 +1,24 @@
+---
+import type { Business } from "../lib/airtable";
+import InitialsImage from "./InitialsImage.astro";
+
+type Props = {
+  business: Business;
+};
+
+const { business } = Astro.props;
+---
+
+<section class="border-b border-border bg-white" data-pagefind-body>
+  <div class="container grid gap-10 py-12 md:grid-cols-[0.95fr_1.05fr] md:items-end md:py-16">
+    <div>
+      <a href="/companies" class="focus-ring text-sm font-bold uppercase tracking-[0.14em] text-clay">Companies</a>
+      <h1 class="serif mt-5 text-5xl font-semibold leading-[0.95] text-ink md:text-7xl">{business.name}</h1>
+      <div class="mt-6 flex flex-wrap gap-3 text-sm font-semibold text-moss">
+        <span>{business.town}</span>
+        {business.categories.map((category) => <span>{category}</span>)}
+      </div>
+    </div>
+    <InitialsImage name={business.name} size="hero" />
+  </div>
+</section>

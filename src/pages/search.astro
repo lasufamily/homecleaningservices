@@ -1,0 +1,58 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SearchBox from "../components/SearchBox.astro";
+
+const query = Astro.url.searchParams.get("q") ?? "";
+---
+
+<Layout
+  title="Search | Home Cleaning Services Singapore"
+  description="Search Singapore home cleaning companies by name, service, town, address, and phone number."
+>
+  <section class="container py-12">
+    <p class="eyebrow">Search</p>
+    <h1 class="serif mt-4 text-5xl font-semibold leading-none text-ink md:text-7xl">Find a cleaning company</h1>
+    <p class="mt-5 max-w-2xl text-lg text-ink/68">
+      Search across company names, services, towns, addresses, and phone numbers.
+    </p>
+    <div class="mt-8">
+      <SearchBox value={query} />
+    </div>
+  </section>
+
+  <section class="container pb-16">
+    <div id="search" class="border border-border bg-white p-5 md:p-8"></div>
+    <noscript>
+      <p class="border border-border bg-white p-6 text-ink/70">Search needs JavaScript. You can still browse all companies from the directory page.</p>
+    </noscript>
+  </section>
+
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+  <script is:inline src="/pagefind/pagefind-ui.js"></script>
+  <script is:inline>
+    const searchElement = document.querySelector("#search");
+    const params = new URLSearchParams(window.location.search);
+    const initialQuery = params.get("q") || "";
+
+    if (window.PagefindUI && searchElement) {
+      new window.PagefindUI({
+        element: "#search",
+        showSubResults: true,
+        resetStyles: false,
+        autofocus: false
+      });
+
+      if (initialQuery) {
+        setTimeout(() => {
+          const input = searchElement.querySelector("input");
+          if (input) {
+            input.value = initialQuery;
+            input.dispatchEvent(new Event("input", { bubbles: true }));
+          }
+        }, 100);
+      }
+    } else if (searchElement) {
+      searchElement.innerHTML = '<p class="text-ink/70">Search index appears after the production build. Use the directory page while developing locally.</p>';
+    }
+  </script>
+</Layout>

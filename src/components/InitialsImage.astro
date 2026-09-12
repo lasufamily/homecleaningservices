@@ -1,0 +1,30 @@
+---
+import { getInitials } from "../lib/airtable";
+
+type Props = {
+  name: string;
+  class?: string;
+  size?: "card" | "hero";
+};
+
+const { name, class: className = "", size = "card" } = Astro.props;
+const initials = getInitials(name);
+---
+
+<div
+  class:list={[
+    "relative flex overflow-hidden border border-border bg-white text-center",
+    size === "hero" ? "aspect-[5/4]" : "aspect-[4/3]",
+    className
+  ]}
+  role="img"
+  aria-label={`${name} initials`}
+>
+  <div class="absolute inset-5 border border-border/80"></div>
+  <div class="m-auto">
+    <span class:list={["serif block font-semibold leading-none text-ink", size === "hero" ? "text-7xl md:text-9xl" : "text-6xl"]}>
+      {initials}
+    </span>
+    <span class="mx-auto mt-5 block h-px w-12 bg-clay"></span>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+---
+import { Search } from "@lucide/astro";
+---
+
+<header class="border-b border-border/80 bg-pearl/90 backdrop-blur">
+  <div class="container flex min-h-20 items-center justify-between gap-6">
+    <a href="/" class="focus-ring serif text-2xl font-semibold text-ink" aria-label="Home Cleaning Services home">
+      Home Cleaning Services
+    </a>
+    <nav class="hidden items-center gap-8 text-sm font-semibold uppercase tracking-[0.12em] text-ink/70 md:flex" aria-label="Primary navigation">
+      <a class="focus-ring hover:text-clay" href="/companies">Companies</a>
+      <a class="focus-ring hover:text-clay" href="/search">Search</a>
+    </nav>
+    <a
+      href="/search"
+      class="focus-ring inline-flex h-11 w-11 items-center justify-center border border-border bg-white text-ink transition hover:border-clay hover:text-clay"
+      aria-label="Open search"
+      title="Search"
+    >
+      <Search size={19} aria-hidden="true" />
+    </a>
+  </div>
+</header>

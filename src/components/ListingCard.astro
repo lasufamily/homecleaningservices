@@ -1,0 +1,41 @@
+---
+import { MapPin, Phone } from "@lucide/astro";
+import type { Business } from "../lib/airtable";
+import InitialsImage from "./InitialsImage.astro";
+
+type Props = {
+  business: Business;
+};
+
+const { business } = Astro.props;
+const categories = business.categories.length ? business.categories.join(", ") : "Home cleaning";
+---
+
+<article class="group grid h-full overflow-hidden border border-border bg-white transition hover:-translate-y-1 hover:shadow-soft" data-pagefind-body>
+  <a href={`/companies/${business.slug}`} class="focus-ring block" aria-label={`View ${business.name}`}>
+    <InitialsImage name={business.name} />
+  </a>
+  <div class="flex flex-col gap-4 p-6">
+    <div>
+      <p class="eyebrow">{business.town}</p>
+      <h2 class="serif mt-2 text-3xl font-semibold leading-none text-ink">
+        <a href={`/companies/${business.slug}`} class="focus-ring hover:text-clay">{business.name}</a>
+      </h2>
+      <p class="mt-3 text-sm font-semibold text-moss">{categories}</p>
+    </div>
+    <div class="mt-auto grid gap-2 text-sm text-ink/68">
+      {business.displayAddress && (
+        <p class="flex gap-2">
+          <MapPin size={16} class="mt-1 shrink-0 text-clay" aria-hidden="true" />
+          <span>{business.displayAddress}</span>
+        </p>
+      )}
+      {business.phone && (
+        <p class="flex gap-2">
+          <Phone size={16} class="mt-1 shrink-0 text-clay" aria-hidden="true" />
+          <a class="focus-ring hover:text-clay" href={`tel:${business.phone.replace(/\s/g, "")}`}>{business.phone}</a>
+        </p>
+      )}
+    </div>
+  </div>
+</article>

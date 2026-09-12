@@ -1,0 +1,42 @@
+---
+import type { SortOption } from "../lib/airtable";
+
+type Props = {
+  towns: string[];
+  categories: string[];
+  selectedTown?: string | null;
+  selectedCategory?: string | null;
+  selectedSort?: SortOption;
+  search?: string | null;
+};
+
+const { towns, categories, selectedTown, selectedCategory, selectedSort = "name", search = "" } = Astro.props;
+---
+
+<form action="/companies" method="get" class="grid gap-4 border border-border bg-white p-4 md:grid-cols-[1fr_1fr_180px_auto] md:items-end">
+  <div>
+    <label for="town" class="text-sm font-semibold text-ink">Town</label>
+    <select id="town" name="town" class="mt-2 h-12 w-full border border-border bg-pearl px-3 text-sm text-ink">
+      <option value="">All towns</option>
+      {towns.map((town) => <option value={town} selected={selectedTown === town}>{town}</option>)}
+    </select>
+  </div>
+  <div>
+    <label for="category" class="text-sm font-semibold text-ink">Services</label>
+    <select id="category" name="category" class="mt-2 h-12 w-full border border-border bg-pearl px-3 text-sm text-ink">
+      <option value="">All services</option>
+      {categories.map((category) => <option value={category} selected={selectedCategory === category}>{category}</option>)}
+    </select>
+  </div>
+  <div>
+    <label for="sort" class="text-sm font-semibold text-ink">Sort</label>
+    <select id="sort" name="sort" class="mt-2 h-12 w-full border border-border bg-pearl px-3 text-sm text-ink">
+      <option value="name" selected={selectedSort === "name"}>Name A to Z</option>
+      <option value="town" selected={selectedSort === "town"}>Town</option>
+    </select>
+  </div>
+  <input type="hidden" name="search" value={search ?? ""} />
+  <button type="submit" class="focus-ring h-12 bg-ink px-6 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:bg-clay">
+    Apply
+  </button>
+</form>

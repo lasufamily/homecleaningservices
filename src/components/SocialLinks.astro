@@ -1,0 +1,32 @@
+---
+import { Camera, Music2, ThumbsUp } from "@lucide/astro";
+import type { Business } from "../lib/airtable";
+
+type Props = {
+  business: Business;
+};
+
+const { business } = Astro.props;
+const links = [
+  { href: business.facebookUrl, label: "Facebook", icon: ThumbsUp },
+  { href: business.instagramUrl, label: "Instagram", icon: Camera },
+  { href: business.tiktokUrl, label: "TikTok", icon: Music2 }
+].filter((link) => link.href);
+---
+
+{links.length > 0 && (
+  <nav class="flex flex-wrap gap-3" aria-label={`${business.name} social links`}>
+    {links.map(({ href, label, icon: Icon }) => (
+      <a
+        href={href}
+        target="_blank"
+        rel="noreferrer"
+        class="focus-ring inline-flex h-11 w-11 items-center justify-center border border-border bg-white text-ink transition hover:border-clay hover:text-clay"
+        aria-label={`${business.name} on ${label}`}
+        title={label}
+      >
+        <Icon size={18} aria-hidden="true" />
+      </a>
+    ))}
+  </nav>
+)}

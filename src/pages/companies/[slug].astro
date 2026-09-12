@@ -1,0 +1,48 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CompanyDetails from "../../components/CompanyDetails.astro";
+import CompanyHero from "../../components/CompanyHero.astro";
+import ListingCard from "../../components/ListingCard.astro";
+import { getBusinesses, getRelatedBusinesses } from "../../lib/airtable";
+
+export async function getStaticPaths() {
+  const businesses = await getBusinesses();
+
+  return businesses.map((business) => ({
+    params: { slug: business.slug },
+    props: { business, businesses }
+  }));
+}
+
+const { business, businesses } = Astro.props;
+const related = getRelatedBusinesses(business, businesses);
+const categories = business.categories.length ? business.categories.join(", ") : "Home cleaning";
+const title = `${business.name} | Home Cleaning Services Singapore`;
+const description = `${business.name} provides ${categories} in ${business.town}, Singapore. View address, phone, map, hours, and related cleaning services.`;
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "HomeAndConstructionBusiness",
+  name: business.name,
+  telephone: business.phone,
+  address: business.address || business.streetName,
+  areaServed: business.town,
+  url: new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin).toString(),
+  sameAs: [business.facebookUrl, business.instagramUrl, business.tiktokUrl].filter(Boolean),
+  openingHours: business.openingHours,
+  makesOffer: business.categories.map((category) => ({ "@type": "Offer", itemOffered: category }))
+};
+---
+
+<Layout title={title} description={description} jsonLd={jsonLd}>
+  <CompanyHero business={business} />
+  <CompanyDetails business={business} />
+  {related.length > 0 && (
+    <section class="container py-12">
+      <p class="eyebrow">Related companies</p>
+      <h2 class="serif mt-3 text-4xl font-semibold text-ink md:text-5xl">More services to compare</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-3">
+        {related.map((relatedBusiness) => <ListingCard business={relatedBusiness} />)}
+      </div>
+    </section>
+  )}
+</Layout>
