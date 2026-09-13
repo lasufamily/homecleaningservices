@@ -3,7 +3,6 @@ import Layout from "../layouts/Layout.astro";
 import ContactCTA from "../components/ContactCTA.astro";
 import ListingCard from "../components/ListingCard.astro";
 import SearchBox from "../components/SearchBox.astro";
-import InitialsImage from "../components/InitialsImage.astro";
 import ServiceCard from "../components/ServiceCard.astro";
 import { getBusinesses, getCategories, getTowns } from "../lib/airtable";
 import { services } from "../lib/services";
@@ -61,7 +60,15 @@ const jsonLd = {
         </div>
       </div>
       <div class="hidden md:block">
-        {featured[0] && <InitialsImage name={featured[0].name} size="hero" class="aspect-[4/5]" />}
+        <div class="relative aspect-[4/5] overflow-hidden border border-border bg-white">
+          <img
+            src="/images/Home-Cleaning-Services-Singapore-Hero-1.png"
+            alt="Home Cleaning Services Singapore"
+            class="h-full w-full object-cover"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
       </div>
     </div>
   </section>
