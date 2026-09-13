@@ -19,9 +19,9 @@ export const services: ServicePage[] = [
     shortName: "Home Cleaning",
     title: "Home Cleaning Singapore | Home Cleaning Services",
     description:
-      "Book quote-based home cleaning services in Singapore for regular housekeeping, one-off tidy-ups, kitchens, bathrooms, floors, and everyday home upkeep.",
+      "Book home cleaning services in Singapore for regular housekeeping, one-off tidy-ups, kitchens, bathrooms, floors, and everyday home upkeep.",
     summary:
-      "Reliable home cleaning for busy households that need a cleaner, calmer living space without managing every chore alone.",
+      "Steady home cleaning for busy households that need the basics handled without spending the weekend on chores.",
     audience: ["Weekly or fortnightly housekeeping", "One-off cleaning before guests arrive", "Busy families and working adults"],
     scope: [
       "Dusting reachable surfaces, shelves, switches, and furniture",
@@ -57,7 +57,7 @@ export const services: ServicePage[] = [
     description:
       "Request a part time maid in Singapore for recurring housekeeping, laundry support, dishwashing, bathroom cleaning, kitchen cleaning, and floor care.",
     summary:
-      "Flexible housekeeping help for homes that need recurring cleaning support without hiring a full-time live-in helper.",
+      "Regular housekeeping help for homes that need support without hiring a full-time live-in helper.",
     audience: ["Weekly housekeeping", "Light laundry and ironing support", "Small homes, condos, and HDB flats"],
     scope: [
       "General tidying and surface wiping",
@@ -75,7 +75,7 @@ export const services: ServicePage[] = [
       {
         question: "How is part time maid service different from deep cleaning?",
         answer:
-          "Part time maid service is for routine upkeep within booked hours. Deep cleaning is a heavier one-off clean for built-up dirt, neglected areas, or lived-in homes that need a reset."
+          "Part time maid service is for routine upkeep within booked hours. Deep cleaning is a heavier one-off clean for built-up dirt, neglected areas, or a home that has fallen behind."
       },
       {
         question: "Can I prioritise tasks for each visit?",
@@ -91,10 +91,10 @@ export const services: ServicePage[] = [
     shortName: "Deep Cleaning",
     title: "Deep Cleaning Singapore | Home Cleaning Services",
     description:
-      "Quote-based deep cleaning in Singapore for lived-in homes, including detailed kitchen, bathroom, floor, furniture, window, and hard-to-reach-area cleaning.",
+      "Deep cleaning in Singapore for lived-in homes, including detailed kitchen, bathroom, floor, furniture, window, and hard-to-reach-area cleaning.",
     summary:
-      "A more thorough clean for lived-in homes where regular housekeeping is not enough and every room needs closer attention.",
-    audience: ["Lived-in homes with built-up dust or grime", "Pre-festive or seasonal resets", "Homes that need a stronger clean before recurring service"],
+      "A heavier clean for lived-in homes where regular housekeeping is not enough and every room needs closer attention.",
+    audience: ["Lived-in homes with built-up dust or grime", "Pre-festive or seasonal cleaning", "Homes that need a stronger clean before recurring service"],
     scope: [
       "Detailed dusting and wiping of furniture, switches, doors, ledges, and fixtures",
       "Interior window, frame, mirror, and glass surface cleaning where accessible",
@@ -111,7 +111,7 @@ export const services: ServicePage[] = [
       {
         question: "Is deep cleaning suitable for an empty unit?",
         answer:
-          "If the home is empty or nearly empty, move in, move out, or post-renovation cleaning is usually a better match. Deep cleaning is designed for lived-in homes with furniture and belongings."
+          "If the home is empty or nearly empty, move in, move out, or post-renovation cleaning is usually a better match. Deep cleaning suits lived-in homes with furniture and belongings."
       },
       {
         question: "Will the quote depend on home size?",
@@ -127,10 +127,10 @@ export const services: ServicePage[] = [
     shortName: "Spring Cleaning",
     title: "Spring Cleaning Singapore | Home Cleaning Services",
     description:
-      "Plan spring cleaning in Singapore for festive periods, annual resets, detailed room cleaning, kitchen refreshes, bathroom cleaning, and floor care.",
+      "Plan spring cleaning in Singapore for festive periods, yearly cleaning, detailed room cleaning, kitchen cleaning, bathroom cleaning, and floor care.",
     summary:
-      "A planned whole-home refresh for festive seasons, family visits, or any time your home needs a thorough reset.",
-    audience: ["Chinese New Year or festive preparation", "Annual or semi-annual home refreshes", "Families preparing for guests"],
+      "A planned whole-home clean for festive seasons, family visits, or the point when regular upkeep is no longer enough.",
+    audience: ["Chinese New Year or festive preparation", "Annual or semi-annual cleaning", "Families preparing for guests"],
     scope: [
       "Whole-home dusting and surface wiping",
       "Detailed kitchen and bathroom cleaning",
@@ -147,7 +147,7 @@ export const services: ServicePage[] = [
       {
         question: "When should I book spring cleaning?",
         answer:
-          "Book early for peak festive periods. Spring cleaning slots are usually more limited when many households are preparing at the same time."
+          "Book early for peak festive periods. Spring cleaning slots usually tighten up when many households are preparing at the same time."
       },
       {
         question: "Can I combine spring cleaning with upholstery cleaning?",
@@ -166,7 +166,7 @@ export const services: ServicePage[] = [
       "Request move in and move out cleaning in Singapore for handovers, new homes, rental transitions, kitchens, bathrooms, cabinets, floors, and windows.",
     summary:
       "Cleaning support for tenants, homeowners, and landlords preparing a home before moving in or handing it over.",
-    audience: ["New homeowners before moving in", "Tenants preparing for handover", "Landlords refreshing a unit between occupants"],
+    audience: ["New homeowners before moving in", "Tenants preparing for handover", "Landlords cleaning a unit between occupants"],
     scope: [
       "Interior cabinet, wardrobe, and drawer wiping where empty and accessible",
       "Kitchen cleaning for counters, sink, stove, backsplash, and appliance exteriors",
@@ -188,7 +188,7 @@ export const services: ServicePage[] = [
       {
         question: "Is this suitable for tenancy handover?",
         answer:
-          "Yes. Share any landlord or agent checklist during enquiry so the quote can be matched to the handover expectations."
+          "Yes. Share any landlord or agent checklist during enquiry so the quote can match the handover expectations."
       }
     ],
     relatedSlugs: ["end-of-tenancy-cleaning", "post-renovation-cleaning", "floor-cleaning"]
@@ -199,7 +199,7 @@ export const services: ServicePage[] = [
     shortName: "End of Tenancy",
     title: "End of Tenancy Cleaning Singapore | Home Cleaning Services",
     description:
-      "Quote-based end of tenancy cleaning in Singapore for rental handover, kitchens, bathrooms, windows, cabinets, floors, and move-out cleaning needs.",
+      "End of tenancy cleaning in Singapore for rental handover, kitchens, bathrooms, windows, cabinets, floors, and move-out cleaning needs.",
     summary:
       "A practical clean for tenants and landlords who need the home ready for inspection or the next occupant.",
     audience: ["Rental handovers", "Landlord inspections", "Final clean after belongings are removed"],
@@ -237,7 +237,7 @@ export const services: ServicePage[] = [
     description:
       "Request post renovation cleaning in Singapore to remove renovation dust from accessible surfaces, cabinets, windows, bathrooms, kitchens, and floors.",
     summary:
-      "A detailed clean after contractors leave, focused on renovation dust and making the home ready to settle into.",
+      "A detailed clean after contractors leave, focused on renovation dust so the home is easier to settle into.",
     audience: ["Newly renovated HDB flats and condos", "Homes after carpentry, painting, or installation works", "Owners preparing for move-in"],
     scope: [
       "Renovation dust removal from reachable surfaces, ledges, doors, and fixtures",
@@ -255,7 +255,7 @@ export const services: ServicePage[] = [
       {
         question: "When should post renovation cleaning happen?",
         answer:
-          "Book after renovation works and defect rectification are complete. Cleaning between trades often leads to dust returning."
+          "Book after renovation work and defect fixes are complete. Cleaning between trades often means the dust comes back."
       },
       {
         question: "Can renovation stains be removed?",
@@ -271,10 +271,10 @@ export const services: ServicePage[] = [
     shortName: "Sofa Cleaning",
     title: "Sofa Cleaning Singapore | Home Cleaning Services",
     description:
-      "Request sofa cleaning in Singapore for fabric sofas, upholstery refreshes, odour reduction, dust removal, and quote-based stain treatment advice.",
+      "Request sofa cleaning in Singapore for fabric sofas, odour reduction, dust removal, and stain treatment advice.",
     summary:
-      "A specialist refresh for sofas that collect dust, odours, spills, and everyday use in Singapore homes.",
-    audience: ["Fabric sofas and seating", "Homes with pets, children, or frequent guests", "Sofas that need a hygiene refresh"],
+      "Specialist cleaning for sofas that collect dust, odours, spills, and all the marks of daily life.",
+    audience: ["Fabric sofas and seating", "Homes with pets, children, or frequent guests", "Sofas that need more than a surface wipe"],
     scope: [
       "Surface inspection before cleaning begins",
       "Vacuuming to remove loose dust and debris",
@@ -307,7 +307,7 @@ export const services: ServicePage[] = [
     shortName: "Upholstery Cleaning",
     title: "Upholstery Cleaning Singapore | Home Cleaning Services",
     description:
-      "Book upholstery cleaning in Singapore for chairs, cushions, soft furnishings, fabric furniture, odour reduction, dust removal, and hygiene refreshes.",
+      "Book upholstery cleaning in Singapore for chairs, cushions, soft furnishings, fabric furniture, odour reduction, and dust removal.",
     summary:
       "Specialist cleaning for soft furnishings and fabric furniture that need more care than normal surface wiping.",
     audience: ["Dining chairs and upholstered seats", "Fabric furniture and cushions", "Homes with dust, odour, or spill concerns"],
@@ -343,10 +343,10 @@ export const services: ServicePage[] = [
     shortName: "Mattress Cleaning",
     title: "Mattress Cleaning Singapore | Home Cleaning Services",
     description:
-      "Request mattress cleaning in Singapore for dust, allergens, odour concerns, hygiene refreshes, and quote-based mattress treatment options.",
+      "Request mattress cleaning in Singapore for dust, allergens, odour concerns, and mattress treatment options.",
     summary:
-      "A hygiene-focused clean for mattresses that collect dust, sweat, skin particles, and allergens over time.",
-    audience: ["Families with allergy or dust concerns", "Mattresses due for a hygiene refresh", "Guest rooms and rental units"],
+      "A deeper clean for mattresses that collect dust, sweat, skin particles, and allergens over time.",
+    audience: ["Families with allergy or dust concerns", "Mattresses due for a deeper clean", "Guest rooms and rental units"],
     scope: [
       "Mattress condition check before cleaning",
       "Vacuuming to remove surface dust and debris",
@@ -379,7 +379,7 @@ export const services: ServicePage[] = [
     shortName: "Carpet Cleaning",
     title: "Carpet Cleaning Singapore | Home Cleaning Services",
     description:
-      "Book carpet cleaning in Singapore for area rugs and carpets, with quote-based steam or extraction cleaning, stain advice, dust removal, and odour refreshes.",
+      "Book carpet cleaning in Singapore for area rugs and carpets, with steam or extraction cleaning, stain advice, dust removal, and odour treatment.",
     summary:
       "A specialist clean for rugs and carpets that hold dust, stains, allergens, and odours from daily use.",
     audience: ["Area rugs and carpets", "Homes with pets, children, or high foot traffic", "Rental units before handover"],
@@ -415,7 +415,7 @@ export const services: ServicePage[] = [
     shortName: "Curtain Cleaning",
     title: "Curtain Cleaning Singapore | Home Cleaning Services",
     description:
-      "Request curtain cleaning in Singapore for day curtains, night curtains, fabric refreshes, dust removal, steaming, and quote-based cleaning advice.",
+      "Request curtain cleaning in Singapore for day curtains, night curtains, dust removal, steaming, and cleaning advice.",
     summary:
       "A fabric-care service for curtains that collect dust, odours, and humidity in Singapore homes.",
     audience: ["Day and night curtains", "Homes preparing for festive cleaning", "Curtains with dust or odour concerns"],
@@ -435,7 +435,7 @@ export const services: ServicePage[] = [
       {
         question: "Can curtains be cleaned on-site?",
         answer:
-          "Some curtains can be refreshed on-site, while others may need off-site dry cleaning. Share photos and fabric details when requesting a quote."
+          "Some curtains can be cleaned on-site, while others may need off-site dry cleaning. Share photos and fabric details when requesting a quote."
       },
       {
         question: "Is curtain cleaning included in spring cleaning?",
@@ -451,10 +451,10 @@ export const services: ServicePage[] = [
     shortName: "Floor Cleaning",
     title: "Floor Cleaning Singapore | Home Cleaning Services",
     description:
-      "Request floor cleaning in Singapore for HDB flats, condos, kitchens, bathrooms, living areas, post-renovation dust, and quote-based deep floor care.",
+      "Request floor cleaning in Singapore for HDB flats, condos, kitchens, bathrooms, living areas, post-renovation dust, and deeper floor care.",
     summary:
       "Focused floor care for homes where everyday sweeping and mopping are no longer enough.",
-    audience: ["Homes with heavy foot traffic", "Post-renovation dust on floors", "Move-in and move-out floor refreshes"],
+    audience: ["Homes with heavy foot traffic", "Post-renovation dust on floors", "Move-in and move-out floor cleaning"],
     scope: [
       "Sweeping, vacuuming, and mopping accessible floors",
       "Attention to corners, skirting, and common dust collection points",
@@ -487,10 +487,10 @@ export const services: ServicePage[] = [
     shortName: "Disinfection",
     title: "Disinfection Service Singapore | Home Cleaning Services",
     description:
-      "Request quote-based home disinfection service in Singapore for high-touch surfaces, post-illness refreshes, rental units, and hygiene-focused cleaning.",
+      "Request home disinfection service in Singapore for high-touch surfaces, post-illness cleaning, rental units, and extra hygiene attention.",
     summary:
-      "A hygiene-focused add-on for homes that need extra attention on high-touch surfaces after cleaning.",
-    audience: ["Post-illness home refreshes", "Rental or guest units", "Families wanting extra hygiene attention"],
+      "An add-on for homes that need extra attention on high-touch surfaces after cleaning.",
+    audience: ["Post-illness home cleaning", "Rental or guest units", "Families wanting extra hygiene attention"],
     scope: [
       "High-touch surface focus after general cleaning",
       "Door handles, switches, tables, counters, and common contact points",
@@ -526,7 +526,7 @@ export const services: ServicePage[] = [
       "Book kitchen cleaning in Singapore for counters, sinks, cabinet exteriors, appliance exteriors, stove areas, backsplashes, and floor cleaning.",
     summary:
       "Focused cleaning for one of the busiest rooms in the home, from grease-prone surfaces to sinks and floors.",
-    audience: ["Homes with grease build-up", "Move-in or move-out kitchen refreshes", "Families preparing for guests or festive cooking"],
+    audience: ["Homes with grease build-up", "Move-in or move-out kitchen cleaning", "Families preparing for guests or festive cooking"],
     scope: [
       "Countertop, backsplash, sink, and faucet cleaning",
       "Stove, hood exterior, and appliance exterior wiping",
@@ -559,7 +559,7 @@ export const services: ServicePage[] = [
     shortName: "Bathroom Cleaning",
     title: "Bathroom Cleaning Singapore | Home Cleaning Services",
     description:
-      "Request bathroom cleaning in Singapore for toilets, showers, sinks, mirrors, fixtures, floors, limescale attention, and hygiene-focused cleaning.",
+      "Request bathroom cleaning in Singapore for toilets, showers, sinks, mirrors, fixtures, floors, limescale, and heavier bathroom cleaning.",
     summary:
       "Detailed cleaning for bathrooms that need more than a quick wipe, especially in humid Singapore homes.",
     audience: ["Bathrooms with soap scum or limescale", "Families wanting better hygiene upkeep", "Move-in, move-out, and deep cleaning jobs"],
@@ -579,7 +579,7 @@ export const services: ServicePage[] = [
       {
         question: "Can bathroom stains always be removed?",
         answer:
-          "Some stains are caused by age, damaged surfaces, hard water, or mould penetration. We will set expectations during quoting."
+          "Some stains come from age, damaged surfaces, hard water, or mould that has gone below the surface. We will set expectations during quoting."
       },
       {
         question: "Can bathroom cleaning be part of regular home cleaning?",

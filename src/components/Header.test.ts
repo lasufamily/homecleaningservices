@@ -14,7 +14,7 @@ describe("Header", () => {
     expect(headerSource).toContain('aria-controls="mobile-menu"');
     expect(headerSource).toContain('id="mobile-menu"');
     expect(headerSource).toContain('aria-label="Mobile navigation"');
-    expect(headerSource).toContain("Request a Quote");
+    expect(headerSource).toContain("Request a quote");
     expect(headerSource).not.toContain(">Menu</p>");
     expect(headerSource).not.toContain("Mail");
   });

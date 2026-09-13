@@ -17,8 +17,8 @@ const selectedService = Astro.url.searchParams.get("service") ?? "";
           Request a cleaning quote
         </h1>
         <p class="mt-7 max-w-xl text-lg leading-8 text-ink/68">
-          Share your home type, preferred service, timing, and any areas that need special attention. We will use those details
-          to prepare a practical cleaning scope.
+          Share your home type, preferred service, timing, and any areas that need extra attention. Those details help us
+          quote the job properly.
         </p>
       </div>
 
@@ -75,7 +75,7 @@ const selectedService = Astro.url.searchParams.get("service") ?? "";
               name="message"
               rows="6"
               class="focus-ring border border-border bg-white px-4 py-3 font-normal text-ink"
-              placeholder="Tell us the number of rooms, bathrooms, home condition, and any special requests."
+              placeholder="Tell us the number of rooms, bathrooms, home condition, and anything we should know before quoting."
             ></textarea>
           </label>
 
@@ -91,7 +91,7 @@ const selectedService = Astro.url.searchParams.get("service") ?? "";
             Send enquiry
           </button>
           <p id="quote-status" class="hidden border border-border bg-white p-4 text-sm text-ink/70" role="status">
-            Thank you. Your enquiry details have been captured on this page and are ready for submission once the form endpoint is connected.
+            Thanks. The form is ready, but the live submission endpoint still needs to be connected.
           </p>
         </div>
       </form>
