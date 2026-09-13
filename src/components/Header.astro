@@ -1,8 +1,8 @@
 ---
-import { Mail } from "@lucide/astro";
+import { Menu, X } from "@lucide/astro";
 ---
 
-<header class="border-b border-border/80 bg-pearl/90 backdrop-blur">
+<header class="relative z-40 border-b border-border/80 bg-pearl/90 backdrop-blur">
   <div class="container flex min-h-20 items-center justify-between gap-6">
     <a href="/" class="focus-ring serif text-2xl font-semibold text-ink" aria-label="Home Cleaning Services home">
       Home Cleaning Services
@@ -15,11 +15,52 @@ import { Mail } from "@lucide/astro";
     </nav>
     <a
       href="/contact"
-      class="focus-ring inline-flex h-11 w-11 items-center justify-center border border-border bg-white text-ink transition hover:border-clay hover:text-clay"
-      aria-label="Request a quote"
-      title="Request a quote"
+      class="focus-ring hidden bg-clay px-5 py-3 text-sm font-bold text-white transition hover:bg-ink md:inline-flex"
     >
-      <Mail size={19} aria-hidden="true" />
+      Request a Quote
     </a>
+    <input class="peer sr-only" type="checkbox" id="mobile-menu-toggle" />
+    <label
+      for="mobile-menu-toggle"
+      class="focus-ring inline-flex h-11 w-11 cursor-pointer items-center justify-center border border-border bg-white text-ink transition hover:border-clay hover:text-clay md:hidden"
+      aria-label="Open menu"
+      aria-controls="mobile-menu"
+      tabindex="0"
+    >
+      <Menu size={22} aria-hidden="true" />
+    </label>
+    <label
+      for="mobile-menu-toggle"
+      class="fixed inset-0 z-40 hidden cursor-pointer bg-ink/24 backdrop-blur-[1px] peer-checked:block md:hidden"
+      aria-label="Close menu"
+    ></label>
+    <aside
+      id="mobile-menu"
+      class="fixed right-0 top-0 z-50 flex h-dvh w-[min(86vw,360px)] translate-x-full flex-col border-l border-border bg-white px-6 py-5 shadow-2xl transition-transform duration-300 ease-out peer-checked:translate-x-0 md:hidden"
+      aria-label="Mobile navigation"
+    >
+      <div class="flex justify-end">
+        <label
+          for="mobile-menu-toggle"
+          class="focus-ring inline-flex h-10 w-10 cursor-pointer items-center justify-center border border-border text-ink transition hover:border-clay hover:text-clay"
+          aria-label="Close menu"
+          tabindex="0"
+        >
+          <X size={21} aria-hidden="true" />
+        </label>
+      </div>
+      <nav class="mt-10 grid gap-6 text-base font-semibold uppercase tracking-[0.12em] text-ink/72" aria-label="Mobile navigation links">
+        <a class="focus-ring hover:text-clay" href="/services">Services</a>
+        <a class="focus-ring hover:text-clay" href="/about">About</a>
+        <a class="focus-ring hover:text-clay" href="/companies">Directory</a>
+        <a class="focus-ring hover:text-clay" href="/contact">Contact</a>
+      </nav>
+      <a
+        href="/contact"
+        class="focus-ring mt-8 inline-flex justify-center bg-clay px-5 py-3 text-sm font-bold text-white transition hover:bg-ink"
+      >
+        Request a Quote
+      </a>
+    </aside>
   </div>
 </header>
