@@ -83,7 +83,7 @@ function asStringList(value: unknown): string[] {
 export function normalizeBusiness(record: AirtableRecord): Business {
   const fields = record.fields;
   const name = asString(fields.Name) ?? "Unnamed Cleaning Service";
-  const slug = slugify(asString(fields.Slug) ?? name) || record.id;
+  const slug = slugify(asString(fields.Slug) ?? "");
   const town = asString(fields.Town) ?? "Singapore";
   const categories = asStringList(fields.Category ?? fields.Services);
   const streetName = asString(fields["Street Name"]);
@@ -167,7 +167,7 @@ export async function loadBusinessesFromAirtable(
     offset = page.offset;
   } while (offset);
 
-  return records.map(normalizeBusiness).filter((business) => business.name);
+  return records.map(normalizeBusiness).filter((business) => business.name && business.slug);
 }
 
 export function getBusinessBySlug(businesses: Business[], slug: string): Business | undefined {

@@ -34,10 +34,10 @@ const records: AirtableRecord[] = [
 ];
 
 describe("airtable business helpers", () => {
-  it("creates a safe slug when Airtable Slug is missing", () => {
+  it("leaves the slug empty when Airtable Slug is missing", () => {
     const business = normalizeBusiness(records[0]);
 
-    expect(business.slug).toBe("pearl-clean-co");
+    expect(business.slug).toBe("");
   });
 
   it("normalizes optional string and array fields", () => {
@@ -105,7 +105,7 @@ describe("airtable business helpers", () => {
     ).rejects.toThrow("Airtable request failed with 403");
   });
 
-  it("loads and normalizes all Airtable pages", async () => {
+  it("loads and normalizes Airtable pages with slugs", async () => {
     const fetchMock = vi
       .fn()
       .mockResolvedValueOnce({
@@ -122,8 +122,22 @@ describe("airtable business helpers", () => {
       fetchMock
     );
 
-    expect(businesses.map((business) => business.name)).toEqual(["Pearl Clean Co", "Bright Nest"]);
+    expect(businesses.map((business) => business.name)).toEqual(["Bright Nest"]);
     expect(fetchMock).toHaveBeenCalledTimes(2);
     expect(fetchMock.mock.calls[1][0].toString()).toContain("offset=next-page");
+  });
+
+  it("only loads businesses with Airtable-backed slugs", async () => {
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({ records })
+    });
+
+    const businesses = await loadBusinessesFromAirtable(
+      { apiKey: "pat_test", baseId: "app_test", tableName: "Businesses" },
+      fetchMock
+    );
+
+    expect(businesses.map((business) => business.slug)).toEqual(["bright-nest"]);
   });
 });
