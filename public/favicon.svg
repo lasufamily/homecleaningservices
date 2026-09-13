@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="904" height="922" viewBox="0 0 904 922" role="img" aria-labelledby="title desc">
+  <title id="title">Editable sparkle icon in circle</title>
+  <desc id="desc">Vectorized circle and individual sparkles, with each component separated for recoloring in Canva.</desc>
+
+  <path
+    id="outer-circle-ring"
+    data-name="Outer circle ring"
+    fill="#307FD3"
+    fill-rule="evenodd"
+    d="M477.5 134C654.1 134 797 276.9 797 453.5C797 630.1 654.1 773 477.5 773C300.9 773 158 630.1 158 453.5C158 276.9 300.9 134 477.5 134ZM477.5 179C325.8 179 203 301.8 203 453.5C203 605.2 325.8 728 477.5 728C629.2 728 752 605.2 752 453.5C752 301.8 629.2 179 477.5 179Z"/>
+
+  <path
+    id="sparkle-large-top"
+    data-name="Large top sparkle"
+    fill="#307FD3"
+    d="M505 227C493 303 478 328 400 344C478 360 493 386 505 463C517 386 532 360 608 344C532 328 517 303 505 227Z"/>
+
+  <path
+    id="sparkle-large-bottom"
+    data-name="Large bottom sparkle"
+    fill="#307FD3"
+    d="M452 502C445 544 432 558 395 566C432 574 445 588 452 630C459 588 471 574 508 566C471 558 459 544 452 502Z"/>
+
+  <path
+    id="sparkle-left"
+    data-name="Left sparkle"
+    fill="#f8718c"
+    d="M371 384C365 415 356 427 326 433C356 439 365 452 371 483C377 452 386 439 415 433C386 427 377 415 371 384Z"/>
+
+  <path
+    id="sparkle-right"
+    data-name="Right sparkle"
+    fill="#f8718c"
+    d="M589 413C584 441 575 452 549 458C575 464 584 474 589 502C594 474 603 464 628 458C603 452 594 441 589 413Z"/>
+
+  <path
+    id="sparkle-top-left-small"
+    data-name="Top left small sparkle"
+    fill="#307FD3"
+    d="M395 273C392 286 388 290 378 293C388 296 392 300 395 311C398 300 402 296 412 293C402 290 398 286 395 273Z"/>
+
+  <path
+    id="sparkle-center-small"
+    data-name="Center small sparkle"
+    fill="#307FD3"
+    d="M454 444C451 456 447 460 437 463C447 466 451 470 454 481C457 470 461 466 470 463C461 460 457 456 454 444Z"/>
+
+  <path
+    id="sparkle-bottom-left-small"
+    data-name="Bottom left small sparkle"
+    fill="#307FD3"
+    d="M395 628C391 645 386 651 371 654C386 657 391 663 395 680C399 663 403 657 418 654C403 651 399 645 395 628Z"/>
+
+  <path
+    id="sparkle-bottom-right-small"
+    data-name="Bottom right small sparkle"
+    fill="#307FD3"
+    d="M519 606C515 623 510 629 495 632C510 635 515 641 519 658C523 641 527 635 542 632C527 629 523 623 519 606Z"/>
+</svg>
