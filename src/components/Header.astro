@@ -1,5 +1,5 @@
 ---
-import { Search } from "@lucide/astro";
+import { Mail } from "@lucide/astro";
 ---
 
 <header class="border-b border-border/80 bg-pearl/90 backdrop-blur">
@@ -8,16 +8,18 @@ import { Search } from "@lucide/astro";
       Home Cleaning Services
     </a>
     <nav class="hidden items-center gap-8 text-sm font-semibold uppercase tracking-[0.12em] text-ink/70 md:flex" aria-label="Primary navigation">
-      <a class="focus-ring hover:text-clay" href="/companies">Companies</a>
-      <a class="focus-ring hover:text-clay" href="/search">Search</a>
+      <a class="focus-ring hover:text-clay" href="/services">Services</a>
+      <a class="focus-ring hover:text-clay" href="/about">About</a>
+      <a class="focus-ring hover:text-clay" href="/companies">Directory</a>
+      <a class="focus-ring hover:text-clay" href="/contact">Contact</a>
     </nav>
     <a
-      href="/search"
+      href="/contact"
       class="focus-ring inline-flex h-11 w-11 items-center justify-center border border-border bg-white text-ink transition hover:border-clay hover:text-clay"
-      aria-label="Open search"
-      title="Search"
+      aria-label="Request a quote"
+      title="Request a quote"
     >
-      <Search size={19} aria-hidden="true" />
+      <Mail size={19} aria-hidden="true" />
     </a>
   </div>
 </header>

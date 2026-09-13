@@ -1,0 +1,110 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { services } from "../lib/services";
+
+const selectedService = Astro.url.searchParams.get("service") ?? "";
+---
+
+<Layout
+  title="Contact Home Cleaning Services Singapore"
+  description="Request a quote from Home Cleaning Services for home cleaning, deep cleaning, spring cleaning, move in move out cleaning, and specialist cleaning services in Singapore."
+>
+  <section class="bg-white">
+    <div class="container grid gap-10 py-14 md:grid-cols-[0.9fr_1.1fr] md:items-start md:py-20">
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h1 class="serif mt-5 max-w-3xl text-6xl font-semibold leading-[0.9] text-ink md:text-8xl">
+          Request a cleaning quote
+        </h1>
+        <p class="mt-7 max-w-xl text-lg leading-8 text-ink/68">
+          Share your home type, preferred service, timing, and any areas that need special attention. We will use those details
+          to prepare a practical cleaning scope.
+        </p>
+      </div>
+
+      <form id="quote-form" class="border border-border bg-linen p-6 md:p-8">
+        <div class="grid gap-5">
+          <label class="grid gap-2 text-sm font-semibold text-ink">
+            Name
+            <input required name="name" class="focus-ring border border-border bg-white px-4 py-3 font-normal text-ink" autocomplete="name" />
+          </label>
+
+          <div class="grid gap-5 md:grid-cols-2">
+            <label class="grid gap-2 text-sm font-semibold text-ink">
+              Email
+              <input required type="email" name="email" class="focus-ring border border-border bg-white px-4 py-3 font-normal text-ink" autocomplete="email" />
+            </label>
+            <label class="grid gap-2 text-sm font-semibold text-ink">
+              Phone
+              <input name="phone" class="focus-ring border border-border bg-white px-4 py-3 font-normal text-ink" autocomplete="tel" />
+            </label>
+          </div>
+
+          <label class="grid gap-2 text-sm font-semibold text-ink">
+            Service
+            <select required name="service" class="focus-ring border border-border bg-white px-4 py-3 font-normal text-ink">
+              <option value="">Select a service</option>
+              {services.map((service) => (
+                <option value={service.name} selected={selectedService === service.name}>{service.name}</option>
+              ))}
+            </select>
+          </label>
+
+          <div class="grid gap-5 md:grid-cols-2">
+            <label class="grid gap-2 text-sm font-semibold text-ink">
+              Property type
+              <select required name="property" class="focus-ring border border-border bg-white px-4 py-3 font-normal text-ink">
+                <option value="">Select property type</option>
+                <option>HDB flat</option>
+                <option>Condo or apartment</option>
+                <option>Landed home</option>
+                <option>Rental unit</option>
+                <option>Commercial home office</option>
+              </select>
+            </label>
+            <label class="grid gap-2 text-sm font-semibold text-ink">
+              Preferred date
+              <input type="date" name="date" class="focus-ring border border-border bg-white px-4 py-3 font-normal text-ink" />
+            </label>
+          </div>
+
+          <label class="grid gap-2 text-sm font-semibold text-ink">
+            Message
+            <textarea
+              required
+              name="message"
+              rows="6"
+              class="focus-ring border border-border bg-white px-4 py-3 font-normal text-ink"
+              placeholder="Tell us the number of rooms, bathrooms, home condition, and any special requests."
+            ></textarea>
+          </label>
+
+          <label class="flex gap-3 text-sm text-ink/68">
+            <input required type="checkbox" name="consent" class="mt-1 h-4 w-4 border-border" />
+            <span>I agree to be contacted about this cleaning enquiry.</span>
+          </label>
+
+          <button
+            type="submit"
+            class="focus-ring bg-clay px-7 py-4 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:bg-ink"
+          >
+            Send enquiry
+          </button>
+          <p id="quote-status" class="hidden border border-border bg-white p-4 text-sm text-ink/70" role="status">
+            Thank you. Your enquiry details have been captured on this page and are ready for submission once the form endpoint is connected.
+          </p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <script is:inline>
+    const form = document.querySelector("#quote-form");
+    const status = document.querySelector("#quote-status");
+
+    form?.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (status) status.classList.remove("hidden");
+    });
+  </script>
+</Layout>

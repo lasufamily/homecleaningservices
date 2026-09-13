@@ -1,0 +1,19 @@
+---
+import type { ServicePage } from "../lib/services";
+
+type Props = {
+  service: ServicePage;
+};
+
+const { service } = Astro.props;
+---
+
+<a
+  href={`/services/${service.slug}`}
+  class="focus-ring block border border-border bg-white p-6 transition hover:border-clay hover:shadow-soft"
+>
+  <p class="eyebrow">{service.shortName}</p>
+  <h3 class="serif mt-4 text-3xl font-semibold leading-tight text-ink">{service.name}</h3>
+  <p class="mt-4 text-sm leading-6 text-ink/66">{service.summary}</p>
+  <span class="mt-6 inline-flex text-sm font-bold uppercase tracking-[0.12em] text-clay">View service</span>
+</a>

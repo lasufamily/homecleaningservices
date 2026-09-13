@@ -1,0 +1,71 @@
+---
+import ContactCTA from "../components/ContactCTA.astro";
+import Layout from "../layouts/Layout.astro";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "Home Cleaning Services",
+  url: new URL("/", Astro.site ?? Astro.url.origin).toString(),
+  areaServed: {
+    "@type": "Country",
+    name: "Singapore"
+  },
+  description:
+    "Home Cleaning Services provides quote-based home cleaning, deep cleaning, spring cleaning, move in move out cleaning, and specialist cleaning services in Singapore."
+};
+---
+
+<Layout
+  title="About Home Cleaning Services Singapore"
+  description="Learn about Home Cleaning Services, a Singapore home cleaning company offering quote-based home cleaning, deep cleaning, spring cleaning, move in move out cleaning, and specialist cleaning services."
+  jsonLd={jsonLd}
+>
+  <section class="bg-white">
+    <div class="container py-14 md:py-20">
+      <p class="eyebrow">About</p>
+      <h1 class="serif mt-5 max-w-4xl text-6xl font-semibold leading-[0.9] text-ink md:text-8xl">
+        Cleaning help for Singapore homes that need life to feel lighter.
+      </h1>
+      <p class="mt-7 max-w-2xl text-lg leading-8 text-ink/68">
+        Home Cleaning Services helps households across Singapore arrange the right cleaning scope, from regular home cleaning
+        to deeper one-off work before moving, hosting, renovating, or resetting a busy home.
+      </p>
+    </div>
+  </section>
+
+  <section class="container grid gap-10 py-14 md:grid-cols-[0.8fr_1.2fr]">
+    <div>
+      <p class="eyebrow">Our approach</p>
+      <h2 class="serif mt-3 text-4xl font-semibold leading-tight text-ink md:text-5xl">Clear scopes. Practical quotes. Respect for the home.</h2>
+    </div>
+    <div class="space-y-6 text-lg leading-8 text-ink/68">
+      <p>
+        Cleaning is personal. Every home has different routines, surfaces, access, and priorities, so we keep the process simple:
+        understand the job, confirm the scope, and quote based on the condition of the home instead of forcing every enquiry
+        into the same package.
+      </p>
+      <p>
+        The site also keeps its original company directory so Singapore homeowners can compare providers when they want a wider
+        view of the market. Our service pages are for people who want to request a quote directly from Home Cleaning Services.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-white py-14">
+    <div class="container grid gap-6 md:grid-cols-3">
+      {[
+        ["Singapore-wide home cleaning", "Services are written around common Singapore homes, from HDB flats and condos to landed homes and rental units."],
+        ["Quote-based service scopes", "No invented pricing tables. We confirm home size, condition, timing, and special requests before quoting."],
+        ["Directory kept intact", "The existing `/companies` directory remains available for homeowners who want to compare cleaning companies."]
+      ].map(([title, body]) => (
+        <div class="border border-border bg-linen p-7">
+          <h3 class="serif text-3xl font-semibold text-ink">{title}</h3>
+          <p class="mt-4 text-ink/66">{body}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <ContactCTA />
+</Layout>

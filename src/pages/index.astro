@@ -1,32 +1,63 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import ContactCTA from "../components/ContactCTA.astro";
 import ListingCard from "../components/ListingCard.astro";
 import SearchBox from "../components/SearchBox.astro";
 import InitialsImage from "../components/InitialsImage.astro";
+import ServiceCard from "../components/ServiceCard.astro";
 import { getBusinesses, getCategories, getTowns } from "../lib/airtable";
+import { services } from "../lib/services";
 
 const businesses = await getBusinesses();
 const featured = businesses.slice(0, 3);
 const towns = getTowns(businesses).slice(0, 8);
 const categories = getCategories(businesses).slice(0, 8);
+const featuredServices = services.slice(0, 6);
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "Home Cleaning Services",
+  url: new URL("/", Astro.site ?? Astro.url.origin).toString(),
+  areaServed: {
+    "@type": "Country",
+    name: "Singapore"
+  },
+  description:
+    "Home Cleaning Services provides quote-based home cleaning, deep cleaning, spring cleaning, move in move out cleaning, and specialist cleaning services in Singapore.",
+  makesOffer: services.map((service) => ({
+    "@type": "Offer",
+    itemOffered: {
+      "@type": "Service",
+      name: service.name,
+      url: new URL(`/services/${service.slug}`, Astro.site ?? Astro.url.origin).toString()
+    }
+  }))
+};
 ---
 
 <Layout
-  title="Home Cleaning Services in Singapore"
-  description="A curated directory of home cleaning services across Singapore, browsable by town and service category."
+  title="Home Cleaning Services Singapore | Cleaning Company"
+  description="Home Cleaning Services provides quote-based home cleaning, part time maid, deep cleaning, spring cleaning, move in move out cleaning, and specialist cleaning services in Singapore."
+  jsonLd={jsonLd}
 >
   <section class="bg-white">
     <div class="container grid gap-10 py-14 md:grid-cols-[1.08fr_0.92fr] md:items-end md:py-20">
       <div>
-        <p class="eyebrow">Curated Singapore directory</p>
+        <p class="eyebrow">Singapore home cleaning company</p>
         <h1 class="serif mt-5 max-w-4xl text-6xl font-semibold leading-[0.9] text-ink md:text-8xl">
-          Home Cleaning Services in Singapore
+          Home cleaning services in Singapore
         </h1>
         <p class="mt-7 max-w-2xl text-lg text-ink/68">
-          Find home cleaning companies by neighbourhood, service type, and practical contact details in one polished local guide.
+          Request quote-based cleaning for regular housekeeping, part time maid support, deep cleaning, move-in and move-out cleans,
+          post-renovation dust, and specialist fabric care.
         </p>
-        <div class="mt-9">
-          <SearchBox />
+        <div class="mt-9 flex flex-wrap gap-3">
+          <a class="focus-ring bg-clay px-7 py-4 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:bg-ink" href="/contact">
+            Get a quote
+          </a>
+          <a class="focus-ring border border-border bg-white px-7 py-4 text-sm font-bold uppercase tracking-[0.12em] text-ink transition hover:border-clay hover:text-clay" href="/services">
+            View services
+          </a>
         </div>
       </div>
       <div class="hidden md:block">
@@ -37,29 +68,43 @@ const categories = getCategories(businesses).slice(0, 8);
 
   <section class="container grid gap-10 py-14 md:grid-cols-[0.8fr_1.2fr]">
     <div>
-      <p class="eyebrow">The guide</p>
-      <h2 class="serif mt-3 text-4xl font-semibold leading-tight text-ink md:text-5xl">A calmer way to compare cleaning services.</h2>
+      <p class="eyebrow">What we do</p>
+      <h2 class="serif mt-3 text-4xl font-semibold leading-tight text-ink md:text-5xl">Cleaning scopes for real Singapore homes.</h2>
     </div>
     <p class="text-lg leading-8 text-ink/68">
-      This directory brings Singapore home cleaning providers into a simple editorial format. Browse by town, compare services at a glance,
-      and open each listing for address, hours, phone, map links, social profiles, and gallery images where available.
+      Whether your home needs weekly upkeep, a one-time reset, a handover clean, or specialist care for mattresses, sofas,
+      curtains, carpets, and floors, we start with the home condition and quote the work clearly before the clean begins.
     </p>
   </section>
 
-  <section class="container py-14">
+  <section class="container py-14" data-pagefind-body>
     <div class="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
       <div>
-        <p class="eyebrow">Featured companies</p>
-        <h2 class="serif mt-3 text-4xl font-semibold text-ink md:text-5xl">Selected listings</h2>
+        <p class="eyebrow">Popular services</p>
+        <h2 class="serif mt-3 text-4xl font-semibold text-ink md:text-5xl">Start with the right clean</h2>
       </div>
-      <a href="/companies" class="focus-ring text-sm font-bold uppercase tracking-[0.14em] text-clay hover:text-ink">View all companies</a>
+      <a href="/services" class="focus-ring text-sm font-bold uppercase tracking-[0.14em] text-clay hover:text-ink">View all services</a>
     </div>
     <div class="grid gap-6 md:grid-cols-3">
-      {featured.map((business) => <ListingCard business={business} />)}
+      {featuredServices.map((service) => <ServiceCard service={service} />)}
     </div>
   </section>
 
   <section class="bg-white py-14">
+    <div class="container mb-10 grid gap-8 md:grid-cols-[0.85fr_1.15fr]">
+      <div>
+        <p class="eyebrow">Directory retained</p>
+        <h2 class="serif mt-3 text-4xl font-semibold text-ink md:text-5xl">Compare other cleaning companies too.</h2>
+      </div>
+      <div>
+        <p class="text-lg leading-8 text-ink/68">
+          The original directory remains available for homeowners who want to browse other providers by town, category, and company details.
+        </p>
+        <div class="mt-6">
+          <SearchBox compact={true} />
+        </div>
+      </div>
+    </div>
     <div class="container grid gap-12 md:grid-cols-2">
       <div>
         <p class="eyebrow">Browse by town</p>
@@ -86,13 +131,30 @@ const categories = getCategories(businesses).slice(0, 8);
     </div>
   </section>
 
+  {featured.length > 0 && (
+    <section class="container py-14">
+      <div class="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+        <div>
+          <p class="eyebrow">Directory examples</p>
+          <h2 class="serif mt-3 text-4xl font-semibold text-ink md:text-5xl">Selected company listings</h2>
+        </div>
+        <a href="/companies" class="focus-ring text-sm font-bold uppercase tracking-[0.14em] text-clay hover:text-ink">View directory</a>
+      </div>
+      <div class="grid gap-6 md:grid-cols-3">
+        {featured.map((business) => <ListingCard business={business} />)}
+      </div>
+    </section>
+  )}
+
   <section class="container py-16 text-center">
     <p class="eyebrow">Ready to compare</p>
     <h2 class="serif mx-auto mt-3 max-w-3xl text-4xl font-semibold leading-tight text-ink md:text-5xl">
-      Explore every listed home cleaning service across Singapore.
+      Need a quote for your own home cleaning job?
     </h2>
-    <a class="focus-ring mt-8 inline-flex bg-clay px-7 py-4 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:bg-white hover:text-clay" href="/companies">
-      Browse companies
+    <a class="focus-ring mt-8 inline-flex bg-clay px-7 py-4 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:bg-white hover:text-clay" href="/contact">
+      Contact us
     </a>
   </section>
+
+  <ContactCTA />
 </Layout>

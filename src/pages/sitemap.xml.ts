@@ -1,0 +1,23 @@
+import type { APIRoute } from "astro";
+import { getBusinesses } from "../lib/airtable";
+import { services } from "../lib/services";
+
+function urlEntry(origin: string, path: string): string {
+  const normalizedPath = path === "/" || path.endsWith("/") ? path : `${path}/`;
+  return `<url><loc>${origin}${normalizedPath}</loc></url>`;
+}
+
+export const GET: APIRoute = async ({ site }) => {
+  const origin = site?.origin ?? "https://homecleaningservices.sg";
+  const businesses = await getBusinesses();
+  const staticPaths = ["/", "/services", "/about", "/contact", "/companies", "/search", "/privacy", "/terms"];
+  const servicePaths = services.map((service) => `/services/${service.slug}`);
+  const companyPaths = businesses.map((business) => `/companies/${business.slug}`);
+  const entries = [...staticPaths, ...servicePaths, ...companyPaths].map((path) => urlEntry(origin, path)).join("");
+
+  return new Response(`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${entries}</urlset>`, {
+    headers: {
+      "Content-Type": "application/xml; charset=utf-8"
+    }
+  });
+};

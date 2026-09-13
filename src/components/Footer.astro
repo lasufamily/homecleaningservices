@@ -3,16 +3,42 @@ const year = new Date().getFullYear();
 ---
 
 <footer class="mt-24 border-t border-border bg-white">
-  <div class="container grid gap-8 py-12 md:grid-cols-[1.4fr_1fr] md:items-end">
+  <div class="container grid gap-10 py-12 md:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr]">
     <div>
-      <p class="eyebrow">Singapore directory</p>
+      <p class="eyebrow">Singapore cleaning company</p>
       <p class="serif mt-3 max-w-2xl text-3xl font-semibold leading-tight text-ink">
-        A curated guide to home cleaning services, organized by neighbourhood and service type.
+        Quote-based home cleaning, deep cleaning, move-out cleaning, and specialist cleaning services.
       </p>
     </div>
-    <div class="text-sm text-ink/60 md:text-right">
-      <p>&copy; {year} Home Cleaning Services Directory.</p>
-      <p>Built for Cloudflare Pages with Airtable and Pagefind.</p>
+    <div>
+      <h2 class="text-sm font-bold uppercase tracking-[0.12em] text-ink">Services</h2>
+      <nav class="mt-4 grid gap-3 text-sm text-ink/62" aria-label="Footer services">
+        <a class="hover:text-clay" href="/services/home-cleaning">Home Cleaning</a>
+        <a class="hover:text-clay" href="/services/deep-cleaning">Deep Cleaning</a>
+        <a class="hover:text-clay" href="/services/move-in-move-out-cleaning">Move In/Out Cleaning</a>
+        <a class="hover:text-clay" href="/services/post-renovation-cleaning">Post Renovation Cleaning</a>
+      </nav>
+    </div>
+    <div>
+      <h2 class="text-sm font-bold uppercase tracking-[0.12em] text-ink">Company</h2>
+      <nav class="mt-4 grid gap-3 text-sm text-ink/62" aria-label="Footer company">
+        <a class="hover:text-clay" href="/services">All Services</a>
+        <a class="hover:text-clay" href="/about">About</a>
+        <a class="hover:text-clay" href="/contact">Contact</a>
+        <a class="hover:text-clay" href="/companies">Directory</a>
+        <a class="hover:text-clay" href="/search">Search</a>
+      </nav>
+    </div>
+    <div>
+      <h2 class="text-sm font-bold uppercase tracking-[0.12em] text-ink">Legal</h2>
+      <nav class="mt-4 grid gap-3 text-sm text-ink/62" aria-label="Footer legal">
+        <a class="hover:text-clay" href="/privacy">Privacy Policy</a>
+        <a class="hover:text-clay" href="/terms">Terms and Conditions</a>
+      </nav>
+      <div class="mt-8 text-sm text-ink/60">
+        <p>&copy; {year} Home Cleaning Services.</p>
+        <p>Directory data remains available for comparison.</p>
+      </div>
     </div>
   </div>
 </footer>
