@@ -2,22 +2,19 @@ import { describe, expect, it } from "vitest";
 import { getServiceBySlug, services } from "./services";
 
 const plannedSlugs = [
-  "home-cleaning",
-  "part-time-maid",
-  "deep-cleaning",
   "spring-cleaning",
-  "move-in-move-out-cleaning",
   "end-of-tenancy-cleaning",
   "post-renovation-cleaning",
-  "sofa-cleaning",
-  "upholstery-cleaning",
-  "mattress-cleaning",
-  "carpet-cleaning",
+  "move-in-move-out-cleaning",
   "curtain-cleaning",
   "floor-cleaning",
-  "disinfection-service",
-  "kitchen-cleaning",
-  "bathroom-cleaning"
+  "marble-floor-polishing",
+  "vinyl-floor-cleaning",
+  "carpet-cleaning",
+  "upholstery-cleaning",
+  "sofa-cleaning",
+  "mattress-cleaning",
+  "home-disinfection"
 ];
 
 describe("service catalogue", () => {
@@ -26,7 +23,7 @@ describe("service catalogue", () => {
   });
 
   it("returns services by slug", () => {
-    expect(getServiceBySlug("deep-cleaning")?.name).toBe("Deep Cleaning");
+    expect(getServiceBySlug("home-disinfection")?.name).toBe("Home Disinfection");
     expect(getServiceBySlug("missing-service")).toBeUndefined();
   });
 
