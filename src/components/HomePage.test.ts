@@ -9,4 +9,9 @@ describe("home page", () => {
     expect(homePageSource).toContain('src="/images/Home-Cleaning-Services-Singapore-Hero-1.png"');
     expect(homePageSource).toContain('alt="Home Cleaning Services Singapore"');
   });
+
+  it("includes the quote form in the hero", () => {
+    expect(homePageSource).toContain("<QuoteForm");
+    expect(homePageSource).toContain('formAction="https://submit-form.com/TmT9DZNtR"');
+  });
 });

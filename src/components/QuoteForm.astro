@@ -1,0 +1,125 @@
+---
+import { services } from "../lib/services";
+
+type Props = {
+  selectedService?: string;
+  formAction?: string;
+  title?: string;
+  intro?: string;
+  submitLabel?: string;
+};
+
+const {
+  selectedService = "",
+  formAction = "https://submit-form.com/TmT9DZNtR",
+  title = "Get your cleaning quote",
+  intro = "Share a few details and we will quote the right cleaning scope for your home.",
+  submitLabel = "Send enquiry"
+} = Astro.props;
+---
+
+<form
+  id="quote-form"
+  data-quote-form
+  action={formAction}
+  method="POST"
+  class="border border-border bg-linen p-6 shadow-sm md:p-8"
+>
+  <div class="grid gap-5">
+    <div>
+      <h2 class="serif text-3xl font-semibold leading-tight text-ink">{title}</h2>
+      <p class="mt-2 text-sm leading-6 text-ink/64">{intro}</p>
+    </div>
+
+    <label class="grid gap-2 text-sm font-semibold text-ink">
+      <span>Name <span class="text-red-600" aria-hidden="true">*</span></span>
+      <input name="name" required class="focus-ring border border-border bg-white px-4 py-3 font-normal text-ink" autocomplete="name" />
+    </label>
+
+    <div class="grid gap-5 md:grid-cols-2">
+      <label class="grid gap-2 text-sm font-semibold text-ink">
+        <span>Phone <span class="text-red-600" aria-hidden="true">*</span></span>
+        <input name="phone" required class="focus-ring border border-border bg-white px-4 py-3 font-normal text-ink" autocomplete="tel" />
+      </label>
+      <label class="grid gap-2 text-sm font-semibold text-ink">
+        <span>Email <span class="text-red-600" aria-hidden="true">*</span></span>
+        <input name="email" required type="email" class="focus-ring border border-border bg-white px-4 py-3 font-normal text-ink" autocomplete="email" />
+      </label>
+    </div>
+
+    <label class="grid gap-2 text-sm font-semibold text-ink">
+      <span>Service <span class="text-red-600" aria-hidden="true">*</span></span>
+      <select name="service" required class="focus-ring border border-border bg-white px-4 py-3 font-normal text-ink">
+        <option value="">Select a service</option>
+        {services.map((service) => (
+          <option value={service.name} selected={selectedService === service.name}>{service.name}</option>
+        ))}
+      </select>
+    </label>
+
+    <label class="grid gap-2 text-sm font-semibold text-ink">
+      <span>Message <span class="text-red-600" aria-hidden="true">*</span></span>
+      <textarea
+        name="message"
+        required
+        rows="5"
+        class="focus-ring border border-border bg-white px-4 py-3 font-normal text-ink"
+        placeholder="Tell us the number of rooms, bathrooms, home condition, and anything we should know before quoting."
+      ></textarea>
+    </label>
+
+    <button
+      type="submit"
+      class="focus-ring bg-clay px-7 py-4 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:bg-ink disabled:cursor-not-allowed disabled:opacity-70"
+    >
+      {submitLabel}
+    </button>
+    <p data-quote-status class="hidden border border-border bg-white p-4 text-sm text-ink/70" role="status" aria-live="polite">
+      Thank you. Your request for quote has been sent.
+    </p>
+  </div>
+</form>
+
+<script is:inline>
+  document.querySelectorAll("[data-quote-form]").forEach((form) => {
+    if (!(form instanceof HTMLFormElement) || form.dataset.quoteFormBound === "true") return;
+
+    form.dataset.quoteFormBound = "true";
+    const status = form.querySelector("[data-quote-status]");
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const action = form.action;
+      const button = form.querySelector('button[type="submit"]');
+
+      if (button) button.disabled = true;
+      if (status) {
+        status.textContent = "Sending...";
+        status.classList.remove("hidden");
+      }
+
+      try {
+        const response = await fetch(action, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify(Object.fromEntries(new FormData(form))),
+        });
+
+        if (!response.ok) {
+          throw new Error("Form submission failed");
+        }
+
+        form.reset();
+        if (status) status.textContent = "Thank you. Your request for quote has been sent.";
+      } catch {
+        if (status) status.textContent = "Sorry, the form could not be sent. Please try again.";
+      } finally {
+        if (button) button.disabled = false;
+      }
+    });
+  });
+</script>

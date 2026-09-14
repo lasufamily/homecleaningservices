@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import ContactCTA from "../components/ContactCTA.astro";
 import ListingCard from "../components/ListingCard.astro";
+import QuoteForm from "../components/QuoteForm.astro";
 import SearchBox from "../components/SearchBox.astro";
 import ServiceCard from "../components/ServiceCard.astro";
 import { getBusinesses, getCategories, getTowns } from "../lib/airtable";
@@ -39,36 +40,44 @@ const jsonLd = {
   description="Home Cleaning Services arranges home cleaning, part time maid, deep cleaning, spring cleaning, move in move out cleaning, and specialist cleaning services in Singapore."
   jsonLd={jsonLd}
 >
-  <section class="bg-white">
-    <div class="container grid gap-10 py-14 md:grid-cols-[1.08fr_0.92fr] md:items-end md:py-20">
-      <div>
-        <p class="eyebrow">Singapore home cleaning company</p>
-        <h1 class="serif mt-5 max-w-4xl text-6xl font-semibold leading-[0.9] text-ink md:text-8xl">
+  <section class="relative isolate overflow-hidden bg-ink text-white">
+    <img
+      src="/images/Home-Cleaning-Services-Singapore-Hero-1.png"
+      alt="Home Cleaning Services Singapore"
+      class="absolute inset-0 -z-20 h-full w-full object-cover opacity-30"
+      loading="eager"
+      decoding="async"
+    />
+    <div class="absolute inset-0 -z-10 bg-gradient-to-r from-ink via-ink/88 to-ink/48"></div>
+    <div class="container grid gap-10 py-14 md:grid-cols-[0.95fr_0.85fr] md:items-center md:py-20">
+      <div class="max-w-3xl">
+        <p class="text-xs font-bold uppercase tracking-[0.14em] text-white/72">Singapore home cleaning company</p>
+        <h1 class="serif mt-5 text-6xl font-semibold leading-[0.9] text-white md:text-8xl">
           Home cleaning services in Singapore
         </h1>
-        <p class="mt-7 max-w-2xl text-lg text-ink/68">
-          Get a quote for regular housekeeping, part time maid support, deep cleaning, move-in and move-out cleans,
-          post-renovation dust, or fabric care.
+        <p class="mt-7 max-w-2xl text-lg leading-8 text-white/76">
+          Get a clear quote for regular housekeeping, part time maid support, deep cleaning, move-in and move-out
+          cleans, post-renovation dust, or fabric care.
         </p>
+        <div class="mt-7 grid gap-3 text-sm font-semibold text-white/84 sm:grid-cols-2">
+          <span class="border-l-2 border-clay pl-3">Housekeeping, deep cleaning, and handover cleans</span>
+          <span class="border-l-2 border-clay pl-3">Quote details captured before the first call</span>
+          <span class="border-l-2 border-clay pl-3">Specialist fabric, floor, curtain, and sofa care</span>
+          <span class="border-l-2 border-clay pl-3">Singapore-wide service matching and directory support</span>
+        </div>
         <div class="mt-9 flex flex-wrap gap-3">
-          <a class="focus-ring bg-clay px-7 py-4 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:bg-ink" href="/contact">
-            Get a quote
-          </a>
-          <a class="focus-ring border border-border bg-white px-7 py-4 text-sm font-bold uppercase tracking-[0.12em] text-ink transition hover:border-clay hover:text-clay" href="/services">
+          <a class="focus-ring border border-white/36 bg-white px-7 py-4 text-sm font-bold uppercase tracking-[0.12em] text-ink transition hover:border-clay hover:bg-clay hover:text-white" href="/services">
             View services
           </a>
         </div>
       </div>
-      <div class="hidden md:block">
-        <div class="relative aspect-[4/5] overflow-hidden border border-border bg-white">
-          <img
-            src="/images/Home-Cleaning-Services-Singapore-Hero-1.png"
-            alt="Home Cleaning Services Singapore"
-            class="h-full w-full object-cover"
-            loading="eager"
-            decoding="async"
-          />
-        </div>
+      <div>
+        <QuoteForm
+          formAction="https://submit-form.com/TmT9DZNtR"
+          title="Get your free quote"
+          intro="Tell us what needs cleaning and we will help scope the job properly."
+          submitLabel="Get my quote"
+        />
       </div>
     </div>
   </section>
