@@ -22,27 +22,32 @@ const selectedService = Astro.url.searchParams.get("service") ?? "";
         </p>
       </div>
 
-      <form id="quote-form" class="border border-border bg-linen p-6 md:p-8">
+      <form
+        id="quote-form"
+        action="https://submit-form.com/TmT9DZNtR"
+        method="POST"
+        class="border border-border bg-linen p-6 md:p-8"
+      >
         <div class="grid gap-5">
           <label class="grid gap-2 text-sm font-semibold text-ink">
             Name
-            <input required name="name" class="focus-ring border border-border bg-white px-4 py-3 font-normal text-ink" autocomplete="name" />
+            <input name="name" required class="focus-ring border border-border bg-white px-4 py-3 font-normal text-ink" autocomplete="name" />
           </label>
 
           <div class="grid gap-5 md:grid-cols-2">
             <label class="grid gap-2 text-sm font-semibold text-ink">
-              Email
-              <input required type="email" name="email" class="focus-ring border border-border bg-white px-4 py-3 font-normal text-ink" autocomplete="email" />
+              Phone
+              <input name="phone" required class="focus-ring border border-border bg-white px-4 py-3 font-normal text-ink" autocomplete="tel" />
             </label>
             <label class="grid gap-2 text-sm font-semibold text-ink">
-              Phone
-              <input name="phone" class="focus-ring border border-border bg-white px-4 py-3 font-normal text-ink" autocomplete="tel" />
+              Email
+              <input name="email" required type="email" class="focus-ring border border-border bg-white px-4 py-3 font-normal text-ink" autocomplete="email" />
             </label>
           </div>
 
           <label class="grid gap-2 text-sm font-semibold text-ink">
             Service
-            <select required name="service" class="focus-ring border border-border bg-white px-4 py-3 font-normal text-ink">
+            <select name="service" required class="focus-ring border border-border bg-white px-4 py-3 font-normal text-ink">
               <option value="">Select a service</option>
               {services.map((service) => (
                 <option value={service.name} selected={selectedService === service.name}>{service.name}</option>
@@ -50,38 +55,15 @@ const selectedService = Astro.url.searchParams.get("service") ?? "";
             </select>
           </label>
 
-          <div class="grid gap-5 md:grid-cols-2">
-            <label class="grid gap-2 text-sm font-semibold text-ink">
-              Property type
-              <select required name="property" class="focus-ring border border-border bg-white px-4 py-3 font-normal text-ink">
-                <option value="">Select property type</option>
-                <option>HDB flat</option>
-                <option>Condo or apartment</option>
-                <option>Landed home</option>
-                <option>Rental unit</option>
-                <option>Commercial home office</option>
-              </select>
-            </label>
-            <label class="grid gap-2 text-sm font-semibold text-ink">
-              Preferred date
-              <input type="date" name="date" class="focus-ring border border-border bg-white px-4 py-3 font-normal text-ink" />
-            </label>
-          </div>
-
           <label class="grid gap-2 text-sm font-semibold text-ink">
             Message
             <textarea
-              required
               name="message"
+              required
               rows="6"
               class="focus-ring border border-border bg-white px-4 py-3 font-normal text-ink"
               placeholder="Tell us the number of rooms, bathrooms, home condition, and anything we should know before quoting."
             ></textarea>
-          </label>
-
-          <label class="flex gap-3 text-sm text-ink/68">
-            <input required type="checkbox" name="consent" class="mt-1 h-4 w-4 border-border" />
-            <span>I agree to be contacted about this cleaning enquiry.</span>
           </label>
 
           <button
@@ -90,8 +72,8 @@ const selectedService = Astro.url.searchParams.get("service") ?? "";
           >
             Send enquiry
           </button>
-          <p id="quote-status" class="hidden border border-border bg-white p-4 text-sm text-ink/70" role="status">
-            Thanks. The form is ready, but the live submission endpoint still needs to be connected.
+          <p id="quote-status" class="hidden border border-border bg-white p-4 text-sm text-ink/70" role="status" aria-live="polite">
+            Thanks. Your enquiry has been sent.
           </p>
         </div>
       </form>
@@ -102,9 +84,39 @@ const selectedService = Astro.url.searchParams.get("service") ?? "";
     const form = document.querySelector("#quote-form");
     const status = document.querySelector("#quote-status");
 
-    form?.addEventListener("submit", (event) => {
+    form?.addEventListener("submit", async (event) => {
       event.preventDefault();
-      if (status) status.classList.remove("hidden");
+
+      const action = form.action;
+      const button = form.querySelector('button[type="submit"]');
+
+      if (button) button.disabled = true;
+      if (status) {
+        status.textContent = "Sending...";
+        status.classList.remove("hidden");
+      }
+
+      try {
+        const response = await fetch(action, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify(Object.fromEntries(new FormData(form))),
+        });
+
+        if (!response.ok) {
+          throw new Error("Form submission failed");
+        }
+
+        form.reset();
+        if (status) status.textContent = "Thanks. Your enquiry has been sent.";
+      } catch {
+        if (status) status.textContent = "Sorry, the form could not be sent. Please try again.";
+      } finally {
+        if (button) button.disabled = false;
+      }
     });
   </script>
 </Layout>
