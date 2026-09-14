@@ -14,6 +14,13 @@ describe("home page", () => {
     expect(homePageSource).toContain('alt="Home Cleaning Services Singapore"');
   });
 
+  it("uses the requested hero heading copy", () => {
+    expect(homePageSource).toContain(">Professional cleaning</p>");
+    expect(homePageSource).toContain("Home Cleaning Services in Singapore.");
+    expect(homePageSource).not.toContain("Singapore home cleaning company");
+    expect(homePageSource).not.toContain("Home cleaning services in Singapore");
+  });
+
   it("includes the quote form in the hero", () => {
     expect(homePageSource).toContain("<QuoteForm");
     expect(homePageSource).toContain('formAction="https://submit-form.com/TmT9DZNtR"');
