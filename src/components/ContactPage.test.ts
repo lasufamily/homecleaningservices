@@ -26,4 +26,14 @@ describe("contact page form", () => {
     expect(contactSource).toContain('"Content-Type": "application/json"');
     expect(contactSource).toContain("JSON.stringify(Object.fromEntries(new FormData(form)))");
   });
+
+  it("marks every required field label with a red asterisk", () => {
+    const fieldLabels = ["Name", "Phone", "Email", "Service", "Message"];
+
+    for (const label of fieldLabels) {
+      expect(formSource).toMatch(
+        new RegExp(`<span>${label} <span class="text-red-600" aria-hidden="true">\\*</span></span>`)
+      );
+    }
+  });
 });

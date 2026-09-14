@@ -30,23 +30,23 @@ const selectedService = Astro.url.searchParams.get("service") ?? "";
       >
         <div class="grid gap-5">
           <label class="grid gap-2 text-sm font-semibold text-ink">
-            Name
+            <span>Name <span class="text-red-600" aria-hidden="true">*</span></span>
             <input name="name" required class="focus-ring border border-border bg-white px-4 py-3 font-normal text-ink" autocomplete="name" />
           </label>
 
           <div class="grid gap-5 md:grid-cols-2">
             <label class="grid gap-2 text-sm font-semibold text-ink">
-              Phone
+              <span>Phone <span class="text-red-600" aria-hidden="true">*</span></span>
               <input name="phone" required class="focus-ring border border-border bg-white px-4 py-3 font-normal text-ink" autocomplete="tel" />
             </label>
             <label class="grid gap-2 text-sm font-semibold text-ink">
-              Email
+              <span>Email <span class="text-red-600" aria-hidden="true">*</span></span>
               <input name="email" required type="email" class="focus-ring border border-border bg-white px-4 py-3 font-normal text-ink" autocomplete="email" />
             </label>
           </div>
 
           <label class="grid gap-2 text-sm font-semibold text-ink">
-            Service
+            <span>Service <span class="text-red-600" aria-hidden="true">*</span></span>
             <select name="service" required class="focus-ring border border-border bg-white px-4 py-3 font-normal text-ink">
               <option value="">Select a service</option>
               {services.map((service) => (
@@ -56,7 +56,7 @@ const selectedService = Astro.url.searchParams.get("service") ?? "";
           </label>
 
           <label class="grid gap-2 text-sm font-semibold text-ink">
-            Message
+            <span>Message <span class="text-red-600" aria-hidden="true">*</span></span>
             <textarea
               name="message"
               required
