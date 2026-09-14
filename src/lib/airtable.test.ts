@@ -60,6 +60,20 @@ describe("airtable business helpers", () => {
     expect(business.categories).toEqual(["Deep Cleaning", "Weekly Cleaning"]);
   });
 
+  it("prefers the Companies table Services multi-select over the legacy Category field", () => {
+    const business = normalizeBusiness({
+      id: "rec_company_services",
+      fields: {
+        Name: "Bizzio",
+        Town: "Novena",
+        Category: "House Cleaning",
+        Services: ["Move Out Cleaning", "Post Renovation Cleaning", "Spring Cleaning"]
+      }
+    });
+
+    expect(business.categories).toEqual(["Move Out Cleaning", "Post Renovation Cleaning", "Spring Cleaning"]);
+  });
+
   it("filters businesses by town and category", () => {
     const businesses = records.map(normalizeBusiness);
 

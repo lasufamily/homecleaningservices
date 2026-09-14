@@ -85,7 +85,8 @@ export function normalizeBusiness(record: AirtableRecord): Business {
   const name = asString(fields.Name) ?? "Unnamed Cleaning Service";
   const slug = slugify(asString(fields.Slug) ?? "");
   const town = asString(fields.Town) ?? "Singapore";
-  const categories = asStringList(fields.Category ?? fields.Services);
+  const services = asStringList(fields.Services);
+  const categories = services.length > 0 ? services : asStringList(fields.Category);
   const streetName = asString(fields["Street Name"]);
   const address = asString(fields.Address);
   const displayAddress = address ?? streetName;
