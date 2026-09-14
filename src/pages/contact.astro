@@ -73,7 +73,7 @@ const selectedService = Astro.url.searchParams.get("service") ?? "";
             Send enquiry
           </button>
           <p id="quote-status" class="hidden border border-border bg-white p-4 text-sm text-ink/70" role="status" aria-live="polite">
-            Thanks. Your enquiry has been sent.
+            Thank you. Your request for quote has been sent.
           </p>
         </div>
       </form>
@@ -111,7 +111,7 @@ const selectedService = Astro.url.searchParams.get("service") ?? "";
         }
 
         form.reset();
-        if (status) status.textContent = "Thanks. Your enquiry has been sent.";
+        if (status) status.textContent = "Thank you. Your request for quote has been sent.";
       } catch {
         if (status) status.textContent = "Sorry, the form could not be sent. Please try again.";
       } finally {

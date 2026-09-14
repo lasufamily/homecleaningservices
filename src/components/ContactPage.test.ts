@@ -36,4 +36,9 @@ describe("contact page form", () => {
       );
     }
   });
+
+  it("uses the requested success message", () => {
+    expect(contactSource).toContain("Thank you. Your request for quote has been sent.");
+    expect(contactSource).not.toContain("Thanks. Your enquiry has been sent.");
+  });
 });
