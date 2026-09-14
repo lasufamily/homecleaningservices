@@ -5,7 +5,6 @@ type Props = {
   selectedService?: string;
   formAction?: string;
   title?: string;
-  intro?: string;
   submitLabel?: string;
 };
 
@@ -13,7 +12,6 @@ const {
   selectedService = "",
   formAction = "https://submit-form.com/TmT9DZNtR",
   title = "Get your cleaning quote",
-  intro = "Share a few details and we will quote the right cleaning scope for your home.",
   submitLabel = "Send enquiry"
 } = Astro.props;
 ---
@@ -28,7 +26,6 @@ const {
   <div class="grid gap-5">
     <div>
       <h2 class="serif text-3xl font-semibold leading-tight text-ink">{title}</h2>
-      <p class="mt-2 text-sm leading-6 text-ink/64">{intro}</p>
     </div>
 
     <label class="grid gap-2 text-sm font-semibold text-ink">
@@ -64,7 +61,6 @@ const {
         required
         rows="5"
         class="focus-ring border border-border bg-white px-4 py-3 font-normal text-ink"
-        placeholder="Tell us the number of rooms, bathrooms, home condition, and anything we should know before quoting."
       ></textarea>
     </label>
 

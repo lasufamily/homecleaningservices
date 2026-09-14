@@ -42,4 +42,10 @@ describe("quote form", () => {
     expect(quoteFormSource).toContain("Thank you. Your request for quote has been sent.");
     expect(quoteFormSource).not.toContain("Thanks. Your enquiry has been sent.");
   });
+
+  it("does not render helper intro copy or a message placeholder", () => {
+    expect(quoteFormSource).not.toContain("Share a few details and we will quote the right cleaning scope for your home.");
+    expect(quoteFormSource).not.toContain("Tell us what needs cleaning and we will help scope the job properly.");
+    expect(formSource).not.toContain("placeholder=");
+  });
 });
