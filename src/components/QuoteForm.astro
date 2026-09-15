@@ -122,23 +122,30 @@ const sourcePath = Astro.url.pathname;
     const status = form.querySelector("[data-quote-status]");
     const serviceSelect = form.querySelector("[data-service-select]");
     const customerTypeRadios = form.querySelectorAll('input[name="customer_type"]');
+    const serviceOptions =
+      serviceSelect instanceof HTMLSelectElement
+        ? Array.from(serviceSelect.querySelectorAll("option")).filter((option) => option.dataset.serviceGroup)
+        : [];
+    const placeholderOption =
+      serviceSelect instanceof HTMLSelectElement ? serviceSelect.querySelector("option:not([data-service-group])") : null;
 
     const updateServiceOptions = () => {
       if (!(serviceSelect instanceof HTMLSelectElement)) return;
 
       const selectedCustomerType = new FormData(form).get("customer_type") || "Home";
-      let selectedOptionStillVisible = serviceSelect.value === "";
+      const currentValue = serviceSelect.value;
+      const optionsForCustomerType = serviceOptions
+        .filter((option) => option.dataset.serviceGroup === selectedCustomerType)
+        .map((option) => option.cloneNode(true));
+      const hasCurrentValue = optionsForCustomerType.some(
+        (option) => option instanceof HTMLOptionElement && option.value === currentValue
+      );
 
-      serviceSelect.querySelectorAll("option").forEach((option) => {
-        if (!(option instanceof HTMLOptionElement) || !option.dataset.serviceGroup) return;
+      serviceSelect.replaceChildren(...[placeholderOption?.cloneNode(true), ...optionsForCustomerType].filter(Boolean));
 
-        const shouldShow = option.dataset.serviceGroup === selectedCustomerType;
-        option.hidden = !shouldShow;
-        option.disabled = !shouldShow;
-        if (shouldShow && option.selected) selectedOptionStillVisible = true;
-      });
-
-      if (!selectedOptionStillVisible) {
+      if (hasCurrentValue) {
+        serviceSelect.value = currentValue;
+      } else {
         serviceSelect.value = "";
       }
     };

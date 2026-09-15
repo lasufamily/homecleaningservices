@@ -72,8 +72,12 @@ describe("quote form", () => {
 
   it("switches service options when the customer type radio changes", () => {
     expect(quoteFormSource).toContain('form.querySelectorAll(\'input[name="customer_type"]\')');
-    expect(quoteFormSource).toContain('option.dataset.serviceGroup === selectedCustomerType');
+    expect(quoteFormSource).toContain("const serviceOptions =");
+    expect(quoteFormSource).toContain("serviceSelect.replaceChildren");
+    expect(quoteFormSource).toContain("option.cloneNode(true)");
     expect(quoteFormSource).toContain("serviceSelect.value = \"\"");
+    expect(quoteFormSource).not.toContain("option.hidden =");
+    expect(quoteFormSource).not.toContain("option.disabled =");
   });
 
   it("does not render helper intro copy or a message placeholder", () => {
