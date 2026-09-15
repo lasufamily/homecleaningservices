@@ -51,10 +51,10 @@ const sourcePath = Astro.url.pathname;
 
     <fieldset class="grid gap-3 text-sm font-semibold text-ink">
       <legend>
-        <span>Customer type <span class="text-red-600" aria-hidden="true">*</span></span>
+        <span>Type <span class="text-red-600" aria-hidden="true">*</span></span>
       </legend>
-      <div class="grid gap-3 sm:grid-cols-2">
-        <label class="focus-within:focus-ring flex items-center gap-3 border border-border bg-white px-4 py-3 font-normal text-ink">
+      <div class="flex flex-wrap gap-6">
+        <label class="focus-within:focus-ring flex items-center gap-3 font-normal text-ink">
           <input
             type="radio"
             name="customer_type"
@@ -65,7 +65,7 @@ const sourcePath = Astro.url.pathname;
           />
           <span>Home</span>
         </label>
-        <label class="focus-within:focus-ring flex items-center gap-3 border border-border bg-white px-4 py-3 font-normal text-ink">
+        <label class="focus-within:focus-ring flex items-center gap-3 font-normal text-ink">
           <input
             type="radio"
             name="customer_type"
