@@ -11,9 +11,9 @@ describe("quote form", () => {
     expect(formSource).toContain("action={formAction}");
 
     const fieldNames = Array.from(formSource.matchAll(/\sname="([^"]+)"/g), ([, name]) => name);
-    expect(fieldNames).toEqual(["name", "phone", "email", "service", "message"]);
+    expect(fieldNames).toEqual(["source_path", "name", "phone", "email", "service", "message"]);
 
-    for (const name of fieldNames) {
+    for (const name of fieldNames.filter((name) => name !== "source_path")) {
       const fieldPattern = new RegExp(`<(?:input|select|textarea)[^>]*name="${name}"[^>]*required`);
       expect(formSource).toMatch(fieldPattern);
     }
@@ -26,6 +26,13 @@ describe("quote form", () => {
     expect(quoteFormSource).toContain('submitLabel = "Get Quote"');
     expect(quoteFormSource).not.toContain('title = "Get your cleaning quote"');
     expect(quoteFormSource).not.toContain('submitLabel = "Send enquiry"');
+  });
+
+  it("includes the current page path as a hidden Formspark field", () => {
+    expect(quoteFormSource).toContain("const sourcePath = Astro.url.pathname;");
+    expect(formSource).toContain('<input type="hidden" name="source_path" value={sourcePath} />');
+    expect(formSource).not.toContain("Astro.url.href");
+    expect(formSource).not.toContain("source_url");
   });
 
   it("submits with fetch without reloading the page", () => {
