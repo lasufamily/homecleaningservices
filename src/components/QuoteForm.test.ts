@@ -79,6 +79,7 @@ describe("quote form", () => {
   it("defaults to Home and renders residential and commercial service options", () => {
     expect(quoteFormSource).toContain('selectedCustomerType = "Home"');
     expect(formSource).toContain('checked={selectedCustomerType !== "Business"}');
+    expect(formSource).toContain('class="mt-2 flex flex-wrap gap-6"');
     expect(formSource).not.toContain("focus-within:focus-ring flex items-center gap-3 border border-border bg-white px-4 py-3 font-normal text-ink");
     expect(formSource).toContain('data-service-group="Home"');
     expect(formSource).toContain('data-service-group="Business"');
