@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { getServiceBySlug, services } from "./services";
+import { commercialServices, getRelatedServices, getServiceByGroupAndSlug, residentialServices, services } from "./services";
 
-const plannedSlugs = [
+const residentialSlugs = [
   "spring-cleaning",
   "end-of-tenancy-cleaning",
   "post-renovation-cleaning",
@@ -17,21 +17,55 @@ const plannedSlugs = [
   "home-disinfection"
 ];
 
+const commercialSlugs = [
+  "hotel-housekeeping",
+  "mcst-cleaning",
+  "office-cleaning",
+  "external-facade-cleaning",
+  "commercial-building-cleaning",
+  "end-of-tenancy-cleaning",
+  "post-renovation-cleaning",
+  "post-construction-cleaning",
+  "gym-cleaning",
+  "food-and-beverage-cleaning",
+  "retail-store-cleaning",
+  "commercial-kitchen-cleaning",
+  "childcare-cleaning"
+];
+
 describe("service catalogue", () => {
-  it("contains every planned SEO service slug", () => {
-    expect(services.map((service) => service.slug)).toEqual(plannedSlugs);
+  it("contains every planned residential service slug", () => {
+    expect(residentialServices.map((service) => service.slug)).toEqual(residentialSlugs);
+    expect(residentialServices.every((service) => service.group === "residential")).toBe(true);
   });
 
-  it("returns services by slug", () => {
-    expect(getServiceBySlug("home-disinfection")?.name).toBe("Home Disinfection");
-    expect(getServiceBySlug("missing-service")).toBeUndefined();
+  it("contains every planned commercial service slug", () => {
+    expect(commercialServices.map((service) => service.slug)).toEqual(commercialSlugs);
+    expect(commercialServices.every((service) => service.group === "commercial")).toBe(true);
   });
 
-  it("only links related services that exist", () => {
-    const slugs = new Set(services.map((service) => service.slug));
+  it("allows matching slugs in different service groups", () => {
+    expect(getServiceByGroupAndSlug("residential", "end-of-tenancy-cleaning")?.name).toBe("End of Tenancy Cleaning");
+    expect(getServiceByGroupAndSlug("commercial", "end-of-tenancy-cleaning")?.name).toBe("Commercial End of Lease Cleaning");
+    expect(getServiceByGroupAndSlug("commercial", "post-renovation-cleaning")?.name).toBe("Commercial Post Renovation Cleaning");
+  });
 
+  it("uses unique route paths across both service groups", () => {
+    const paths = services.map((service) => `/${service.group}/${service.slug}`);
+    expect(new Set(paths).size).toBe(paths.length);
+  });
+
+  it("returns services by group and slug", () => {
+    expect(getServiceByGroupAndSlug("residential", "home-disinfection")?.name).toBe("Home Disinfection");
+    expect(getServiceByGroupAndSlug("commercial", "food-and-beverage-cleaning")?.name).toBe("F&B Cleaning");
+    expect(getServiceByGroupAndSlug("residential", "missing-service")).toBeUndefined();
+  });
+
+  it("only links related services that exist in the same service group", () => {
     for (const service of services) {
-      expect(service.relatedSlugs.every((slug) => slugs.has(slug))).toBe(true);
+      const related = getRelatedServices(service);
+      expect(related).toHaveLength(service.relatedSlugs.length);
+      expect(related.every((relatedService) => relatedService.group === service.group)).toBe(true);
     }
   });
 });

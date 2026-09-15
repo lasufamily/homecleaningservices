@@ -11,12 +11,16 @@ describe("quote form", () => {
     expect(formSource).toContain("action={formAction}");
 
     const fieldNames = Array.from(formSource.matchAll(/\sname="([^"]+)"/g), ([, name]) => name);
-    expect(fieldNames).toEqual(["source_path", "name", "phone", "email", "service", "message"]);
+    expect(fieldNames).toEqual(["source_path", "name", "phone", "email", "customer_type", "customer_type", "service", "message"]);
 
-    for (const name of fieldNames.filter((name) => name !== "source_path")) {
+    for (const name of ["name", "phone", "email", "service", "message"]) {
       const fieldPattern = new RegExp(`<(?:input|select|textarea)[^>]*name="${name}"[^>]*required`);
       expect(formSource).toMatch(fieldPattern);
     }
+
+    expect(formSource).toContain('name="customer_type"');
+    expect(formSource).toContain('value="Home"');
+    expect(formSource).toContain('value="Business"');
 
     expect(formSource).toContain('type="submit"');
   });
@@ -43,7 +47,7 @@ describe("quote form", () => {
   });
 
   it("marks every required field label with a red asterisk", () => {
-    const fieldLabels = ["Name", "Phone", "Email", "Service", "Message"];
+    const fieldLabels = ["Name", "Phone", "Email", "Customer type", "Service", "Message"];
 
     for (const label of fieldLabels) {
       expect(formSource).toMatch(
@@ -55,6 +59,21 @@ describe("quote form", () => {
   it("uses the requested success message", () => {
     expect(quoteFormSource).toContain("Thank you. Your request for quote has been sent.");
     expect(quoteFormSource).not.toContain("Thanks. Your enquiry has been sent.");
+  });
+
+  it("defaults to Home and renders residential and commercial service options", () => {
+    expect(quoteFormSource).toContain('selectedCustomerType = "Home"');
+    expect(formSource).toContain('checked={selectedCustomerType !== "Business"}');
+    expect(formSource).toContain('data-service-group="Home"');
+    expect(formSource).toContain('data-service-group="Business"');
+    expect(formSource).toContain("residentialServices.map");
+    expect(formSource).toContain("commercialServices.map");
+  });
+
+  it("switches service options when the customer type radio changes", () => {
+    expect(quoteFormSource).toContain('form.querySelectorAll(\'input[name="customer_type"]\')');
+    expect(quoteFormSource).toContain('option.dataset.serviceGroup === selectedCustomerType');
+    expect(quoteFormSource).toContain("serviceSelect.value = \"\"");
   });
 
   it("does not render helper intro copy or a message placeholder", () => {

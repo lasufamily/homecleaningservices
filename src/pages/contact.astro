@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import QuoteForm from "../components/QuoteForm.astro";
 
 const selectedService = Astro.url.searchParams.get("service") ?? "";
+const selectedCustomerType = Astro.url.searchParams.get("customer_type") === "Business" ? "Business" : "Home";
 ---
 
 <Layout
@@ -22,7 +23,7 @@ const selectedService = Astro.url.searchParams.get("service") ?? "";
         </p>
       </div>
 
-      <QuoteForm selectedService={selectedService} />
+      <QuoteForm selectedService={selectedService} selectedCustomerType={selectedCustomerType} />
     </div>
   </section>
 </Layout>

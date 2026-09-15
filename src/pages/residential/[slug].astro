@@ -3,10 +3,10 @@ import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import ContactCTA from "../../components/ContactCTA.astro";
 import Layout from "../../layouts/Layout.astro";
 import ServiceCard from "../../components/ServiceCard.astro";
-import { getRelatedServices, services } from "../../lib/services";
+import { getRelatedServices, residentialServices } from "../../lib/services";
 
 export function getStaticPaths() {
-  return services.map((service) => ({
+  return residentialServices.map((service) => ({
     params: { slug: service.slug },
     props: { service }
   }));
@@ -14,7 +14,9 @@ export function getStaticPaths() {
 
 const { service } = Astro.props;
 const related = getRelatedServices(service);
-const canonical = new URL(`/services/${service.slug}`, Astro.site ?? Astro.url.origin).toString();
+const servicePath = `/${service.group}/${service.slug}`;
+const canonical = new URL(servicePath, Astro.site ?? Astro.url.origin).toString();
+const contactHref = `/contact?customer_type=Home&service=${encodeURIComponent(service.name)}`;
 const faqJsonLd = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -54,7 +56,7 @@ const jsonLd = {
   <Breadcrumbs
     crumbs={[
       { label: "Home", href: "/" },
-      { label: "Services", href: "/services" },
+      { label: "Residential", href: "/residential" },
       { label: service.name }
     ]}
   />
@@ -62,17 +64,17 @@ const jsonLd = {
   <section class="bg-white">
     <div class="container grid gap-10 py-12 md:grid-cols-[1.05fr_0.95fr] md:items-end md:py-16">
       <div>
-        <p class="eyebrow">Singapore cleaning service</p>
+        <p class="eyebrow">Residential cleaning service</p>
         <h1 class="serif mt-5 max-w-4xl text-6xl font-semibold leading-[0.9] text-ink md:text-8xl">
           {service.name} Singapore
         </h1>
         <p class="mt-7 max-w-2xl text-lg leading-8 text-ink/68">{service.summary}</p>
         <div class="mt-9 flex flex-wrap gap-3">
-          <a class="focus-ring bg-clay px-6 py-4 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:bg-ink" href={`/contact?service=${encodeURIComponent(service.name)}`}>
+          <a class="focus-ring bg-clay px-6 py-4 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:bg-ink" href={contactHref}>
             Get a quote
           </a>
-          <a class="focus-ring border border-border bg-white px-6 py-4 text-sm font-bold uppercase tracking-[0.12em] text-ink transition hover:border-clay hover:text-clay" href="/services">
-            All services
+          <a class="focus-ring border border-border bg-white px-6 py-4 text-sm font-bold uppercase tracking-[0.12em] text-ink transition hover:border-clay hover:text-clay" href="/residential">
+            All residential services
           </a>
         </div>
       </div>

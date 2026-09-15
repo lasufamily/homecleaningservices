@@ -8,6 +8,7 @@ describe("contact page form", () => {
   it("uses the shared quote form and preserves service preselection", () => {
     expect(contactSource).toContain('import QuoteForm from "../components/QuoteForm.astro"');
     expect(contactSource).toContain('const selectedService = Astro.url.searchParams.get("service") ?? ""');
-    expect(contactSource).toContain("<QuoteForm selectedService={selectedService} />");
+    expect(contactSource).toContain('const selectedCustomerType = Astro.url.searchParams.get("customer_type") === "Business" ? "Business" : "Home";');
+    expect(contactSource).toContain("<QuoteForm selectedService={selectedService} selectedCustomerType={selectedCustomerType} />");
   });
 });

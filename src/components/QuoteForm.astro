@@ -1,8 +1,9 @@
 ---
-import { services } from "../lib/services";
+import { commercialServices, residentialServices } from "../lib/services";
 
 type Props = {
   selectedService?: string;
+  selectedCustomerType?: "Home" | "Business";
   formAction?: string;
   title?: string;
   submitLabel?: string;
@@ -10,6 +11,7 @@ type Props = {
 
 const {
   selectedService = "",
+  selectedCustomerType = "Home",
   formAction = "https://submit-form.com/TmT9DZNtR",
   title = "Get a Free Quote",
   submitLabel = "Get Quote"
@@ -47,12 +49,45 @@ const sourcePath = Astro.url.pathname;
       </label>
     </div>
 
+    <fieldset class="grid gap-3 text-sm font-semibold text-ink">
+      <legend>
+        <span>Customer type <span class="text-red-600" aria-hidden="true">*</span></span>
+      </legend>
+      <div class="grid gap-3 sm:grid-cols-2">
+        <label class="focus-within:focus-ring flex items-center gap-3 border border-border bg-white px-4 py-3 font-normal text-ink">
+          <input
+            type="radio"
+            name="customer_type"
+            value="Home"
+            checked={selectedCustomerType !== "Business"}
+            required
+            class="h-4 w-4 accent-clay"
+          />
+          <span>Home</span>
+        </label>
+        <label class="focus-within:focus-ring flex items-center gap-3 border border-border bg-white px-4 py-3 font-normal text-ink">
+          <input
+            type="radio"
+            name="customer_type"
+            value="Business"
+            checked={selectedCustomerType === "Business"}
+            required
+            class="h-4 w-4 accent-clay"
+          />
+          <span>Business</span>
+        </label>
+      </div>
+    </fieldset>
+
     <label class="grid gap-2 text-sm font-semibold text-ink">
       <span>Service <span class="text-red-600" aria-hidden="true">*</span></span>
-      <select name="service" required class="focus-ring border border-border bg-white px-4 py-3 font-normal text-ink">
+      <select name="service" required data-service-select class="focus-ring border border-border bg-white px-4 py-3 font-normal text-ink">
         <option value="">Select a service</option>
-        {services.map((service) => (
-          <option value={service.name} selected={selectedService === service.name}>{service.name}</option>
+        {residentialServices.map((service) => (
+          <option value={service.name} data-service-group="Home" selected={selectedCustomerType !== "Business" && selectedService === service.name}>{service.name}</option>
+        ))}
+        {commercialServices.map((service) => (
+          <option value={service.name} data-service-group="Business" selected={selectedCustomerType === "Business" && selectedService === service.name}>{service.name}</option>
         ))}
       </select>
     </label>
@@ -85,6 +120,33 @@ const sourcePath = Astro.url.pathname;
 
     form.dataset.quoteFormBound = "true";
     const status = form.querySelector("[data-quote-status]");
+    const serviceSelect = form.querySelector("[data-service-select]");
+    const customerTypeRadios = form.querySelectorAll('input[name="customer_type"]');
+
+    const updateServiceOptions = () => {
+      if (!(serviceSelect instanceof HTMLSelectElement)) return;
+
+      const selectedCustomerType = new FormData(form).get("customer_type") || "Home";
+      let selectedOptionStillVisible = serviceSelect.value === "";
+
+      serviceSelect.querySelectorAll("option").forEach((option) => {
+        if (!(option instanceof HTMLOptionElement) || !option.dataset.serviceGroup) return;
+
+        const shouldShow = option.dataset.serviceGroup === selectedCustomerType;
+        option.hidden = !shouldShow;
+        option.disabled = !shouldShow;
+        if (shouldShow && option.selected) selectedOptionStillVisible = true;
+      });
+
+      if (!selectedOptionStillVisible) {
+        serviceSelect.value = "";
+      }
+    };
+
+    updateServiceOptions();
+    customerTypeRadios.forEach((radio) => {
+      radio.addEventListener("change", updateServiceOptions);
+    });
 
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
@@ -113,6 +175,7 @@ const sourcePath = Astro.url.pathname;
         }
 
         form.reset();
+        updateServiceOptions();
         if (status) status.textContent = "Thank you. Your request for quote has been sent.";
       } catch {
         if (status) status.textContent = "Sorry, the form could not be sent. Please try again.";

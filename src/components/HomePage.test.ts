@@ -30,4 +30,11 @@ describe("home page", () => {
     expect(homePageSource).not.toContain('title="Get your free quote"');
     expect(homePageSource).not.toContain('submitLabel="Get my quote"');
   });
+
+  it("links service content through the residential route family", () => {
+    expect(homePageSource).toContain('href="/residential"');
+    expect(homePageSource).toContain("residentialServices.slice(0, 6)");
+    expect(homePageSource).not.toContain('href="/services"');
+    expect(homePageSource).not.toContain("/services/${service.slug}");
+  });
 });

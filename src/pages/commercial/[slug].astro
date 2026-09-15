@@ -1,0 +1,146 @@
+---
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import ContactCTA from "../../components/ContactCTA.astro";
+import Layout from "../../layouts/Layout.astro";
+import ServiceCard from "../../components/ServiceCard.astro";
+import { commercialServices, getRelatedServices } from "../../lib/services";
+
+export function getStaticPaths() {
+  return commercialServices.map((service) => ({
+    params: { slug: service.slug },
+    props: { service }
+  }));
+}
+
+const { service } = Astro.props;
+const related = getRelatedServices(service);
+const servicePath = `/${service.group}/${service.slug}`;
+const canonical = new URL(servicePath, Astro.site ?? Astro.url.origin).toString();
+const contactHref = `/contact?customer_type=Business&service=${encodeURIComponent(service.name)}`;
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: service.faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer
+    }
+  }))
+};
+const serviceJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: `${service.name} Singapore`,
+  description: service.description,
+  areaServed: {
+    "@type": "Country",
+    name: "Singapore"
+  },
+  provider: {
+    "@type": "LocalBusiness",
+    name: "Home Cleaning Services",
+    url: new URL("/", Astro.site ?? Astro.url.origin).toString()
+  },
+  serviceType: service.name,
+  url: canonical
+};
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [serviceJsonLd, faqJsonLd]
+};
+---
+
+<Layout title={service.title} description={service.description} jsonLd={jsonLd}>
+  <Breadcrumbs
+    crumbs={[
+      { label: "Home", href: "/" },
+      { label: "Commercial", href: "/commercial" },
+      { label: service.name }
+    ]}
+  />
+
+  <section class="bg-white">
+    <div class="container grid gap-10 py-12 md:grid-cols-[1.05fr_0.95fr] md:items-end md:py-16">
+      <div>
+        <p class="eyebrow">Commercial cleaning service</p>
+        <h1 class="serif mt-5 max-w-4xl text-6xl font-semibold leading-[0.9] text-ink md:text-8xl">
+          {service.name} Singapore
+        </h1>
+        <p class="mt-7 max-w-2xl text-lg leading-8 text-ink/68">{service.summary}</p>
+        <div class="mt-9 flex flex-wrap gap-3">
+          <a class="focus-ring bg-clay px-6 py-4 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:bg-ink" href={contactHref}>
+            Get a quote
+          </a>
+          <a class="focus-ring border border-border bg-white px-6 py-4 text-sm font-bold uppercase tracking-[0.12em] text-ink transition hover:border-clay hover:text-clay" href="/commercial">
+            All commercial services
+          </a>
+        </div>
+      </div>
+      <div class="border border-border bg-linen p-7">
+        <p class="eyebrow">Best for</p>
+        <ul class="mt-5 space-y-4">
+          {service.audience.map((item) => (
+            <li class="flex gap-3 text-ink/72">
+              <span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-clay" aria-hidden="true"></span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="container grid gap-8 py-14 lg:grid-cols-[1fr_0.85fr]" data-pagefind-body>
+    <div>
+      <p class="eyebrow">Scope of work</p>
+      <h2 class="serif mt-3 text-4xl font-semibold text-ink md:text-5xl">What is typically included</h2>
+      <div class="mt-8 grid gap-4">
+        {service.scope.map((item) => (
+          <div class="border border-border bg-white p-5">
+            <p class="font-semibold text-ink">{item}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+    <aside class="border border-border bg-white p-7">
+      <p class="eyebrow">Before quoting</p>
+      <h2 class="serif mt-3 text-4xl font-semibold text-ink">Common exclusions</h2>
+      <ul class="mt-6 space-y-4 text-ink/68">
+        {service.exclusions.map((item) => (
+          <li class="border-b border-border pb-4 last:border-b-0 last:pb-0">{item}</li>
+        ))}
+      </ul>
+    </aside>
+  </section>
+
+  <section class="bg-white py-14">
+    <div class="container grid gap-10 md:grid-cols-[0.8fr_1.2fr]">
+      <div>
+        <p class="eyebrow">Questions</p>
+        <h2 class="serif mt-3 text-4xl font-semibold leading-tight text-ink md:text-5xl">Useful details before booking</h2>
+      </div>
+      <div class="grid gap-5">
+        {service.faqs.map((faq) => (
+          <details class="border border-border bg-linen p-5">
+            <summary class="cursor-pointer font-bold text-ink">{faq.question}</summary>
+            <p class="mt-4 text-ink/68">{faq.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {related.length > 0 && (
+    <section class="container py-14">
+      <p class="eyebrow">Related services</p>
+      <h2 class="serif mt-3 text-4xl font-semibold text-ink md:text-5xl">Plan the full clean</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-3">
+        {related.map((relatedService) => <ServiceCard service={relatedService} />)}
+      </div>
+    </section>
+  )}
+
+  <ContactCTA title={`Request a ${service.shortName.toLowerCase()} quote.`} />
+</Layout>

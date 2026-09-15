@@ -6,13 +6,13 @@ import QuoteForm from "../components/QuoteForm.astro";
 import SearchBox from "../components/SearchBox.astro";
 import ServiceCard from "../components/ServiceCard.astro";
 import { getBusinesses, getCategories, getTowns } from "../lib/airtable";
-import { services } from "../lib/services";
+import { residentialServices } from "../lib/services";
 
 const businesses = await getBusinesses();
 const featured = businesses.slice(0, 3);
 const towns = getTowns(businesses).slice(0, 8);
 const categories = getCategories(businesses).slice(0, 8);
-const featuredServices = services.slice(0, 6);
+const featuredServices = residentialServices.slice(0, 6);
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
@@ -24,12 +24,12 @@ const jsonLd = {
   },
   description:
     "Home Cleaning Services arranges home cleaning, deep cleaning, spring cleaning, move in move out cleaning, and specialist fabric cleaning in Singapore.",
-  makesOffer: services.map((service) => ({
+  makesOffer: residentialServices.map((service) => ({
     "@type": "Offer",
     itemOffered: {
       "@type": "Service",
       name: service.name,
-      url: new URL(`/services/${service.slug}`, Astro.site ?? Astro.url.origin).toString()
+      url: new URL(`/residential/${service.slug}`, Astro.site ?? Astro.url.origin).toString()
     }
   }))
 };
@@ -65,7 +65,7 @@ const jsonLd = {
           <span class="border-l-2 border-clay pl-3">Singapore-wide service matching and directory support</span>
         </div>
         <div class="mt-9 flex flex-wrap gap-3">
-          <a class="focus-ring border border-white/36 bg-white px-7 py-4 text-sm font-bold uppercase tracking-[0.12em] text-ink transition hover:border-clay hover:bg-clay hover:text-white" href="/services">
+          <a class="focus-ring border border-white/36 bg-white px-7 py-4 text-sm font-bold uppercase tracking-[0.12em] text-ink transition hover:border-clay hover:bg-clay hover:text-white" href="/residential">
             View services
           </a>
         </div>
@@ -95,7 +95,7 @@ const jsonLd = {
         <p class="eyebrow">Popular services</p>
         <h2 class="serif mt-3 text-4xl font-semibold text-ink md:text-5xl">Start with the right clean</h2>
       </div>
-      <a href="/services" class="focus-ring text-sm font-bold uppercase tracking-[0.14em] text-clay hover:text-ink">View all services</a>
+      <a href="/residential" class="focus-ring text-sm font-bold uppercase tracking-[0.14em] text-clay hover:text-ink">View all services</a>
     </div>
     <div class="grid gap-6 md:grid-cols-3">
       {featuredServices.map((service) => <ServiceCard service={service} />)}

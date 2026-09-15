@@ -2,42 +2,42 @@
 import ContactCTA from "../../components/ContactCTA.astro";
 import Layout from "../../layouts/Layout.astro";
 import ServiceCard from "../../components/ServiceCard.astro";
-import { services } from "../../lib/services";
+import { residentialServices } from "../../lib/services";
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  name: "Home Cleaning Services in Singapore",
-  itemListElement: services.map((service, index) => ({
+  name: "Residential Cleaning Services in Singapore",
+  itemListElement: residentialServices.map((service, index) => ({
     "@type": "ListItem",
     position: index + 1,
     name: service.name,
-    url: new URL(`/services/${service.slug}`, Astro.site ?? Astro.url.origin).toString()
+    url: new URL(`/residential/${service.slug}`, Astro.site ?? Astro.url.origin).toString()
   }))
 };
 ---
 
 <Layout
-  title="Cleaning Services Singapore | Home Cleaning Services"
-  description="See confirmed home cleaning services in Singapore, including spring cleaning, tenancy cleaning, post-renovation cleaning, floor care, fabric care, and disinfection."
+  title="Residential Cleaning Services Singapore | Home Cleaning Services"
+  description="See residential cleaning services in Singapore, including spring cleaning, tenancy cleaning, post-renovation cleaning, floor care, fabric care, and disinfection."
   jsonLd={jsonLd}
 >
   <section class="bg-white">
     <div class="container py-14 md:py-20">
-      <p class="eyebrow">Services</p>
+      <p class="eyebrow">Residential</p>
       <h1 class="serif mt-5 max-w-4xl text-6xl font-semibold leading-[0.9] text-ink md:text-8xl">
         Home cleaning services across Singapore
       </h1>
       <p class="mt-7 max-w-2xl text-lg leading-8 text-ink/68">
-        From regular housekeeping to move-out cleaning and fabric care, Home Cleaning Services helps Singapore households
-        choose a scope that fits the home, timing, and condition.
+        From spring cleaning to move-out cleaning and fabric care, Home Cleaning Services helps households choose a scope
+        that fits the home, timing, and condition.
       </p>
       <div class="mt-9 flex flex-wrap gap-3">
         <a class="focus-ring bg-clay px-6 py-4 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:bg-ink" href="/contact">
           Get a quote
         </a>
-        <a class="focus-ring border border-border bg-white px-6 py-4 text-sm font-bold uppercase tracking-[0.12em] text-ink transition hover:border-clay hover:text-clay" href="/companies">
-          Compare companies
+        <a class="focus-ring border border-border bg-white px-6 py-4 text-sm font-bold uppercase tracking-[0.12em] text-ink transition hover:border-clay hover:text-clay" href="/commercial">
+          Commercial services
         </a>
       </div>
     </div>
@@ -45,7 +45,7 @@ const jsonLd = {
 
   <section class="container py-14" data-pagefind-body>
     <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {services.map((service) => <ServiceCard service={service} />)}
+      {residentialServices.map((service) => <ServiceCard service={service} />)}
     </div>
   </section>
 

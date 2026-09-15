@@ -18,4 +18,10 @@ describe("Header", () => {
     expect(headerSource).not.toContain(">Menu</p>");
     expect(headerSource).not.toContain("Mail");
   });
+
+  it("links to residential and commercial service sections", () => {
+    expect(headerSource).toContain('href="/residential"');
+    expect(headerSource).toContain('href="/commercial"');
+    expect(headerSource).not.toContain('href="/services"');
+  });
 });

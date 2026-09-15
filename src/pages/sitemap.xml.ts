@@ -1,6 +1,6 @@
 import type { APIRoute } from "astro";
 import { getBusinesses } from "../lib/airtable";
-import { services } from "../lib/services";
+import { commercialServices, residentialServices } from "../lib/services";
 
 function urlEntry(origin: string, path: string): string {
   const normalizedPath = path === "/" || path.endsWith("/") ? path : `${path}/`;
@@ -10,8 +10,11 @@ function urlEntry(origin: string, path: string): string {
 export const GET: APIRoute = async ({ site }) => {
   const origin = site?.origin ?? "https://homecleaningservices.sg";
   const businesses = await getBusinesses();
-  const staticPaths = ["/", "/services", "/about", "/contact", "/companies", "/search", "/privacy", "/terms"];
-  const servicePaths = services.map((service) => `/services/${service.slug}`);
+  const staticPaths = ["/", "/residential", "/commercial", "/about", "/contact", "/companies", "/search", "/privacy", "/terms"];
+  const servicePaths = [
+    ...residentialServices.map((service) => `/residential/${service.slug}`),
+    ...commercialServices.map((service) => `/commercial/${service.slug}`)
+  ];
   const companyPaths = businesses.map((business) => `/companies/${business.slug}`);
   const entries = [...staticPaths, ...servicePaths, ...companyPaths].map((path) => urlEntry(origin, path)).join("");
 

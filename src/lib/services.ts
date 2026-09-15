@@ -1,4 +1,6 @@
-export type ServicePage = {
+export type ServiceGroup = "residential" | "commercial";
+
+type ServicePageContent = {
   slug: string;
   name: string;
   shortName: string;
@@ -12,7 +14,11 @@ export type ServicePage = {
   relatedSlugs: string[];
 };
 
-export const services: ServicePage[] = [
+export type ServicePage = ServicePageContent & {
+  group: ServiceGroup;
+};
+
+const residentialServiceContent: ServicePageContent[] = [
   {
     slug: "spring-cleaning",
     name: "Spring Cleaning",
@@ -483,12 +489,495 @@ export const services: ServicePage[] = [
   }
 ];
 
-export function getServiceBySlug(slug: string): ServicePage | undefined {
-  return services.find((service) => service.slug === slug);
+const commercialServiceContent: ServicePageContent[] = [
+  {
+    slug: "hotel-housekeeping",
+    name: "Hotel Housekeeping",
+    shortName: "Hotel Housekeeping",
+    title: "Hotel Housekeeping Singapore | Home Cleaning Services",
+    description:
+      "Request hotel housekeeping in Singapore for rooms, serviced apartments, common areas, turnover cleaning, and hospitality cleaning support.",
+    summary:
+      "Housekeeping support for hotels, serviced apartments, and hospitality properties that need consistent room and common-area presentation.",
+    audience: ["Hotels and serviced apartments", "Room turnover support", "Hospitality teams with peak-period demand"],
+    scope: [
+      "Guest room cleaning and reset based on agreed checklist",
+      "Bathroom cleaning and surface wiping",
+      "Common-area touchpoint cleaning",
+      "Linen, amenity, and waste handling where included in scope",
+      "Shift planning based on occupancy and operational needs"
+    ],
+    exclusions: [
+      "Laundry processing unless separately arranged",
+      "Guest-facing concierge or front-desk duties",
+      "Pest control, repairs, or maintenance works"
+    ],
+    faqs: [
+      {
+        question: "Can hotel housekeeping be arranged for peak periods?",
+        answer:
+          "Yes. Share expected occupancy, room counts, shift timing, and checklist requirements so the quote can match the operational load."
+      },
+      {
+        question: "Do you support serviced apartments?",
+        answer:
+          "Yes. Serviced apartment housekeeping can be scoped around room turnover, long-stay units, and shared facilities."
+      }
+    ],
+    relatedSlugs: ["commercial-building-cleaning", "office-cleaning", "end-of-tenancy-cleaning"]
+  },
+  {
+    slug: "mcst-cleaning",
+    name: "MCST Cleaning",
+    shortName: "MCST Cleaning",
+    title: "MCST Cleaning Singapore | Home Cleaning Services",
+    description:
+      "Request MCST cleaning in Singapore for condominium common areas, lobbies, lift landings, amenities, toilets, and estate cleaning support.",
+    summary:
+      "Common-area cleaning for condos and strata-managed properties where residents expect steady presentation and hygiene.",
+    audience: ["Condominium MCSTs", "Managing agents", "Residential estates with shared amenities"],
+    scope: [
+      "Lobby, corridor, and lift landing cleaning",
+      "Shared toilet and amenity area cleaning",
+      "High-touch surface wiping",
+      "Bin centre or refuse area cleaning where scoped",
+      "Routine schedule planning for common areas"
+    ],
+    exclusions: [
+      "Landscape, pool, security, or facility management duties",
+      "Specialist high-access work unless separately quoted",
+      "Repairs, pest control, or waste hauling"
+    ],
+    faqs: [
+      {
+        question: "Can MCST cleaning follow an estate schedule?",
+        answer:
+          "Yes. Share the site schedule, area list, and frequency requirements so recurring cleaning can be quoted properly."
+      },
+      {
+        question: "Can amenities be included?",
+        answer:
+          "Yes. Gyms, function rooms, toilets, and other shared spaces can be included when listed in the scope."
+      }
+    ],
+    relatedSlugs: ["commercial-building-cleaning", "gym-cleaning", "external-facade-cleaning"]
+  },
+  {
+    slug: "office-cleaning",
+    name: "Office Cleaning",
+    shortName: "Office Cleaning",
+    title: "Office Cleaning Singapore | Home Cleaning Services",
+    description:
+      "Request office cleaning in Singapore for workstations, meeting rooms, pantries, toilets, floors, bins, and recurring workplace cleaning.",
+    summary:
+      "Routine or one-time office cleaning for teams that need tidy, usable workspaces without disrupting the workday.",
+    audience: ["Corporate offices", "SME workplaces", "Co-working and admin spaces"],
+    scope: [
+      "Desk, meeting room, and common surface wiping",
+      "Pantry and toilet cleaning where included",
+      "Floor vacuuming, sweeping, and mopping",
+      "Bin clearing and liner replacement where scoped",
+      "After-hours or scheduled cleaning planning"
+    ],
+    exclusions: [
+      "IT equipment servicing or cable management",
+      "Confidential document disposal unless separately arranged",
+      "Specialist carpet, facade, or post-renovation works unless added"
+    ],
+    faqs: [
+      {
+        question: "Can office cleaning happen after business hours?",
+        answer:
+          "Yes. Include preferred access timing, building rules, and frequency when requesting a quote."
+      },
+      {
+        question: "Can pantry and toilets be included?",
+        answer:
+          "Yes. List these areas in your enquiry so supplies, frequency, and cleaning scope can be planned."
+      }
+    ],
+    relatedSlugs: ["commercial-building-cleaning", "end-of-tenancy-cleaning", "post-renovation-cleaning"]
+  },
+  {
+    slug: "external-facade-cleaning",
+    name: "External Facade Cleaning",
+    shortName: "Facade Cleaning",
+    title: "External Facade Cleaning Singapore | Home Cleaning Services",
+    description:
+      "Request external facade cleaning in Singapore for shopfronts, building exteriors, glass, cladding, and accessible facade cleaning needs.",
+    summary:
+      "Exterior-facing cleaning for commercial properties where frontage, glass, and facade condition affect first impressions.",
+    audience: ["Retail frontages", "Commercial buildings", "Managed properties with exterior cleaning needs"],
+    scope: [
+      "Facade condition and access review before quoting",
+      "External glass or frontage cleaning where safely accessible",
+      "Cladding and exterior surface washing where suitable",
+      "Water-fed pole or access-method planning when required",
+      "Scheduling around building and public-area constraints"
+    ],
+    exclusions: [
+      "Unsafe high-access work without approved access method",
+      "Structural repairs, repainting, or waterproofing",
+      "Removal of permanent staining, corrosion, or facade defects"
+    ],
+    faqs: [
+      {
+        question: "Is a site assessment needed?",
+        answer:
+          "Usually yes. Facade cleaning depends on height, access, surface material, water points, and safety requirements."
+      },
+      {
+        question: "Can shopfront glass be cleaned?",
+        answer:
+          "Yes. Shopfront and frontage cleaning can be quoted when access, timing, and surface condition are clear."
+      }
+    ],
+    relatedSlugs: ["commercial-building-cleaning", "retail-store-cleaning", "mcst-cleaning"]
+  },
+  {
+    slug: "commercial-building-cleaning",
+    name: "Commercial Building Cleaning",
+    shortName: "Building Cleaning",
+    title: "Commercial Building Cleaning Singapore | Home Cleaning Services",
+    description:
+      "Request commercial building cleaning in Singapore for shared areas, lobbies, toilets, corridors, floors, touchpoints, and scheduled cleaning.",
+    summary:
+      "Cleaning support for commercial properties that need shared spaces kept presentable, hygienic, and easy to use.",
+    audience: ["Commercial buildings", "Property managers", "Mixed-use premises"],
+    scope: [
+      "Lobby, corridor, and common-area cleaning",
+      "Toilet and pantry cleaning where scoped",
+      "High-touch surface wiping",
+      "Floor care for shared circulation areas",
+      "Recurring cleaning schedule planning"
+    ],
+    exclusions: [
+      "Security, reception, or facility management duties",
+      "Specialist facade, pest control, or repair works unless separately quoted",
+      "Waste hauling beyond agreed cleaning waste"
+    ],
+    faqs: [
+      {
+        question: "Can building cleaning be recurring?",
+        answer:
+          "Yes. Share the areas, traffic levels, and preferred cleaning frequency so recurring cleaning can be quoted."
+      },
+      {
+        question: "Can toilets and pantries be included?",
+        answer:
+          "Yes. These are common inclusions when the scope lists fixtures, supplies, and expected cleaning frequency."
+      }
+    ],
+    relatedSlugs: ["office-cleaning", "mcst-cleaning", "external-facade-cleaning"]
+  },
+  {
+    slug: "end-of-tenancy-cleaning",
+    name: "Commercial End of Lease Cleaning",
+    shortName: "End of Lease",
+    title: "Commercial End of Lease Cleaning Singapore | Home Cleaning Services",
+    description:
+      "Request commercial end of lease cleaning in Singapore for office, retail, F&B, and commercial unit handovers.",
+    summary:
+      "Handover cleaning for commercial tenants and landlords preparing a unit for inspection, reinstatement closeout, or the next occupant.",
+    audience: ["Commercial lease handovers", "Office and retail tenants", "Landlords preparing vacant units"],
+    scope: [
+      "Empty-unit surface cleaning after move-out",
+      "Pantry, toilet, room, and common area cleaning where included",
+      "Floor vacuuming, sweeping, and mopping",
+      "Interior glass, door, switch, and ledge wiping where reachable",
+      "Handover checklist review before quoting"
+    ],
+    exclusions: [
+      "Reinstatement, repairs, painting, or fixture replacement",
+      "Removal of renovation debris or bulky disposal unless separately arranged",
+      "High-access facade or external window cleaning"
+    ],
+    faqs: [
+      {
+        question: "Can you follow a landlord handover checklist?",
+        answer:
+          "Yes. Send the checklist when requesting a quote so the scope can be checked before cleaning."
+      },
+      {
+        question: "Is this suitable after reinstatement?",
+        answer:
+          "Yes, if reinstatement works are complete and the remaining task is cleaning rather than repair or construction debris removal."
+      }
+    ],
+    relatedSlugs: ["post-renovation-cleaning", "office-cleaning", "retail-store-cleaning"]
+  },
+  {
+    slug: "post-renovation-cleaning",
+    name: "Commercial Post Renovation Cleaning",
+    shortName: "Post-Reno Cleaning",
+    title: "Commercial Post Renovation Cleaning Singapore | Home Cleaning Services",
+    description:
+      "Request commercial post renovation cleaning in Singapore for offices, retail units, gyms, F&B premises, dust removal, and fit-out cleanup.",
+    summary:
+      "A detailed clean after commercial renovation or fit-out work, focused on dust, surfaces, floors, and readiness for operations.",
+    audience: ["Newly renovated commercial units", "Office and retail fit-outs", "Businesses preparing to reopen"],
+    scope: [
+      "Renovation dust removal from reachable surfaces",
+      "Interior glass, ledge, switch, and fixture wiping where accessible",
+      "Pantry, toilet, and room cleaning where scoped",
+      "Floor vacuuming, sweeping, and mopping",
+      "Final clean planning after contractors complete works"
+    ],
+    exclusions: [
+      "Defect rectification, reinstatement, or contractor works",
+      "Cement, paint, adhesive, grout haze, or silicone removal unless assessed",
+      "Unsafe high-access work or external facade cleaning unless separately quoted"
+    ],
+    faqs: [
+      {
+        question: "When should commercial post renovation cleaning happen?",
+        answer:
+          "Book after contractors finish and defects are settled. Cleaning too early often means dust and debris return."
+      },
+      {
+        question: "Can this prepare a space for opening day?",
+        answer:
+          "Yes. Share the opening date, floor plan, and priority areas so the clean can be scoped around readiness."
+      }
+    ],
+    relatedSlugs: ["post-construction-cleaning", "commercial-building-cleaning", "commercial-kitchen-cleaning"]
+  },
+  {
+    slug: "post-construction-cleaning",
+    name: "Post Construction Cleaning",
+    shortName: "Post Construction",
+    title: "Post Construction Cleaning Singapore | Home Cleaning Services",
+    description:
+      "Request post construction cleaning in Singapore for commercial spaces after building work, fit-out, dust, debris, and handover preparation.",
+    summary:
+      "Cleaning after heavier works where construction dust, leftover debris, and staged handover needs must be planned carefully.",
+    audience: ["Commercial fit-out projects", "Contractors preparing handover", "Businesses after construction works"],
+    scope: [
+      "Construction dust removal from reachable surfaces",
+      "Sweeping, vacuuming, and mopping accessible floors",
+      "Fixture, ledge, door, and interior glass wiping where safe",
+      "Debris clearing within agreed cleaning scope",
+      "Phased or final clean planning based on site condition"
+    ],
+    exclusions: [
+      "Builder's works, defect repair, or reinstatement",
+      "Hazardous waste, heavy rubble, or disposal requiring licensed hauling",
+      "Specialist stain, adhesive, paint, or cement removal unless assessed"
+    ],
+    faqs: [
+      {
+        question: "Is post construction cleaning different from post renovation cleaning?",
+        answer:
+          "Post construction cleaning usually deals with heavier site dust and debris. The quote depends on site condition and whether works are fully complete."
+      },
+      {
+        question: "Can cleaning be done in phases?",
+        answer:
+          "Yes. Larger sites may need rough cleaning and final cleaning stages based on handover timing."
+      }
+    ],
+    relatedSlugs: ["post-renovation-cleaning", "commercial-building-cleaning", "external-facade-cleaning"]
+  },
+  {
+    slug: "gym-cleaning",
+    name: "Gym Cleaning",
+    shortName: "Gym Cleaning",
+    title: "Gym Cleaning Singapore | Home Cleaning Services",
+    description:
+      "Request gym cleaning in Singapore for fitness studios, equipment touchpoints, changing rooms, toilets, floors, and hygiene-focused cleaning.",
+    summary:
+      "Cleaning for gyms and studios where sweat, shared equipment, flooring, and changing areas need consistent attention.",
+    audience: ["Gyms and fitness studios", "Condo gyms", "Yoga, pilates, and training spaces"],
+    scope: [
+      "Equipment touchpoint wiping",
+      "Studio and workout floor cleaning",
+      "Changing room and toilet cleaning where scoped",
+      "Mirrors, counters, and common surfaces",
+      "Recurring schedule planning around class or operating hours"
+    ],
+    exclusions: [
+      "Equipment maintenance or repairs",
+      "Laundry service unless separately arranged",
+      "Medical-grade sterilisation guarantees"
+    ],
+    faqs: [
+      {
+        question: "Can gym cleaning happen between classes?",
+        answer:
+          "Yes. Share your class schedule and access windows so cleaning can be planned around operations."
+      },
+      {
+        question: "Can changing rooms be included?",
+        answer:
+          "Yes. Changing rooms, showers, toilets, mirrors, and lockers can be included when listed in the cleaning scope."
+      }
+    ],
+    relatedSlugs: ["mcst-cleaning", "commercial-building-cleaning", "office-cleaning"]
+  },
+  {
+    slug: "food-and-beverage-cleaning",
+    name: "F&B Cleaning",
+    shortName: "F&B Cleaning",
+    title: "F&B Cleaning Singapore | Home Cleaning Services",
+    description:
+      "Request F&B cleaning in Singapore for cafes, restaurants, dining areas, service counters, floors, toilets, and food business cleaning support.",
+    summary:
+      "Cleaning support for food and beverage premises where customer areas and operational surfaces need careful routine attention.",
+    audience: ["Cafes and restaurants", "Food kiosks and counters", "Dining spaces with high daily traffic"],
+    scope: [
+      "Dining area and service counter cleaning",
+      "Floor sweeping, vacuuming, and mopping",
+      "Toilet cleaning where included",
+      "High-touch surface wiping",
+      "Cleaning schedule planning around operating hours"
+    ],
+    exclusions: [
+      "Pest control or grease trap servicing",
+      "Deep kitchen degreasing unless quoted as commercial kitchen cleaning",
+      "Regulatory compliance guarantees or food safety certification"
+    ],
+    faqs: [
+      {
+        question: "Can F&B cleaning happen after closing?",
+        answer:
+          "Yes. Share operating hours and access rules so cleaning can be scheduled without disrupting service."
+      },
+      {
+        question: "Is kitchen cleaning included?",
+        answer:
+          "Light surface cleaning can be scoped, but heavier kitchen degreasing should be requested as commercial kitchen cleaning."
+      }
+    ],
+    relatedSlugs: ["commercial-kitchen-cleaning", "retail-store-cleaning", "commercial-building-cleaning"]
+  },
+  {
+    slug: "retail-store-cleaning",
+    name: "Retail Store Cleaning",
+    shortName: "Retail Cleaning",
+    title: "Retail Store Cleaning Singapore | Home Cleaning Services",
+    description:
+      "Request retail store cleaning in Singapore for shop floors, display areas, counters, mirrors, fitting rooms, stock areas, and storefront cleaning.",
+    summary:
+      "Cleaning for shops and showrooms where presentation, foot traffic, and opening-hour constraints shape the cleaning plan.",
+    audience: ["Retail stores", "Showrooms", "Shopfront businesses"],
+    scope: [
+      "Sales floor and display surface cleaning",
+      "Counter, mirror, and fitting room wiping where included",
+      "Floor vacuuming, sweeping, and mopping",
+      "Stockroom surface cleaning where scoped",
+      "Before-opening or after-closing schedule planning"
+    ],
+    exclusions: [
+      "Merchandising, stock handling, or inventory work",
+      "Specialist facade or high-access glass cleaning unless separately quoted",
+      "Security or keyholding beyond agreed access arrangements"
+    ],
+    faqs: [
+      {
+        question: "Can retail cleaning happen before opening?",
+        answer:
+          "Yes. Share opening hours, access requirements, and priority areas so the schedule can be planned."
+      },
+      {
+        question: "Can display shelves be cleaned?",
+        answer:
+          "Yes, if access and stock handling expectations are clear before the cleaning visit."
+      }
+    ],
+    relatedSlugs: ["external-facade-cleaning", "end-of-tenancy-cleaning", "food-and-beverage-cleaning"]
+  },
+  {
+    slug: "commercial-kitchen-cleaning",
+    name: "Commercial Kitchen Cleaning",
+    shortName: "Kitchen Cleaning",
+    title: "Commercial Kitchen Cleaning Singapore | Home Cleaning Services",
+    description:
+      "Request commercial kitchen cleaning in Singapore for food prep areas, surfaces, floors, equipment exteriors, and deeper kitchen cleaning support.",
+    summary:
+      "Kitchen-focused cleaning for food businesses that need surfaces, floors, and equipment exteriors cleaned around operational realities.",
+    audience: ["Restaurants and cafes", "Central kitchens", "Food preparation premises"],
+    scope: [
+      "Food prep surface cleaning where accessible",
+      "Equipment exterior wiping where safe",
+      "Kitchen floor cleaning",
+      "Wall, splashback, and high-touch surface attention where scoped",
+      "After-hours scheduling around service times"
+    ],
+    exclusions: [
+      "Grease trap servicing, duct cleaning, or pest control",
+      "Dismantling equipment unless separately assessed",
+      "Regulatory certification or food safety audit guarantees"
+    ],
+    faqs: [
+      {
+        question: "Can kitchen cleaning be scheduled overnight?",
+        answer:
+          "Yes. Many commercial kitchen cleans are planned after service when equipment is cool and areas are accessible."
+      },
+      {
+        question: "Do you clean exhaust ducts?",
+        answer:
+          "No. Exhaust and duct cleaning require specialist providers and should be arranged separately."
+      }
+    ],
+    relatedSlugs: ["food-and-beverage-cleaning", "post-renovation-cleaning", "commercial-building-cleaning"]
+  },
+  {
+    slug: "childcare-cleaning",
+    name: "Childcare Cleaning",
+    shortName: "Childcare Cleaning",
+    title: "Childcare Cleaning Singapore | Home Cleaning Services",
+    description:
+      "Request childcare cleaning in Singapore for classrooms, play areas, toilets, high-touch surfaces, floors, and hygiene-focused cleaning routines.",
+    summary:
+      "Cleaning for childcare and learning spaces where floors, shared surfaces, toilets, and daily routines need dependable care.",
+    audience: ["Childcare centres", "Preschools", "Tuition and enrichment spaces for young children"],
+    scope: [
+      "Classroom and play area surface cleaning",
+      "Floor vacuuming, sweeping, and mopping",
+      "Toilet and sink cleaning where scoped",
+      "High-touch surface wiping",
+      "Schedule planning around centre operating hours"
+    ],
+    exclusions: [
+      "Medical-grade sterilisation guarantees",
+      "Toy laundering or specialised sanitisation unless separately arranged",
+      "Pest control, mould remediation, or repair works"
+    ],
+    faqs: [
+      {
+        question: "Can childcare cleaning happen after dismissal?",
+        answer:
+          "Yes. Share operating hours, access rules, and priority rooms so cleaning can happen outside child activity periods."
+      },
+      {
+        question: "Can high-touch surfaces be prioritised?",
+        answer:
+          "Yes. Door handles, tables, switches, railings, and shared surfaces can be prioritised in the cleaning scope."
+      }
+    ],
+    relatedSlugs: ["commercial-building-cleaning", "gym-cleaning", "office-cleaning"]
+  }
+];
+
+export const residentialServices: ServicePage[] = residentialServiceContent.map((service) => ({
+  ...service,
+  group: "residential"
+}));
+
+export const commercialServices: ServicePage[] = commercialServiceContent.map((service) => ({
+  ...service,
+  group: "commercial"
+}));
+
+export const services: ServicePage[] = [...residentialServices, ...commercialServices];
+
+export function getServiceByGroupAndSlug(group: ServiceGroup, slug: string): ServicePage | undefined {
+  return services.find((service) => service.group === group && service.slug === slug);
 }
 
 export function getRelatedServices(service: ServicePage): ServicePage[] {
   return service.relatedSlugs
-    .map((slug) => getServiceBySlug(slug))
+    .map((slug) => getServiceByGroupAndSlug(service.group, slug))
     .filter((relatedService): relatedService is ServicePage => Boolean(relatedService));
 }
