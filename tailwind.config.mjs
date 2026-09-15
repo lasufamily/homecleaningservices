@@ -12,8 +12,8 @@ export default {
         border: "#e4e4df"
       },
       fontFamily: {
-        serif: ["Cormorant Garamond", "Georgia", "serif"],
-        sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"]
+        serif: ["Roboto", "ui-sans-serif", "system-ui", "sans-serif"],
+        sans: ["Roboto", "ui-sans-serif", "system-ui", "sans-serif"]
       },
       boxShadow: {
         soft: "0 18px 45px rgba(21, 21, 18, 0.08)"

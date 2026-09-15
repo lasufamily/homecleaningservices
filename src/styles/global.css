@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -18,7 +18,7 @@ body {
   margin: 0;
   min-width: 320px;
   background: #ffffff;
-  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  font-family: "Roboto", ui-sans-serif, system-ui, sans-serif;
   font-size: 16px;
   line-height: 1.6;
   color: #151512;
@@ -53,7 +53,7 @@ img {
 }
 
 .serif {
-  font-family: "Cormorant Garamond", Georgia, serif;
+  font-family: "Roboto", ui-sans-serif, system-ui, sans-serif;
 }
 
 .focus-ring {
@@ -73,5 +73,5 @@ img {
   --pagefind-ui-tag: #ffffff;
   --pagefind-ui-border-width: 1px;
   --pagefind-ui-border-radius: 6px;
-  --pagefind-ui-font: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --pagefind-ui-font: "Roboto", ui-sans-serif, system-ui, sans-serif;
 }
