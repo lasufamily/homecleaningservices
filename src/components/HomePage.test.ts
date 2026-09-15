@@ -27,5 +27,7 @@ describe("home page", () => {
   it("includes the quote form in the hero", () => {
     expect(homePageSource).toContain("<QuoteForm");
     expect(homePageSource).toContain('formAction="https://submit-form.com/TmT9DZNtR"');
+    expect(homePageSource).not.toContain('title="Get your free quote"');
+    expect(homePageSource).not.toContain('submitLabel="Get my quote"');
   });
 });

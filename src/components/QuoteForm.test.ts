@@ -21,6 +21,13 @@ describe("quote form", () => {
     expect(formSource).toContain('type="submit"');
   });
 
+  it("uses the sitewide free quote header and submit button text", () => {
+    expect(quoteFormSource).toContain('title = "Get a Free Quote"');
+    expect(quoteFormSource).toContain('submitLabel = "Get Quote"');
+    expect(quoteFormSource).not.toContain('title = "Get your cleaning quote"');
+    expect(quoteFormSource).not.toContain('submitLabel = "Send enquiry"');
+  });
+
   it("submits with fetch without reloading the page", () => {
     expect(quoteFormSource).toContain("event.preventDefault()");
     expect(quoteFormSource).toContain("await fetch(action");
