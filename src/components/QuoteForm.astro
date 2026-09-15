@@ -24,9 +24,9 @@ const sourcePath = Astro.url.pathname;
   data-quote-form
   action={formAction}
   method="POST"
-  class="border border-border bg-linen p-6 shadow-sm md:p-8"
+  class="w-full max-w-full border border-border bg-linen p-6 shadow-sm md:p-8"
 >
-  <div class="grid gap-5">
+  <div class="grid min-w-0 gap-5">
     <input type="hidden" name="source_path" value={sourcePath} />
 
     <div>
@@ -35,17 +35,27 @@ const sourcePath = Astro.url.pathname;
 
     <label class="grid gap-2 text-sm font-semibold text-ink">
       <span>Name <span class="text-red-600" aria-hidden="true">*</span></span>
-      <input name="name" required class="focus-ring border border-border bg-white px-4 py-3 font-normal text-ink" autocomplete="name" />
+      <input name="name" required class="focus-ring w-full min-w-0 border border-border bg-white px-4 py-3 font-normal text-ink" autocomplete="name" />
     </label>
 
-    <div class="grid gap-5 md:grid-cols-2">
-      <label class="grid gap-2 text-sm font-semibold text-ink">
+    <div class="grid min-w-0 gap-5 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
+      <label class="grid min-w-0 gap-2 text-sm font-semibold text-ink">
         <span>Phone <span class="text-red-600" aria-hidden="true">*</span></span>
-        <input name="phone" required class="focus-ring border border-border bg-white px-4 py-3 font-normal text-ink" autocomplete="tel" />
+        <input
+          name="phone"
+          required
+          type="tel"
+          inputmode="numeric"
+          pattern="[689][0-9]{7}"
+          minlength="8"
+          maxlength="8"
+          class="focus-ring w-full min-w-0 border border-border bg-white px-4 py-3 font-normal text-ink"
+          autocomplete="tel"
+        />
       </label>
-      <label class="grid gap-2 text-sm font-semibold text-ink">
+      <label class="grid min-w-0 gap-2 text-sm font-semibold text-ink">
         <span>Email <span class="text-red-600" aria-hidden="true">*</span></span>
-        <input name="email" required type="email" class="focus-ring border border-border bg-white px-4 py-3 font-normal text-ink" autocomplete="email" />
+        <input name="email" required type="email" class="focus-ring w-full min-w-0 border border-border bg-white px-4 py-3 font-normal text-ink" autocomplete="email" />
       </label>
     </div>
 
@@ -81,7 +91,7 @@ const sourcePath = Astro.url.pathname;
 
     <label class="grid gap-2 text-sm font-semibold text-ink">
       <span>Service <span class="text-red-600" aria-hidden="true">*</span></span>
-      <select name="service" required data-service-select class="focus-ring border border-border bg-white px-4 py-3 font-normal text-ink">
+      <select name="service" required data-service-select class="focus-ring w-full min-w-0 border border-border bg-white px-4 py-3 font-normal text-ink">
         <option value="">Select a service</option>
         {residentialServices.map((service) => (
           <option value={service.name} data-service-group="Home" selected={selectedCustomerType !== "Business" && selectedService === service.name}>{service.name}</option>
@@ -98,13 +108,13 @@ const sourcePath = Astro.url.pathname;
         name="message"
         required
         rows="5"
-        class="focus-ring border border-border bg-white px-4 py-3 font-normal text-ink"
+        class="focus-ring w-full min-w-0 border border-border bg-white px-4 py-3 font-normal text-ink"
       ></textarea>
     </label>
 
     <button
       type="submit"
-      class="focus-ring bg-clay px-7 py-4 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:bg-ink disabled:cursor-not-allowed disabled:opacity-70"
+      class="focus-ring w-full max-w-full bg-clay px-7 py-4 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:bg-ink disabled:cursor-not-allowed disabled:opacity-70"
     >
       {submitLabel}
     </button>

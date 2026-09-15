@@ -39,6 +39,21 @@ describe("quote form", () => {
     expect(formSource).not.toContain("source_url");
   });
 
+  it("keeps fields inside the form container at responsive widths", () => {
+    expect(quoteFormSource).toContain('class="w-full max-w-full border border-border bg-linen p-6 shadow-sm md:p-8"');
+    expect(formSource).toContain('class="grid min-w-0 gap-5"');
+    expect(formSource).toContain('class="grid min-w-0 gap-5 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]"');
+    expect(formSource).toContain("w-full min-w-0");
+    expect(formSource).not.toContain("md:grid-cols-2");
+  });
+
+  it("requires an 8-digit Singapore phone number", () => {
+    const phoneFieldPattern =
+      /<input[^>]*name="phone"[^>]*type="tel"[^>]*inputmode="numeric"[^>]*pattern="\[689\]\[0-9\]\{7\}"[^>]*minlength="8"[^>]*maxlength="8"[^>]*autocomplete="tel"[^>]*\/>/;
+
+    expect(formSource).toMatch(phoneFieldPattern);
+  });
+
   it("submits with fetch without reloading the page", () => {
     expect(quoteFormSource).toContain("event.preventDefault()");
     expect(quoteFormSource).toContain("await fetch(action");
