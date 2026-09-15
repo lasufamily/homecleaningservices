@@ -103,6 +103,10 @@ clear navigation, readable copy, practical cards, and accessible controls. Keep
 forms, filters, and listing pages efficient to scan. Avoid oversized marketing
 sections where the user needs directory functionality.
 
+Do not use eyebrow text, kickers, overlines, or other small decorative labels
+above headings. Let H1, H2, H3, and other real headings stand on their own
+without extra pre-heading fluff.
+
 ## Deployment Notes
 
 Cloudflare Pages should use:

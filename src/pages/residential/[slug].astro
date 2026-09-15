@@ -64,8 +64,7 @@ const jsonLd = {
   <section class="bg-white">
     <div class="container grid gap-10 py-12 md:grid-cols-[1.05fr_0.95fr] md:items-end md:py-16">
       <div>
-        <p class="eyebrow">Residential cleaning service</p>
-        <h1 class="serif mt-5 max-w-4xl text-6xl font-semibold leading-[0.9] text-ink md:text-8xl">
+        <h1 class="serif max-w-4xl text-6xl font-semibold leading-[0.9] text-ink md:text-8xl">
           {service.name} Singapore
         </h1>
         <p class="mt-7 max-w-2xl text-lg leading-8 text-ink/68">{service.summary}</p>
@@ -79,8 +78,7 @@ const jsonLd = {
         </div>
       </div>
       <div class="border border-border bg-linen p-7">
-        <p class="eyebrow">Best for</p>
-        <ul class="mt-5 space-y-4">
+        <ul class="space-y-4">
           {service.audience.map((item) => (
             <li class="flex gap-3 text-ink/72">
               <span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-clay" aria-hidden="true"></span>
@@ -94,8 +92,7 @@ const jsonLd = {
 
   <section class="container grid gap-8 py-14 lg:grid-cols-[1fr_0.85fr]" data-pagefind-body>
     <div>
-      <p class="eyebrow">Scope of work</p>
-      <h2 class="serif mt-3 text-4xl font-semibold text-ink md:text-5xl">What is typically included</h2>
+      <h2 class="serif text-4xl font-semibold text-ink md:text-5xl">What is typically included</h2>
       <div class="mt-8 grid gap-4">
         {service.scope.map((item) => (
           <div class="border border-border bg-white p-5">
@@ -105,8 +102,7 @@ const jsonLd = {
       </div>
     </div>
     <aside class="border border-border bg-white p-7">
-      <p class="eyebrow">Before quoting</p>
-      <h2 class="serif mt-3 text-4xl font-semibold text-ink">Common exclusions</h2>
+      <h2 class="serif text-4xl font-semibold text-ink">Common exclusions</h2>
       <ul class="mt-6 space-y-4 text-ink/68">
         {service.exclusions.map((item) => (
           <li class="border-b border-border pb-4 last:border-b-0 last:pb-0">{item}</li>
@@ -118,8 +114,7 @@ const jsonLd = {
   <section class="bg-white py-14">
     <div class="container grid gap-10 md:grid-cols-[0.8fr_1.2fr]">
       <div>
-        <p class="eyebrow">Questions</p>
-        <h2 class="serif mt-3 text-4xl font-semibold leading-tight text-ink md:text-5xl">Useful details before booking</h2>
+        <h2 class="serif text-4xl font-semibold leading-tight text-ink md:text-5xl">Useful details before booking</h2>
       </div>
       <div class="grid gap-5">
         {service.faqs.map((faq) => (
@@ -134,8 +129,7 @@ const jsonLd = {
 
   {related.length > 0 && (
     <section class="container py-14">
-      <p class="eyebrow">Related services</p>
-      <h2 class="serif mt-3 text-4xl font-semibold text-ink md:text-5xl">Plan the full clean</h2>
+      <h2 class="serif text-4xl font-semibold text-ink md:text-5xl">Plan the full clean</h2>
       <div class="mt-8 grid gap-6 md:grid-cols-3">
         {related.map((relatedService) => <ServiceCard service={relatedService} />)}
       </div>

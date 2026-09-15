@@ -17,11 +17,10 @@ const categories = business.categories.length ? business.categories.join(", ") :
   </a>
   <div class="flex flex-col gap-4 p-6">
     <div>
-      <p class="eyebrow">{business.town}</p>
-      <h2 class="serif mt-2 text-3xl font-semibold leading-none text-ink">
+      <h2 class="serif text-3xl font-semibold leading-none text-ink">
         <a href={`/companies/${business.slug}`} class="focus-ring hover:text-clay">{business.name}</a>
       </h2>
-      <p class="mt-3 text-sm font-semibold text-moss">{categories}</p>
+      <p class="mt-3 text-sm font-semibold text-moss">{business.town} - {categories}</p>
     </div>
     <div class="mt-auto grid gap-2 text-sm text-ink/68">
       {business.displayAddress && (

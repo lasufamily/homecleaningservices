@@ -14,8 +14,7 @@ const servicesDescription = serviceList.join(", ");
 
 <section class="container grid gap-10 py-14 lg:grid-cols-[0.75fr_1.25fr]" data-pagefind-body>
   <aside class="border border-border bg-white p-6">
-    <p class="eyebrow">Details</p>
-    <div class="mt-6 grid gap-5 text-sm text-ink/72">
+    <div class="grid gap-5 text-sm text-ink/72">
       {business.displayAddress && (
         <p class="flex gap-3">
           <MapPin size={18} class="mt-1 shrink-0 text-clay" aria-hidden="true" />
@@ -48,8 +47,7 @@ const servicesDescription = serviceList.join(", ");
     </div>
   </aside>
   <div>
-    <p class="eyebrow">Services</p>
-    <h2 class="serif mt-3 text-4xl font-semibold leading-tight text-ink">Services available from {business.name}</h2>
+    <h2 class="serif text-4xl font-semibold leading-tight text-ink">Services available from {business.name}</h2>
     <p class="mt-5 max-w-3xl text-lg text-ink/68">
       {business.name} offers {servicesDescription} in {business.town}.
       Contact the company directly for availability, service scope, and booking details.

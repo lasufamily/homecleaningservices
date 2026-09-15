@@ -1,12 +1,10 @@
 ---
 type Props = {
-  eyebrow?: string;
   title?: string;
   body?: string;
 };
 
 const {
-  eyebrow = "Request a quote",
   title = "Tell us what needs cleaning.",
   body = "Share the service, property type, preferred timing, and any notes that could affect the job. We will use those details to quote the scope."
 } = Astro.props;
@@ -15,8 +13,7 @@ const {
 <section class="bg-clay py-14 text-white">
   <div class="container grid gap-8 md:grid-cols-[1fr_auto] md:items-center">
     <div>
-      <p class="text-xs font-bold uppercase tracking-[0.14em] text-white/72">{eyebrow}</p>
-      <h2 class="serif mt-3 max-w-3xl text-4xl font-semibold leading-tight md:text-5xl">{title}</h2>
+      <h2 class="serif max-w-3xl text-4xl font-semibold leading-tight md:text-5xl">{title}</h2>
       <p class="mt-5 max-w-2xl text-white/78">{body}</p>
     </div>
     <a

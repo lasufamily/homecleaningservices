@@ -42,8 +42,7 @@ const jsonLd = {
   </section>
   {related.length > 0 && (
     <section class="container py-12">
-      <p class="eyebrow">Related companies</p>
-      <h2 class="serif mt-3 text-4xl font-semibold text-ink md:text-5xl">More services to compare</h2>
+      <h2 class="serif text-4xl font-semibold text-ink md:text-5xl">More services to compare</h2>
       <div class="mt-8 grid gap-6 md:grid-cols-3">
         {related.map((relatedBusiness) => <ListingCard business={relatedBusiness} />)}
       </div>
