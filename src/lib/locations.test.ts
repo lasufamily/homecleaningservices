@@ -110,6 +110,15 @@ describe("location pages", () => {
     expect(locationPageSource).not.toContain("formAction=");
   });
 
+  it("places the quote form before the cleaning companies section", () => {
+    const quoteFormIndex = locationPageSource.indexOf("<QuoteForm");
+    const companiesIndex = locationPageSource.indexOf("Cleaning Companies in {town}");
+
+    expect(quoteFormIndex).toBeGreaterThan(-1);
+    expect(companiesIndex).toBeGreaterThan(-1);
+    expect(quoteFormIndex).toBeLessThan(companiesIndex);
+  });
+
   it("links location routes from the index, home page, and sitemap", () => {
     expect(locationsIndexSource).toContain('title="Locations | Home Cleaning Services Singapore"');
     expect(locationsIndexSource).toContain("getLocationPath(town)");
