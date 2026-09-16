@@ -122,7 +122,7 @@ describe("location pages", () => {
   });
 
   it("links location routes from the index, home page, and sitemap", () => {
-    expect(locationsIndexSource).toContain('title="Cleaning Services Near Me | Home Cleaning Services Singapore"');
+    expect(locationsIndexSource).toContain('title="Cleaning Services Near Me"');
     expect(locationsIndexSource).toContain('name: "Cleaning Services Near Me in Singapore"');
     expect(locationsIndexSource).toContain("Cleaning Services Near Me in {town}");
     expect(locationsIndexSource).toContain("getLocationPath(town)");

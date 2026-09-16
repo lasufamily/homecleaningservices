@@ -23,7 +23,7 @@ const residentialServiceContent: ServicePageContent[] = [
     slug: "spring-cleaning",
     name: "Spring Cleaning",
     shortName: "Spring Cleaning",
-    title: "Spring Cleaning Singapore | Home Cleaning Services",
+    title: "Spring Cleaning Singapore",
     description:
       "Plan spring cleaning in Singapore for festive periods, yearly cleaning, detailed room cleaning, kitchen cleaning, bathroom cleaning, and floor care.",
     summary:
@@ -59,7 +59,7 @@ const residentialServiceContent: ServicePageContent[] = [
     slug: "end-of-tenancy-cleaning",
     name: "End of Tenancy Cleaning",
     shortName: "End of Tenancy",
-    title: "End of Tenancy Cleaning Singapore | Home Cleaning Services",
+    title: "End of Tenancy Cleaning Singapore",
     description:
       "End of tenancy cleaning in Singapore for rental handover, kitchens, bathrooms, windows, cabinets, floors, and move-out cleaning needs.",
     summary:
@@ -95,7 +95,7 @@ const residentialServiceContent: ServicePageContent[] = [
     slug: "post-renovation-cleaning",
     name: "Post Renovation Cleaning",
     shortName: "Post-Reno Cleaning",
-    title: "Post Renovation Cleaning Singapore | Home Cleaning Services",
+    title: "Post Renovation Cleaning Singapore",
     description:
       "Request post renovation cleaning in Singapore to remove renovation dust from accessible surfaces, cabinets, windows, bathrooms, kitchens, and floors.",
     summary:
@@ -131,7 +131,7 @@ const residentialServiceContent: ServicePageContent[] = [
     slug: "move-in-move-out-cleaning",
     name: "Move In Move Out Cleaning",
     shortName: "Move In/Out Cleaning",
-    title: "Move In Move Out Cleaning Singapore | Home Cleaning Services",
+    title: "Move In Move Out Cleaning Singapore",
     description:
       "Request move in and move out cleaning in Singapore for handovers, new homes, rental transitions, kitchens, bathrooms, cabinets, floors, and windows.",
     summary:
@@ -167,7 +167,7 @@ const residentialServiceContent: ServicePageContent[] = [
     slug: "curtain-cleaning",
     name: "Curtain Cleaning",
     shortName: "Curtain Cleaning",
-    title: "Curtain Cleaning Singapore | Home Cleaning Services",
+    title: "Curtain Cleaning Singapore",
     description:
       "Request curtain cleaning in Singapore for day curtains, night curtains, dust removal, steaming, and cleaning advice.",
     summary:
@@ -203,7 +203,7 @@ const residentialServiceContent: ServicePageContent[] = [
     slug: "floor-cleaning",
     name: "Floor Cleaning",
     shortName: "Floor Cleaning",
-    title: "Floor Cleaning Singapore | Home Cleaning Services",
+    title: "Floor Cleaning Singapore",
     description:
       "Request floor cleaning in Singapore for HDB flats, condos, kitchens, bathrooms, living areas, post-renovation dust, and deeper floor care.",
     summary:
@@ -239,7 +239,7 @@ const residentialServiceContent: ServicePageContent[] = [
     slug: "marble-floor-polishing",
     name: "Marble Floor Polishing",
     shortName: "Marble Polishing",
-    title: "Marble Floor Polishing Singapore | Home Cleaning Services",
+    title: "Marble Floor Polishing Singapore",
     description:
       "Book marble floor polishing in Singapore for dull marble floors, light surface marks, shine restoration, and specialist floor care.",
     summary:
@@ -275,7 +275,7 @@ const residentialServiceContent: ServicePageContent[] = [
     slug: "vinyl-floor-cleaning",
     name: "Vinyl Floor Cleaning",
     shortName: "Vinyl Floor Cleaning",
-    title: "Vinyl Floor Cleaning Singapore | Home Cleaning Services",
+    title: "Vinyl Floor Cleaning Singapore",
     description:
       "Request vinyl floor cleaning in Singapore for HDB flats, condos, vinyl plank floors, routine dirt removal, and safer floor care.",
     summary:
@@ -311,7 +311,7 @@ const residentialServiceContent: ServicePageContent[] = [
     slug: "carpet-cleaning",
     name: "Carpet Cleaning",
     shortName: "Carpet Cleaning",
-    title: "Carpet Cleaning Singapore | Home Cleaning Services",
+    title: "Carpet Cleaning Singapore",
     description:
       "Book carpet cleaning in Singapore for area rugs and carpets, with steam or extraction cleaning, stain advice, dust removal, and odour treatment.",
     summary:
@@ -347,7 +347,7 @@ const residentialServiceContent: ServicePageContent[] = [
     slug: "upholstery-cleaning",
     name: "Upholstery Cleaning",
     shortName: "Upholstery Cleaning",
-    title: "Upholstery Cleaning Singapore | Home Cleaning Services",
+    title: "Upholstery Cleaning Singapore",
     description:
       "Book upholstery cleaning in Singapore for chairs, cushions, soft furnishings, fabric furniture, odour reduction, and dust removal.",
     summary:
@@ -383,7 +383,7 @@ const residentialServiceContent: ServicePageContent[] = [
     slug: "sofa-cleaning",
     name: "Sofa Cleaning",
     shortName: "Sofa Cleaning",
-    title: "Sofa Cleaning Singapore | Home Cleaning Services",
+    title: "Sofa Cleaning Singapore",
     description:
       "Request sofa cleaning in Singapore for fabric sofas, odour reduction, dust removal, and stain treatment advice.",
     summary:
@@ -419,7 +419,7 @@ const residentialServiceContent: ServicePageContent[] = [
     slug: "mattress-cleaning",
     name: "Mattress Cleaning",
     shortName: "Mattress Cleaning",
-    title: "Mattress Cleaning Singapore | Home Cleaning Services",
+    title: "Mattress Cleaning Singapore",
     description:
       "Request mattress cleaning in Singapore for dust, allergens, odour concerns, and mattress treatment options.",
     summary:
@@ -455,7 +455,7 @@ const residentialServiceContent: ServicePageContent[] = [
     slug: "home-disinfection",
     name: "Home Disinfection",
     shortName: "Home Disinfection",
-    title: "Home Disinfection Singapore | Home Cleaning Services",
+    title: "Home Disinfection Singapore",
     description:
       "Request home disinfection in Singapore for high-touch surfaces, post-illness cleaning, rental units, and extra hygiene attention.",
     summary:
@@ -494,7 +494,7 @@ const commercialServiceContent: ServicePageContent[] = [
     slug: "hotel-housekeeping",
     name: "Hotel Housekeeping",
     shortName: "Hotel Housekeeping",
-    title: "Hotel Housekeeping Singapore | Home Cleaning Services",
+    title: "Hotel Housekeeping Singapore",
     description:
       "Request hotel housekeeping in Singapore for rooms, serviced apartments, common areas, turnover cleaning, and hospitality cleaning support.",
     summary:
@@ -530,7 +530,7 @@ const commercialServiceContent: ServicePageContent[] = [
     slug: "mcst-cleaning",
     name: "MCST Cleaning",
     shortName: "MCST Cleaning",
-    title: "MCST Cleaning Singapore | Home Cleaning Services",
+    title: "MCST Cleaning Singapore",
     description:
       "Request MCST cleaning in Singapore for condominium common areas, lobbies, lift landings, amenities, toilets, and estate cleaning support.",
     summary:
@@ -566,7 +566,7 @@ const commercialServiceContent: ServicePageContent[] = [
     slug: "office-cleaning",
     name: "Office Cleaning",
     shortName: "Office Cleaning",
-    title: "Office Cleaning Singapore | Home Cleaning Services",
+    title: "Office Cleaning Singapore",
     description:
       "Request office cleaning in Singapore for workstations, meeting rooms, pantries, toilets, floors, bins, and recurring workplace cleaning.",
     summary:
@@ -602,7 +602,7 @@ const commercialServiceContent: ServicePageContent[] = [
     slug: "external-facade-cleaning",
     name: "External Facade Cleaning",
     shortName: "Facade Cleaning",
-    title: "External Facade Cleaning Singapore | Home Cleaning Services",
+    title: "External Facade Cleaning Singapore",
     description:
       "Request external facade cleaning in Singapore for shopfronts, building exteriors, glass, cladding, and accessible facade cleaning needs.",
     summary:
@@ -638,7 +638,7 @@ const commercialServiceContent: ServicePageContent[] = [
     slug: "commercial-building-cleaning",
     name: "Commercial Building Cleaning",
     shortName: "Building Cleaning",
-    title: "Commercial Building Cleaning Singapore | Home Cleaning Services",
+    title: "Commercial Building Cleaning Singapore",
     description:
       "Request commercial building cleaning in Singapore for shared areas, lobbies, toilets, corridors, floors, touchpoints, and scheduled cleaning.",
     summary:
@@ -674,7 +674,7 @@ const commercialServiceContent: ServicePageContent[] = [
     slug: "end-of-tenancy-cleaning",
     name: "Commercial End of Lease Cleaning",
     shortName: "End of Lease",
-    title: "Commercial End of Lease Cleaning Singapore | Home Cleaning Services",
+    title: "Commercial End of Lease Cleaning Singapore",
     description:
       "Request commercial end of lease cleaning in Singapore for office, retail, F&B, and commercial unit handovers.",
     summary:
@@ -710,7 +710,7 @@ const commercialServiceContent: ServicePageContent[] = [
     slug: "post-renovation-cleaning",
     name: "Commercial Post Renovation Cleaning",
     shortName: "Post-Reno Cleaning",
-    title: "Commercial Post Renovation Cleaning Singapore | Home Cleaning Services",
+    title: "Commercial Post Renovation Cleaning Singapore",
     description:
       "Request commercial post renovation cleaning in Singapore for offices, retail units, gyms, F&B premises, dust removal, and fit-out cleanup.",
     summary:
@@ -746,7 +746,7 @@ const commercialServiceContent: ServicePageContent[] = [
     slug: "post-construction-cleaning",
     name: "Post Construction Cleaning",
     shortName: "Post Construction",
-    title: "Post Construction Cleaning Singapore | Home Cleaning Services",
+    title: "Post Construction Cleaning Singapore",
     description:
       "Request post construction cleaning in Singapore for commercial spaces after building work, fit-out, dust, debris, and handover preparation.",
     summary:
@@ -782,7 +782,7 @@ const commercialServiceContent: ServicePageContent[] = [
     slug: "gym-cleaning",
     name: "Gym Cleaning",
     shortName: "Gym Cleaning",
-    title: "Gym Cleaning Singapore | Home Cleaning Services",
+    title: "Gym Cleaning Singapore",
     description:
       "Request gym cleaning in Singapore for fitness studios, equipment touchpoints, changing rooms, toilets, floors, and hygiene-focused cleaning.",
     summary:
@@ -818,7 +818,7 @@ const commercialServiceContent: ServicePageContent[] = [
     slug: "food-and-beverage-cleaning",
     name: "F&B Cleaning",
     shortName: "F&B Cleaning",
-    title: "F&B Cleaning Singapore | Home Cleaning Services",
+    title: "F&B Cleaning Singapore",
     description:
       "Request F&B cleaning in Singapore for cafes, restaurants, dining areas, service counters, floors, toilets, and food business cleaning support.",
     summary:
@@ -854,7 +854,7 @@ const commercialServiceContent: ServicePageContent[] = [
     slug: "retail-store-cleaning",
     name: "Retail Store Cleaning",
     shortName: "Retail Cleaning",
-    title: "Retail Store Cleaning Singapore | Home Cleaning Services",
+    title: "Retail Store Cleaning Singapore",
     description:
       "Request retail store cleaning in Singapore for shop floors, display areas, counters, mirrors, fitting rooms, stock areas, and storefront cleaning.",
     summary:
@@ -890,7 +890,7 @@ const commercialServiceContent: ServicePageContent[] = [
     slug: "commercial-kitchen-cleaning",
     name: "Commercial Kitchen Cleaning",
     shortName: "Kitchen Cleaning",
-    title: "Commercial Kitchen Cleaning Singapore | Home Cleaning Services",
+    title: "Commercial Kitchen Cleaning Singapore",
     description:
       "Request commercial kitchen cleaning in Singapore for food prep areas, surfaces, floors, equipment exteriors, and deeper kitchen cleaning support.",
     summary:
@@ -926,7 +926,7 @@ const commercialServiceContent: ServicePageContent[] = [
     slug: "childcare-cleaning",
     name: "Childcare Cleaning",
     shortName: "Childcare Cleaning",
-    title: "Childcare Cleaning Singapore | Home Cleaning Services",
+    title: "Childcare Cleaning Singapore",
     description:
       "Request childcare cleaning in Singapore for classrooms, play areas, toilets, high-touch surfaces, floors, and hygiene-focused cleaning routines.",
     summary:

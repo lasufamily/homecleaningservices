@@ -10,7 +10,7 @@ const filterBarSource = readFileSync(fileURLToPath(new URL("./FilterBar.astro", 
 
 describe("companies page", () => {
   it("uses the requested Singapore cleaning companies title and H1", () => {
-    expect(companiesPageSource).toContain('title="Cleaning Companies in Singapore | Home Cleaning Services Singapore"');
+    expect(companiesPageSource).toContain('title="Cleaning Companies in Singapore"');
     expect(companiesPageSource).toContain("Cleaning Companies in Singapore");
   });
 
