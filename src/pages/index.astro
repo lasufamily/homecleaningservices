@@ -62,7 +62,7 @@ const jsonLd = {
           <span class="border-l-2 border-clay pl-3">Housekeeping, deep cleaning, and handover cleans</span>
           <span class="border-l-2 border-clay pl-3">Quote details captured before the first call</span>
           <span class="border-l-2 border-clay pl-3">Specialist fabric, floor, curtain, and sofa care</span>
-          <span class="border-l-2 border-clay pl-3">Singapore-wide service matching and directory support</span>
+          <span class="border-l-2 border-clay pl-3">Singapore-wide help finding the right cleaning support</span>
         </div>
         <div class="mt-9 flex flex-wrap gap-3">
           <a class="focus-ring border border-white/36 bg-white px-7 py-4 text-sm font-bold uppercase tracking-[0.12em] text-ink transition hover:border-clay hover:bg-clay hover:text-white" href="/residential">
@@ -103,11 +103,11 @@ const jsonLd = {
   <section class="bg-white py-14">
     <div class="container mb-10 grid gap-8 md:grid-cols-[0.85fr_1.15fr]">
       <div>
-        <h2 class="serif text-4xl font-semibold text-ink md:text-5xl">Browse other cleaning companies.</h2>
+        <h2 class="serif text-4xl font-semibold text-ink md:text-5xl">Compare cleaning companies near you.</h2>
       </div>
       <div>
         <p class="text-lg leading-8 text-ink/68">
-          The company directory is still here for homeowners who want to compare providers by town, service, and contact details.
+          Browse providers by neighbourhood or cleaning need when you want to compare a few options before asking for a quote.
         </p>
         <div class="mt-6">
           <SearchBox compact={true} />
@@ -142,9 +142,9 @@ const jsonLd = {
     <section class="container py-14">
       <div class="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
         <div>
-          <h2 class="serif text-4xl font-semibold text-ink md:text-5xl">Selected company listings</h2>
+          <h2 class="serif text-4xl font-semibold text-ink md:text-5xl">Cleaning companies to compare</h2>
         </div>
-        <a href="/companies" class="focus-ring text-sm font-bold uppercase tracking-[0.14em] text-clay hover:text-ink">View directory</a>
+        <a href="/companies" class="focus-ring text-sm font-bold uppercase tracking-[0.14em] text-clay hover:text-ink">View companies</a>
       </div>
       <div class="grid gap-6 md:grid-cols-3">
         {featured.map((business) => <ListingCard business={business} />)}

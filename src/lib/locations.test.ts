@@ -94,7 +94,7 @@ describe("location helpers", () => {
     expect(content.intro).toContain("Alpha Clean");
     expect(content.residential).toContain("Move Out Cleaning");
     expect(content.commercial).toContain("Test Town");
-    expect(content.companies).toContain("1 listed cleaning company");
+    expect(content.companies).toContain("1 cleaning company to compare");
   });
 });
 

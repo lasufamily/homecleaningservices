@@ -68,7 +68,7 @@ const curatedLocationProfiles: Record<string, Omit<LocationContent, "companies">
     intro:
       "Explore home cleaning services in Bukit Panjang for households that want help with everyday upkeep, larger family homes, or periodic deep cleaning.",
     residential:
-      "Bukit Panjang residents can use location listings to compare cleaners for weekly maintenance, spring cleaning, and move-related cleaning around room count and timing.",
+      "Bukit Panjang residents can compare cleaners for weekly maintenance, spring cleaning, and move-related cleaning around room count and timing.",
     commercial:
       "Commercial cleaning in Bukit Panjang should be matched to the rhythm of the space, whether that is a small office, shop, studio, or customer-facing service business."
   },
@@ -132,7 +132,7 @@ const curatedLocationProfiles: Record<string, Omit<LocationContent, "companies">
     intro:
       "Compare home cleaning services in Hougang for family homes, HDB flats, and condos that need consistent upkeep or a deeper reset.",
     residential:
-      "Hougang households can use town listings to compare weekly housekeeping, spring cleaning, bathroom cleaning, and moving-related cleaning by scope and availability.",
+      "Hougang households can compare weekly housekeeping, spring cleaning, bathroom cleaning, and moving-related cleaning by scope and availability.",
     commercial:
       "Commercial spaces in Hougang should be quoted around usage patterns, from neighbourhood shops and offices to clinics, studios, and small service businesses."
   },
@@ -276,7 +276,7 @@ const curatedLocationProfiles: Record<string, Omit<LocationContent, "companies">
     intro:
       "Find home cleaning services in Sengkang for newer family estates, condos, and busy households comparing weekly cleaning and one-time deep cleans.",
     residential:
-      "Sengkang residents can use location listings to compare routine upkeep, spring cleaning, move-in cleaning, and post-renovation dust removal.",
+      "Sengkang residents can compare routine upkeep, spring cleaning, move-in cleaning, and post-renovation dust removal.",
     commercial:
       "Commercial cleaning in Sengkang should suit neighbourhood shops, offices, clinics, and studios that need practical recurring cleaning without disrupting operations."
   },
@@ -385,7 +385,7 @@ function formatList(items: string[]): string {
 }
 
 function pluralizeCompany(count: number): string {
-  return `${count} listed cleaning ${count === 1 ? "company" : "companies"}`;
+  return `${count} cleaning ${count === 1 ? "company" : "companies"}`;
 }
 
 function getTopCategories(businesses: Business[]): string[] {
@@ -411,7 +411,7 @@ export function getLocationContent(town: string, businesses: Business[]): Locati
   const categories = getTopCategories(businesses);
   const categoryText = categories.length > 0 ? formatList(categories) : "regular home cleaning";
   const companyText = companyNames.length > 0 ? formatList(companyNames) : "local providers";
-  const companies = `${town} currently has ${companyCount} in this directory, including ${companyText}. Compare service categories, addresses, and contact details before deciding who to speak with.`;
+  const companies = `${town} currently has ${companyCount} to compare, including ${companyText}. Review service categories, addresses, and contact details before deciding who to speak with.`;
 
   if (profile) {
     return {

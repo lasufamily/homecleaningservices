@@ -22,7 +22,7 @@ const query = Astro.url.searchParams.get("q") ?? "";
   <section class="container pb-16">
     <div id="search" class="border border-border bg-white p-5 md:p-8"></div>
     <noscript>
-      <p class="border border-border bg-white p-6 text-ink/70">Search needs JavaScript. You can still browse all companies from the directory page.</p>
+      <p class="border border-border bg-white p-6 text-ink/70">Search needs JavaScript. You can still browse cleaning companies by town and service.</p>
     </noscript>
   </section>
 
@@ -51,7 +51,7 @@ const query = Astro.url.searchParams.get("q") ?? "";
         }, 100);
       }
     } else if (searchElement) {
-      searchElement.innerHTML = '<p class="text-ink/70">Search index appears after the production build. Use the directory page while developing locally.</p>';
+      searchElement.innerHTML = '<p class="text-ink/70">Search will be ready after the site is published. In the meantime, browse cleaning companies by town or service.</p>';
     }
   </script>
 </Layout>

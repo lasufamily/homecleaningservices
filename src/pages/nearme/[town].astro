@@ -20,7 +20,7 @@ const { town, businesses } = Astro.props;
 const townBusinesses = getBusinessesByTown(businesses, town);
 const content = getLocationContent(town, townBusinesses);
 const title = `Cleaning Companies Near Me in ${town}`;
-const description = `Compare cleaning companies near me in ${town}, including residential cleaning services, commercial cleaning services, and local cleaning company listings in Singapore.`;
+const description = `Compare cleaning companies near me in ${town}, including residential cleaning services, commercial cleaning services, and local provider options in Singapore.`;
 const canonicalPath = getLocationPath(town);
 const jsonLd = {
   "@context": "https://schema.org",
@@ -62,16 +62,16 @@ const jsonLd = {
             Get a quote
           </a>
           <a class="focus-ring border border-border bg-white px-6 py-4 text-sm font-bold uppercase tracking-[0.12em] text-ink transition hover:border-clay hover:text-clay" href="/nearme">
-            All near me pages
+            Browse nearby towns
           </a>
         </div>
       </div>
       <div class="border border-border bg-linen p-7">
         <p class="text-sm font-bold uppercase tracking-[0.12em] text-moss">
-          {townBusinesses.length} {townBusinesses.length === 1 ? "company" : "companies"} listed
+          {townBusinesses.length} {townBusinesses.length === 1 ? "company" : "companies"} to compare
         </p>
         <p class="mt-4 text-ink/68">
-          Use the listings below to compare cleaning companies near {town}, then send the form when you are ready for a quote.
+          Compare cleaning companies near {town}, then send the form when you are ready for a quote.
         </p>
       </div>
     </div>
@@ -111,7 +111,7 @@ const jsonLd = {
           </div>
         ) : (
           <div class="border border-border bg-linen p-8 text-center">
-            <p class="text-ink/68">No cleaning companies are listed for {town} yet.</p>
+            <p class="text-ink/68">No cleaning companies are available for {town} yet.</p>
           </div>
         )
       }
