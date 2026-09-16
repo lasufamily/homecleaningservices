@@ -1,5 +1,6 @@
 import type { APIRoute } from "astro";
 import { getBusinesses } from "../lib/airtable";
+import { getLocationPath, getLocationTowns } from "../lib/locations";
 import { commercialServices, residentialServices } from "../lib/services";
 
 function urlEntry(origin: string, path: string): string {
@@ -10,13 +11,15 @@ function urlEntry(origin: string, path: string): string {
 export const GET: APIRoute = async ({ site }) => {
   const origin = site?.origin ?? "https://homecleaningservices.sg";
   const businesses = await getBusinesses();
-  const staticPaths = ["/", "/residential", "/commercial", "/about", "/contact", "/companies", "/search", "/privacy", "/terms"];
+  const towns = getLocationTowns(businesses);
+  const staticPaths = ["/", "/residential", "/commercial", "/about", "/contact", "/companies", "/locations", "/search", "/privacy", "/terms"];
   const servicePaths = [
     ...residentialServices.map((service) => `/residential/${service.slug}`),
     ...commercialServices.map((service) => `/commercial/${service.slug}`)
   ];
   const companyPaths = businesses.map((business) => `/companies/${business.slug}`);
-  const entries = [...staticPaths, ...servicePaths, ...companyPaths].map((path) => urlEntry(origin, path)).join("");
+  const locationPaths = towns.map((town) => getLocationPath(town));
+  const entries = [...staticPaths, ...servicePaths, ...companyPaths, ...locationPaths].map((path) => urlEntry(origin, path)).join("");
 
   return new Response(`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${entries}</urlset>`, {
     headers: {

@@ -5,12 +5,13 @@ import ListingCard from "../components/ListingCard.astro";
 import QuoteForm from "../components/QuoteForm.astro";
 import SearchBox from "../components/SearchBox.astro";
 import ServiceCard from "../components/ServiceCard.astro";
-import { getBusinesses, getCategories, getTowns } from "../lib/airtable";
+import { getBusinesses, getCategories } from "../lib/airtable";
+import { getLocationPath, getLocationTowns } from "../lib/locations";
 import { residentialServices } from "../lib/services";
 
 const businesses = await getBusinesses();
 const featured = businesses.slice(0, 3);
-const towns = getTowns(businesses).slice(0, 8);
+const towns = getLocationTowns(businesses).slice(0, 8);
 const categories = getCategories(businesses).slice(0, 8);
 const featuredServices = residentialServices.slice(0, 6);
 const jsonLd = {
@@ -118,7 +119,7 @@ const jsonLd = {
         <h2 class="serif text-4xl font-semibold text-ink">Neighbourhoods</h2>
         <div class="mt-7 flex flex-wrap gap-3">
           {towns.map((town) => (
-            <a class="focus-ring border border-border px-4 py-3 text-sm font-semibold text-ink transition hover:border-clay hover:text-clay" href={`/companies?town=${encodeURIComponent(town)}`}>
+            <a class="focus-ring border border-border px-4 py-3 text-sm font-semibold text-ink transition hover:border-clay hover:text-clay" href={getLocationPath(town)}>
               {town}
             </a>
           ))}

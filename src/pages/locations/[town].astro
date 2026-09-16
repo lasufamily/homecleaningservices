@@ -1,0 +1,122 @@
+---
+import ContactCTA from "../../components/ContactCTA.astro";
+import Layout from "../../layouts/Layout.astro";
+import ListingCard from "../../components/ListingCard.astro";
+import QuoteForm from "../../components/QuoteForm.astro";
+import { getBusinesses } from "../../lib/airtable";
+import { getBusinessesByTown, getLocationContent, getLocationPath, getLocationTowns, getTownSlug } from "../../lib/locations";
+
+export async function getStaticPaths() {
+  const businesses = await getBusinesses();
+  const towns = getLocationTowns(businesses);
+
+  return towns.map((town) => ({
+    params: { town: getTownSlug(town) },
+    props: { town, businesses }
+  }));
+}
+
+const { town, businesses } = Astro.props;
+const townBusinesses = getBusinessesByTown(businesses, town);
+const content = getLocationContent(town, townBusinesses);
+const title = `Home Cleaning Services in ${town}`;
+const description = `Compare home cleaning services in ${town}, including residential cleaning, commercial cleaning, and local cleaning companies listed in Singapore.`;
+const canonicalPath = getLocationPath(town);
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: title,
+  description,
+  url: new URL(canonicalPath, Astro.site ?? Astro.url.origin).toString(),
+  about: {
+    "@type": "Service",
+    name: title,
+    serviceType: "Home cleaning",
+    areaServed: {
+      "@type": "AdministrativeArea",
+      name: town
+    }
+  },
+  mainEntity: {
+    "@type": "ItemList",
+    itemListElement: townBusinesses.map((business, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: business.name,
+      url: new URL(`/companies/${business.slug}`, Astro.site ?? Astro.url.origin).toString()
+    }))
+  }
+};
+---
+
+<Layout title={`${title} | Home Cleaning Services Singapore`} description={description} jsonLd={jsonLd}>
+  <section class="bg-white">
+    <div class="container grid gap-10 py-12 md:grid-cols-[1.05fr_0.95fr] md:items-end md:py-16">
+      <div>
+        <h1 class="serif max-w-4xl text-6xl font-semibold leading-[0.9] text-ink md:text-8xl">
+          Home Cleaning Services in {town}
+        </h1>
+        <p class="mt-7 max-w-2xl text-lg leading-8 text-ink/68">{content.intro}</p>
+        <div class="mt-9 flex flex-wrap gap-3">
+          <a class="focus-ring bg-clay px-6 py-4 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:bg-ink" href="#quote">
+            Get a quote
+          </a>
+          <a class="focus-ring border border-border bg-white px-6 py-4 text-sm font-bold uppercase tracking-[0.12em] text-ink transition hover:border-clay hover:text-clay" href="/locations">
+            All locations
+          </a>
+        </div>
+      </div>
+      <div class="border border-border bg-linen p-7">
+        <p class="text-sm font-bold uppercase tracking-[0.12em] text-moss">
+          {townBusinesses.length} {townBusinesses.length === 1 ? "company" : "companies"} listed
+        </p>
+        <p class="mt-4 text-ink/68">
+          Use the listings below to compare cleaning companies serving {town}, then send the form when you are ready for a quote.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container grid gap-10 py-14 md:grid-cols-2" data-pagefind-body>
+    <div>
+      <h2 class="serif text-4xl font-semibold leading-tight text-ink md:text-5xl">
+        Residential Cleaning Services in {town}
+      </h2>
+      <p class="mt-5 text-lg leading-8 text-ink/68">{content.residential}</p>
+    </div>
+    <div>
+      <h2 class="serif text-4xl font-semibold leading-tight text-ink md:text-5xl">
+        Commercial Cleaning Services in {town}
+      </h2>
+      <p class="mt-5 text-lg leading-8 text-ink/68">{content.commercial}</p>
+    </div>
+  </section>
+
+  <section class="bg-white py-14" data-pagefind-body>
+    <div class="container">
+      <div class="mb-8 grid gap-6 md:grid-cols-[0.75fr_1.25fr] md:items-end">
+        <h2 class="serif text-4xl font-semibold leading-tight text-ink md:text-5xl">
+          Cleaning Companies in {town}
+        </h2>
+        <p class="text-lg leading-8 text-ink/68">{content.companies}</p>
+      </div>
+      {
+        townBusinesses.length > 0 ? (
+          <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {townBusinesses.map((business) => <ListingCard business={business} />)}
+          </div>
+        ) : (
+          <div class="border border-border bg-linen p-8 text-center">
+            <p class="text-ink/68">No cleaning companies are listed for {town} yet.</p>
+          </div>
+        )
+      }
+    </div>
+  </section>
+
+  <section id="quote" class="container py-14">
+    <QuoteForm title={`Request a cleaning quote in ${town}`} />
+  </section>
+
+  <ContactCTA title={`Need help comparing cleaning services in ${town}?`} />
+</Layout>
