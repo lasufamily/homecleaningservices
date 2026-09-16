@@ -22,7 +22,7 @@ export type Business = {
   galleryImages: string[];
 };
 
-export type SortOption = "name" | "town";
+export type SortOption = "name" | "name-desc";
 
 type AirtableResponse = {
   records: AirtableRecord[];
@@ -217,12 +217,13 @@ export function filterBusinesses(
 
 export function sortBusinesses(businesses: Business[], sort: SortOption = "name"): Business[] {
   return [...businesses].sort((a, b) => {
-    if (sort === "town") {
-      const townCompare = a.town.localeCompare(b.town);
-      return townCompare === 0 ? a.name.localeCompare(b.name) : townCompare;
+    const nameCompare = a.name.localeCompare(b.name);
+
+    if (sort === "name-desc") {
+      return -nameCompare;
     }
 
-    return a.name.localeCompare(b.name);
+    return nameCompare;
   });
 }
 

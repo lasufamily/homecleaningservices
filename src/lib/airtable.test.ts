@@ -88,11 +88,11 @@ describe("airtable business helpers", () => {
     expect(getCategories(businesses)).toEqual(["Deep Cleaning", "Move In Cleaning", "Regular Home Cleaning"]);
   });
 
-  it("sorts by name and town", () => {
+  it("sorts by name in both directions", () => {
     const businesses = records.map(normalizeBusiness);
 
     expect(sortBusinesses(businesses, "name")[0].name).toBe("Bright Nest");
-    expect(sortBusinesses(businesses, "town")[0].town).toBe("Bedok");
+    expect(sortBusinesses(businesses, "name-desc")[0].name).toBe("Pearl Clean Co");
   });
 
   it("creates generic company initials", () => {
