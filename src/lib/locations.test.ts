@@ -100,7 +100,8 @@ describe("location helpers", () => {
 
 describe("location pages", () => {
   it("renders the required location headings and shared Formspark quote form", () => {
-    expect(locationPageSource).toContain("Cleaning Companies Near Me in {town}");
+    expect(locationPageSource).toContain("const title = `Cleaning Services Near Me in ${town}`");
+    expect(locationPageSource).toContain("Cleaning Services Near Me in {town}");
     expect(locationPageSource).toContain("Residential Cleaning Services Near {town}");
     expect(locationPageSource).toContain("Commercial Cleaning Services Near {town}");
     expect(locationPageSource).toContain("Request a Free Quote");
@@ -121,7 +122,9 @@ describe("location pages", () => {
   });
 
   it("links location routes from the index, home page, and sitemap", () => {
-    expect(locationsIndexSource).toContain('title="Cleaning Companies Near Me | Home Cleaning Services Singapore"');
+    expect(locationsIndexSource).toContain('title="Cleaning Services Near Me | Home Cleaning Services Singapore"');
+    expect(locationsIndexSource).toContain('name: "Cleaning Services Near Me in Singapore"');
+    expect(locationsIndexSource).toContain("Cleaning Services Near Me in {town}");
     expect(locationsIndexSource).toContain("getLocationPath(town)");
     expect(homePageSource).toContain("getLocationPath(town)");
     expect(homePageSource).not.toContain('/companies?town=${encodeURIComponent(town)}');
