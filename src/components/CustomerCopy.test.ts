@@ -2,6 +2,8 @@ import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 
+const aboutSource = readFileSync(fileURLToPath(new URL("../pages/about.astro", import.meta.url)), "utf8");
+
 const customerFacingSources = [
   "../pages/about.astro",
   "../pages/index.astro",
@@ -16,6 +18,11 @@ const customerFacingSources = [
 ].map((path) => readFileSync(fileURLToPath(new URL(path, import.meta.url)), "utf8"));
 
 describe("customer-facing copy", () => {
+  it("uses the requested about H1", () => {
+    expect(aboutSource).toContain("About Us");
+    expect(aboutSource).not.toContain("Cleaning help when the house is starting to feel heavy.");
+  });
+
   it("does not expose internal directory or route phrasing in customer pages", () => {
     const combinedSource = customerFacingSources.join("\n");
 
