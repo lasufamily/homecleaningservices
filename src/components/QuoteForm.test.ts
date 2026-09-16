@@ -11,7 +11,7 @@ describe("quote form", () => {
     expect(formSource).toContain("action={formAction}");
 
     const fieldNames = Array.from(formSource.matchAll(/\sname="([^"]+)"/g), ([, name]) => name);
-    expect(fieldNames).toEqual(["source_path", "name", "phone", "email", "customer_type", "customer_type", "service", "message"]);
+    expect(fieldNames).toEqual(["_source_path", "name", "phone", "email", "customer_type", "customer_type", "service", "message"]);
 
     for (const name of ["name", "phone", "email", "service", "message"]) {
       const fieldPattern = new RegExp(`<(?:input|select|textarea)[^>]*name="${name}"[^>]*required`);
@@ -32,9 +32,10 @@ describe("quote form", () => {
     expect(quoteFormSource).not.toContain('submitLabel = "Send enquiry"');
   });
 
-  it("includes the current page path as a hidden Formspark field", () => {
+  it("includes the current page path as hidden Formspark metadata", () => {
     expect(quoteFormSource).toContain("const sourcePath = Astro.url.pathname;");
-    expect(formSource).toContain('<input type="hidden" name="source_path" value={sourcePath} />');
+    expect(formSource).toContain('<input type="hidden" name="_source_path" value={sourcePath} />');
+    expect(formSource).not.toContain('name="source_path"');
     expect(formSource).not.toContain("Astro.url.href");
     expect(formSource).not.toContain("source_url");
   });
