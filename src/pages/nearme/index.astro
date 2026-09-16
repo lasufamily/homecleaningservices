@@ -8,14 +8,14 @@ const towns = getLocationTowns(businesses);
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  name: "Home Cleaning Service Locations in Singapore",
-  url: new URL("/locations", Astro.site ?? Astro.url.origin).toString(),
+  name: "Cleaning Companies Near Me in Singapore",
+  url: new URL("/nearme", Astro.site ?? Astro.url.origin).toString(),
   mainEntity: {
     "@type": "ItemList",
     itemListElement: towns.map((town, index) => ({
       "@type": "ListItem",
       position: index + 1,
-      name: `Home Cleaning Services in ${town}`,
+      name: `Cleaning Companies Near Me in ${town}`,
       url: new URL(getLocationPath(town), Astro.site ?? Astro.url.origin).toString()
     }))
   }
@@ -23,17 +23,17 @@ const jsonLd = {
 ---
 
 <Layout
-  title="Locations | Home Cleaning Services Singapore"
-  description="Browse home cleaning services by town in Singapore, including local cleaning companies for residential and commercial cleaning needs."
+  title="Cleaning Companies Near Me | Home Cleaning Services Singapore"
+  description="Browse cleaning companies near you by town in Singapore, including residential cleaning services and commercial cleaning services."
   jsonLd={jsonLd}
 >
   <section class="bg-white">
     <div class="container py-14 md:py-20">
       <h1 class="serif max-w-4xl text-6xl font-semibold leading-[0.9] text-ink md:text-8xl">
-        Home cleaning services by location
+        Cleaning companies near me
       </h1>
       <p class="mt-7 max-w-2xl text-lg leading-8 text-ink/68">
-        Compare cleaning companies by town so you can start with providers already listed near the home, office, or property you need cleaned.
+        Compare cleaning companies by town so you can start with providers listed near the home, office, or property you need cleaned.
       </p>
     </div>
   </section>
@@ -45,13 +45,13 @@ const jsonLd = {
         return (
           <a class="focus-ring group border border-border bg-white p-6 transition hover:-translate-y-1 hover:shadow-soft" href={getLocationPath(town)}>
             <h2 class="serif text-3xl font-semibold leading-tight text-ink group-hover:text-clay">
-              Home Cleaning Services in {town}
+              Cleaning Companies Near Me in {town}
             </h2>
             <p class="mt-4 text-sm font-semibold text-moss">
               {townBusinesses.length} {townBusinesses.length === 1 ? "company" : "companies"} listed
             </p>
             <p class="mt-4 text-sm leading-6 text-ink/66">
-              View residential, commercial, and company listings for {town}.
+              View residential, commercial, and company listings near {town}.
             </p>
           </a>
         );

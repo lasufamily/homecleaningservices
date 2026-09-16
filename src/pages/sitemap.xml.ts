@@ -12,7 +12,7 @@ export const GET: APIRoute = async ({ site }) => {
   const origin = site?.origin ?? "https://homecleaningservices.sg";
   const businesses = await getBusinesses();
   const towns = getLocationTowns(businesses);
-  const staticPaths = ["/", "/residential", "/commercial", "/about", "/contact", "/companies", "/locations", "/search", "/privacy", "/terms"];
+  const staticPaths = ["/", "/residential", "/commercial", "/about", "/contact", "/companies", "/nearme", "/search", "/privacy", "/terms"];
   const servicePaths = [
     ...residentialServices.map((service) => `/residential/${service.slug}`),
     ...commercialServices.map((service) => `/commercial/${service.slug}`)
