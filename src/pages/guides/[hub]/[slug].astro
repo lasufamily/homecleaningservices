@@ -20,6 +20,7 @@ const { guide } = Astro.props;
 const hub = getGuideHub(guide.hub);
 const relatedGuides = getRelatedGuides(guide);
 const origin = (Astro.site ?? Astro.url.origin).toString();
+const sectionId = (heading: string) => heading.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 const breadcrumbItems = [
   { label: "Home", href: "/" },
   { label: "Guides", href: "/guides/" },
@@ -65,17 +66,12 @@ const jsonLd = {
           <p class="mt-7 max-w-3xl text-lg leading-8 text-ink/70">{guide.intro}</p>
         </div>
         <aside class="border border-border bg-linen p-7">
-          <h2 class="serif text-3xl font-semibold text-ink">Page ownership</h2>
-          <dl class="mt-5 grid gap-4 text-sm text-ink/68">
-            <div>
-              <dt class="font-bold text-ink">Primary intent</dt>
-              <dd class="mt-1">{guide.primaryIntent}</dd>
-            </div>
-            <div>
-              <dt class="font-bold text-ink">Why this page exists</dt>
-              <dd class="mt-1">{guide.reasonToExist}</dd>
-            </div>
-          </dl>
+          <h2 class="serif text-3xl font-semibold text-ink">In this guide</h2>
+          <nav class="mt-5 grid gap-3 text-sm font-semibold text-clay" aria-label="Guide sections">
+            {guide.sections.map((section) => (
+              <a class="hover:text-ink" href={`#${sectionId(section.heading)}`}>{section.heading}</a>
+            ))}
+          </nav>
         </aside>
       </div>
     </section>
@@ -83,7 +79,7 @@ const jsonLd = {
     <section class="container grid gap-8 py-14 lg:grid-cols-[minmax(0,0.74fr)_minmax(280px,0.26fr)]">
       <div class="grid gap-10">
         {guide.sections.map((section) => (
-          <section>
+          <section id={sectionId(section.heading)} class="scroll-mt-24">
             <h2 class="serif text-4xl font-semibold leading-tight text-ink">{section.heading}</h2>
             {section.body && (
               <div class="mt-5 grid gap-4 text-lg leading-8 text-ink/70">
@@ -115,12 +111,12 @@ const jsonLd = {
 
         {guide.servicePath && (
           <section class="border border-border bg-white p-6">
-            <h2 class="serif text-3xl font-semibold text-ink">Related service</h2>
+            <h2 class="serif text-3xl font-semibold text-ink">Need professional help with this?</h2>
             <p class="mt-4 text-sm leading-6 text-ink/68">
-              If the issue needs professional scope, compare the related service page after reading the guide.
+              If the job is too time-consuming, risky, or specialised for DIY cleaning, the related service page can help you compare what to request.
             </p>
             <a class="focus-ring mt-5 inline-flex bg-clay px-5 py-3 text-sm font-bold text-white transition hover:bg-ink" href={guide.servicePath}>
-              View service
+              View related service
             </a>
           </section>
         )}

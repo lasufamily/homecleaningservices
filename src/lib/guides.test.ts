@@ -1,4 +1,6 @@
 import { describe, expect, it } from "vitest";
+import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 import {
   guideHubs,
   guidePages,
@@ -7,6 +9,14 @@ import {
   getGuideChildren,
   getGuideSitemapPaths
 } from "./guides";
+
+const publicGuideTemplateSources = [
+  "../pages/guides/index.astro",
+  "../pages/guides/[hub]/index.astro",
+  "../pages/guides/[hub]/[slug].astro"
+].map((path) => readFileSync(fileURLToPath(new URL(path, import.meta.url)), "utf8").toLowerCase());
+
+const publicGuideCopy = publicGuideTemplateSources.join("\n");
 
 describe("cleaning knowledge base", () => {
   it("defines the seven required guide hubs under /guides", () => {
@@ -44,5 +54,25 @@ describe("cleaning knowledge base", () => {
     expect(getGuideChildren("surfaces").map((page) => page.slug)).toContain("marble-cleaning");
     expect(getGuideByPath("/guides/items/sofa-cleaning/")?.mainKeyword).toBe("sofa cleaning");
     expect(getGuideSitemapPaths()).toContain("/guides/science/cleaning-ph");
+  });
+
+  it("keeps internal editorial language out of public guide templates", () => {
+    const bannedPublicPhrases = [
+      "page ownership",
+      "primary intent",
+      "why this page exists",
+      "currently have enough distinct intent",
+      "stand alone",
+      "right owner",
+      "reason to exist",
+      "content map"
+    ];
+
+    for (const phrase of bannedPublicPhrases) {
+      expect(publicGuideCopy).not.toContain(phrase);
+    }
+
+    expect(publicGuideCopy).not.toContain("guide.primaryintent");
+    expect(publicGuideCopy).not.toContain("guide.reasontoexist");
   });
 });
