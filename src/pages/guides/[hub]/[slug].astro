@@ -1,0 +1,145 @@
+---
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import ContactCTA from "../../../components/ContactCTA.astro";
+import Layout from "../../../layouts/Layout.astro";
+import {
+  getBreadcrumbJsonLd,
+  getGuideHub,
+  getRelatedGuides,
+  guidePages
+} from "../../../lib/guides";
+
+export function getStaticPaths() {
+  return guidePages.map((guide) => ({
+    params: { hub: guide.hub, slug: guide.slug },
+    props: { guide }
+  }));
+}
+
+const { guide } = Astro.props;
+const hub = getGuideHub(guide.hub);
+const relatedGuides = getRelatedGuides(guide);
+const origin = (Astro.site ?? Astro.url.origin).toString();
+const breadcrumbItems = [
+  { label: "Home", href: "/" },
+  { label: "Guides", href: "/guides/" },
+  { label: hub.name, href: hub.path },
+  { label: guide.h1, href: guide.path }
+];
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    getBreadcrumbJsonLd(breadcrumbItems, origin),
+    {
+      "@type": "Article",
+      headline: guide.h1,
+      description: guide.description,
+      mainEntityOfPage: new URL(guide.path, origin).toString(),
+      isPartOf: {
+        "@type": "CollectionPage",
+        name: hub.name,
+        url: new URL(hub.path, origin).toString()
+      }
+    }
+  ]
+};
+---
+
+<Layout title={guide.title} description={guide.description} jsonLd={jsonLd}>
+  <Breadcrumbs
+    crumbs={[
+      { label: "Home", href: "/" },
+      { label: "Guides", href: "/guides/" },
+      { label: hub.name, href: hub.path },
+      { label: guide.h1 }
+    ]}
+  />
+
+  <article data-pagefind-body>
+    <section class="bg-white">
+      <div class="container grid gap-10 py-12 md:grid-cols-[1fr_0.78fr] md:items-end md:py-16">
+        <div>
+          <h1 class="serif max-w-4xl text-5xl font-semibold leading-[0.95] text-ink md:text-7xl">
+            {guide.h1}
+          </h1>
+          <p class="mt-7 max-w-3xl text-lg leading-8 text-ink/70">{guide.intro}</p>
+        </div>
+        <aside class="border border-border bg-linen p-7">
+          <h2 class="serif text-3xl font-semibold text-ink">Page ownership</h2>
+          <dl class="mt-5 grid gap-4 text-sm text-ink/68">
+            <div>
+              <dt class="font-bold text-ink">Primary intent</dt>
+              <dd class="mt-1">{guide.primaryIntent}</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-ink">Why this page exists</dt>
+              <dd class="mt-1">{guide.reasonToExist}</dd>
+            </div>
+          </dl>
+        </aside>
+      </div>
+    </section>
+
+    <section class="container grid gap-8 py-14 lg:grid-cols-[minmax(0,0.74fr)_minmax(280px,0.26fr)]">
+      <div class="grid gap-10">
+        {guide.sections.map((section) => (
+          <section>
+            <h2 class="serif text-4xl font-semibold leading-tight text-ink">{section.heading}</h2>
+            {section.body && (
+              <div class="mt-5 grid gap-4 text-lg leading-8 text-ink/70">
+                {section.body.map((paragraph) => <p>{paragraph}</p>)}
+              </div>
+            )}
+            {section.items && (
+              <ul class="mt-5 grid gap-3 text-ink/70">
+                {section.items.map((item) => (
+                  <li class="border-l-2 border-clay bg-white py-2 pl-4">{item}</li>
+                ))}
+              </ul>
+            )}
+          </section>
+        ))}
+      </div>
+
+      <aside class="space-y-6">
+        {relatedGuides.length > 0 && (
+          <section class="border border-border bg-white p-6">
+            <h2 class="serif text-3xl font-semibold text-ink">Related guides</h2>
+            <nav class="mt-5 grid gap-3 text-sm font-semibold text-clay" aria-label="Related cleaning guides">
+              {relatedGuides.map((related) => (
+                <a class="hover:text-ink" href={related.path}>{related.h1}</a>
+              ))}
+            </nav>
+          </section>
+        )}
+
+        {guide.servicePath && (
+          <section class="border border-border bg-white p-6">
+            <h2 class="serif text-3xl font-semibold text-ink">Related service</h2>
+            <p class="mt-4 text-sm leading-6 text-ink/68">
+              If the issue needs professional scope, compare the related service page after reading the guide.
+            </p>
+            <a class="focus-ring mt-5 inline-flex bg-clay px-5 py-3 text-sm font-bold text-white transition hover:bg-ink" href={guide.servicePath}>
+              View service
+            </a>
+          </section>
+        )}
+
+        {guide.sources && guide.sources.length > 0 && (
+          <section class="border border-border bg-white p-6">
+            <h2 class="serif text-3xl font-semibold text-ink">References</h2>
+            <ul class="mt-5 grid gap-3 text-sm text-ink/68">
+              {guide.sources.map((source) => (
+                <li>
+                  <a class="font-semibold text-clay hover:text-ink" href={source.href}>{source.label}</a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+      </aside>
+    </section>
+  </article>
+
+  <ContactCTA />
+</Layout>

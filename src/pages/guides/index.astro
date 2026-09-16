@@ -1,0 +1,73 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { guideHubs, getBreadcrumbJsonLd } from "../../lib/guides";
+
+const origin = (Astro.site ?? Astro.url.origin).toString();
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    getBreadcrumbJsonLd(
+      [
+        { label: "Home", href: "/" },
+        { label: "Guides", href: "/guides/" }
+      ],
+      origin
+    ),
+    {
+      "@type": "CollectionPage",
+      name: "Cleaning Knowledge Base",
+      description:
+        "A structured cleaning knowledge base for stains, surfaces, rooms, household items, cleaning situations, methods, and cleaning safety.",
+      url: new URL("/guides/", origin).toString()
+    }
+  ]
+};
+---
+
+<Layout
+  title="Cleaning Knowledge Base"
+  description="Explore practical cleaning guides for Singapore homes, including stains, mould, surfaces, rooms, household items, cleaning methods, and safety."
+  jsonLd={jsonLd}
+>
+  <section class="bg-white">
+    <div class="container py-14 md:py-20">
+      <h1 class="serif max-w-4xl text-6xl font-semibold leading-[0.9] text-ink md:text-8xl">
+        Cleaning Knowledge Base
+      </h1>
+      <p class="mt-7 max-w-3xl text-lg leading-8 text-ink/68">
+        A practical reference library for Singapore homes: what to clean, how to clean it safely, when to stop, and which
+        topic owns the detailed answer.
+      </p>
+    </div>
+  </section>
+
+  <section class="container py-14" data-pagefind-body>
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {guideHubs.map((hub) => (
+        <a class="focus-ring border border-border bg-white p-6 transition hover:border-clay" href={hub.path}>
+          <h2 class="serif text-3xl font-semibold leading-tight text-ink">{hub.name}</h2>
+          <p class="mt-4 text-ink/68">{hub.summary}</p>
+          <p class="mt-5 text-sm font-bold uppercase tracking-[0.12em] text-clay">{hub.intentPrompt}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-linen py-14">
+    <div class="container grid gap-10 md:grid-cols-[0.8fr_1.2fr]">
+      <div>
+        <h2 class="serif text-4xl font-semibold leading-tight text-ink md:text-5xl">Find the right owner for the question.</h2>
+      </div>
+      <div class="grid gap-4 text-ink/70">
+        <p>
+          If something is stained, smelly, mouldy, sticky, or chalky, start with <a class="font-semibold text-clay hover:text-ink" href="/guides/problems/">Cleaning Problems</a>.
+          If the main risk is damaging a material, start with <a class="font-semibold text-clay hover:text-ink" href="/guides/surfaces/">Surfaces & Materials</a>.
+        </p>
+        <p>
+          Room guides explain workflow. Item guides explain the specific object. Method and science guides explain how cleaning
+          works, when products are suitable, and where safety matters.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>

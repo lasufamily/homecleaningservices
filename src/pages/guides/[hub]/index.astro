@@ -1,0 +1,94 @@
+---
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import Layout from "../../../layouts/Layout.astro";
+import { getBreadcrumbJsonLd, getGuideChildren, guideHubs, type GuideHubId } from "../../../lib/guides";
+
+export function getStaticPaths() {
+  return guideHubs.map((hub) => ({
+    params: { hub: hub.id },
+    props: { hub }
+  }));
+}
+
+const { hub } = Astro.props;
+const children = getGuideChildren(hub.id as GuideHubId);
+const origin = (Astro.site ?? Astro.url.origin).toString();
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    getBreadcrumbJsonLd(
+      [
+        { label: "Home", href: "/" },
+        { label: "Guides", href: "/guides/" },
+        { label: hub.name, href: hub.path }
+      ],
+      origin
+    ),
+    {
+      "@type": "CollectionPage",
+      name: hub.title,
+      description: hub.description,
+      url: new URL(hub.path, origin).toString()
+    }
+  ]
+};
+---
+
+<Layout title={hub.title} description={hub.description} jsonLd={jsonLd}>
+  <Breadcrumbs
+    crumbs={[
+      { label: "Home", href: "/" },
+      { label: "Guides", href: "/guides/" },
+      { label: hub.name }
+    ]}
+  />
+
+  <section class="bg-white">
+    <div class="container grid gap-10 py-12 md:grid-cols-[0.95fr_1.05fr] md:items-end md:py-16">
+      <div>
+        <h1 class="serif max-w-4xl text-6xl font-semibold leading-[0.9] text-ink md:text-8xl">
+          {hub.name}
+        </h1>
+        <p class="mt-7 max-w-2xl text-lg leading-8 text-ink/68">{hub.summary}</p>
+      </div>
+      <div class="border border-border bg-linen p-7">
+        <h2 class="serif text-3xl font-semibold text-ink">How to use this hub</h2>
+        <ul class="mt-5 space-y-4 text-ink/70">
+          {hub.keyConcepts.map((concept) => (
+            <li class="border-b border-border pb-4 last:border-b-0 last:pb-0">{concept}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="container py-14" data-pagefind-body>
+    <div class="mb-8 grid gap-4 md:grid-cols-[0.75fr_1.25fr] md:items-end">
+      <h2 class="serif text-4xl font-semibold text-ink md:text-5xl">Guides in this hub</h2>
+      <p class="text-ink/68">
+        These are the pages that currently have enough distinct intent and useful information to stand alone.
+      </p>
+    </div>
+    <div class="grid gap-5 md:grid-cols-2">
+      {children.map((page) => (
+        <a class="focus-ring border border-border bg-white p-6 transition hover:border-clay" href={page.path}>
+          <h3 class="serif text-3xl font-semibold leading-tight text-ink">{page.h1}</h3>
+          <p class="mt-4 text-ink/68">{page.description}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-linen py-14">
+    <div class="container">
+      <h2 class="serif text-4xl font-semibold text-ink md:text-5xl">All guide hubs</h2>
+      <div class="mt-7 flex flex-wrap gap-3">
+        {guideHubs.map((item) => (
+          <a class={`focus-ring border px-4 py-3 text-sm font-semibold transition ${item.id === hub.id ? "border-clay bg-clay text-white" : "border-border bg-white text-ink hover:border-clay hover:text-clay"}`} href={item.path}>
+            {item.shortName}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

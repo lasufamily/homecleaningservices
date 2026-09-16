@@ -23,6 +23,16 @@ const year = new Date().getFullYear();
       </nav>
     </div>
     <div>
+      <h2 class="text-sm font-bold uppercase tracking-[0.12em] text-ink">Guides</h2>
+      <nav class="mt-4 grid gap-3 text-sm text-ink/62" aria-label="Footer guides">
+        <a class="hover:text-clay" href="/guides">Knowledge Base</a>
+        <a class="hover:text-clay" href="/guides/problems">Cleaning Problems</a>
+        <a class="hover:text-clay" href="/guides/surfaces">Surfaces & Materials</a>
+        <a class="hover:text-clay" href="/guides/items">Items & Fixtures</a>
+        <a class="hover:text-clay" href="/guides/science">Science & Safety</a>
+      </nav>
+    </div>
+    <div>
       <h2 class="text-sm font-bold uppercase tracking-[0.12em] text-ink">Company</h2>
       <nav class="mt-4 grid gap-3 text-sm text-ink/62" aria-label="Footer company">
         <a class="hover:text-clay" href="/residential">Residential services</a>
@@ -34,16 +44,14 @@ const year = new Date().getFullYear();
         <a class="hover:text-clay" href="/search">Search</a>
       </nav>
     </div>
-    <div>
-      <h2 class="text-sm font-bold uppercase tracking-[0.12em] text-ink">Legal</h2>
-      <nav class="mt-4 grid gap-3 text-sm text-ink/62" aria-label="Footer legal">
+  </div>
+  <div class="container border-t border-border py-6 text-sm text-ink/60">
+    <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+      <p>&copy; {year} Home Cleaning Services. Compare cleaning options before you book.</p>
+      <nav class="flex flex-wrap gap-4" aria-label="Footer legal">
         <a class="hover:text-clay" href="/privacy">Privacy policy</a>
         <a class="hover:text-clay" href="/terms">Terms and conditions</a>
       </nav>
-      <div class="mt-8 text-sm text-ink/60">
-        <p>&copy; {year} Home Cleaning Services.</p>
-        <p>Compare cleaning options before you book.</p>
-      </div>
     </div>
   </div>
 </footer>
