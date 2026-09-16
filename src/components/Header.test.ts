@@ -24,4 +24,19 @@ describe("Header", () => {
     expect(headerSource).toContain('href="/commercial"');
     expect(headerSource).not.toContain('href="/services"');
   });
+
+  it("keeps the primary navigation limited to Residential, Commercial, and Contact", () => {
+    const desktopNav = headerSource.match(/aria-label="Primary navigation"[\s\S]*?<\/nav>/)?.[0] ?? "";
+    const mobileNav = headerSource.match(/aria-label="Mobile navigation links"[\s\S]*?<\/nav>/)?.[0] ?? "";
+
+    for (const nav of [desktopNav, mobileNav]) {
+      expect(nav).toContain('href="/residential"');
+      expect(nav).toContain('href="/commercial"');
+      expect(nav).toContain('href="/contact"');
+      expect(nav).not.toContain('href="/guides"');
+      expect(nav).not.toContain('href="/nearme"');
+      expect(nav).not.toContain('href="/about"');
+      expect(nav).not.toContain('href="/companies"');
+    }
+  });
 });

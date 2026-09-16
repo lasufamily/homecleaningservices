@@ -1,0 +1,55 @@
+---
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import Layout from "../../layouts/Layout.astro";
+import { faqItems } from "../../lib/faq";
+import { getBreadcrumbJsonLd } from "../../lib/guides";
+
+export function getStaticPaths() {
+  return faqItems.map((item) => ({
+    params: { slug: item.slug },
+    props: { item }
+  }));
+}
+
+const { item } = Astro.props;
+const pagePath = `/FAQ/${item.slug}/`;
+const origin = (Astro.site ?? Astro.url.origin).toString();
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    getBreadcrumbJsonLd(
+      [
+        { label: "Home", href: "/" },
+        { label: "FAQ", href: "/FAQ/" },
+        { label: item.question, href: pagePath }
+      ],
+      origin
+    ),
+    {
+      "@type": "WebPage",
+      name: item.question,
+      description: item.answer,
+      url: new URL(pagePath, origin).toString()
+    }
+  ]
+};
+---
+
+<Layout title={item.question} description={item.answer} jsonLd={jsonLd}>
+  <Breadcrumbs
+    crumbs={[
+      { label: "Home", href: "/" },
+      { label: "FAQ", href: "/FAQ/" },
+      { label: item.question }
+    ]}
+  />
+
+  <article class="bg-white" data-pagefind-body>
+    <div class="container py-12 md:py-16">
+      <h1 class="serif max-w-4xl text-5xl font-semibold leading-[0.95] text-ink md:text-7xl">
+        {item.question}
+      </h1>
+      <p class="mt-7 max-w-3xl text-lg leading-8 text-ink/70">{item.answer}</p>
+    </div>
+  </article>
+</Layout>

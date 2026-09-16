@@ -7,6 +7,8 @@ const sourcePathsWithoutSiteSuffix = [
   "../pages/commercial/index.astro",
   "../pages/companies/index.astro",
   "../pages/contact.astro",
+  "../pages/FAQ/index.astro",
+  "../pages/FAQ/[slug].astro",
   "../pages/guides/index.astro",
   "../pages/index.astro",
   "../pages/nearme/index.astro",
@@ -16,7 +18,8 @@ const sourcePathsWithoutSiteSuffix = [
   "../pages/search.astro",
   "../pages/terms.astro",
   "../lib/services.ts",
-  "../lib/guides.ts"
+  "../lib/guides.ts",
+  "../lib/faq.ts"
 ];
 
 const readSource = (path: string) => readFileSync(fileURLToPath(new URL(path, import.meta.url)), "utf8");

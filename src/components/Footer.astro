@@ -3,7 +3,7 @@ const year = new Date().getFullYear();
 ---
 
 <footer class="mt-24 border-t border-border bg-white">
-  <div class="container grid gap-10 py-12 md:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr]">
+  <div class="container grid gap-10 py-12 md:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr_0.8fr]">
     <div>
       <a href="/" class="focus-ring inline-flex" aria-label="Home Cleaning Services home">
         <img
@@ -14,44 +14,39 @@ const year = new Date().getFullYear();
       </a>
     </div>
     <div>
-      <h2 class="text-sm font-bold uppercase tracking-[0.12em] text-ink">Services</h2>
-      <nav class="mt-4 grid gap-3 text-sm text-ink/62" aria-label="Footer services">
-        <a class="hover:text-clay" href="/residential/spring-cleaning">Spring Cleaning</a>
-        <a class="hover:text-clay" href="/residential/end-of-tenancy-cleaning">End of Tenancy Cleaning</a>
-        <a class="hover:text-clay" href="/commercial/office-cleaning">Office Cleaning</a>
-        <a class="hover:text-clay" href="/commercial/commercial-building-cleaning">Commercial Building Cleaning</a>
-      </nav>
-    </div>
-    <div>
-      <h2 class="text-sm font-bold uppercase tracking-[0.12em] text-ink">Guides</h2>
-      <nav class="mt-4 grid gap-3 text-sm text-ink/62" aria-label="Footer guides">
-        <a class="hover:text-clay" href="/guides">Knowledge Base</a>
-        <a class="hover:text-clay" href="/guides/problems">Cleaning Problems</a>
-        <a class="hover:text-clay" href="/guides/surfaces">Surfaces & Materials</a>
-        <a class="hover:text-clay" href="/guides/items">Items & Fixtures</a>
-        <a class="hover:text-clay" href="/guides/science">Science & Safety</a>
-      </nav>
-    </div>
-    <div>
       <h2 class="text-sm font-bold uppercase tracking-[0.12em] text-ink">Company</h2>
       <nav class="mt-4 grid gap-3 text-sm text-ink/62" aria-label="Footer company">
-        <a class="hover:text-clay" href="/residential">Residential services</a>
-        <a class="hover:text-clay" href="/commercial">Commercial services</a>
-        <a class="hover:text-clay" href="/nearme">Near Me</a>
         <a class="hover:text-clay" href="/about">About</a>
         <a class="hover:text-clay" href="/contact">Contact</a>
+      </nav>
+    </div>
+    <div>
+      <h2 class="text-sm font-bold uppercase tracking-[0.12em] text-ink">Services</h2>
+      <nav class="mt-4 grid gap-3 text-sm text-ink/62" aria-label="Footer services">
+        <a class="hover:text-clay" href="/residential">Residential</a>
+        <a class="hover:text-clay" href="/commercial">Commercial</a>
+      </nav>
+    </div>
+    <div>
+      <h2 class="text-sm font-bold uppercase tracking-[0.12em] text-ink">Resources</h2>
+      <nav class="mt-4 grid gap-3 text-sm text-ink/62" aria-label="Footer resources">
+        <a class="hover:text-clay" href="/guides">Guides</a>
+        <a class="hover:text-clay" href="/FAQ">FAQ</a>
         <a class="hover:text-clay" href="/companies">Companies</a>
-        <a class="hover:text-clay" href="/search">Search</a>
+        <a class="hover:text-clay" href="/nearme">Near Me</a>
+      </nav>
+    </div>
+    <div>
+      <h2 class="text-sm font-bold uppercase tracking-[0.12em] text-ink">Legal</h2>
+      <nav class="mt-4 grid gap-3 text-sm text-ink/62" aria-label="Footer legal">
+        <a class="hover:text-clay" href="/privacy">Privacy Policy</a>
+        <a class="hover:text-clay" href="/terms">Terms and Conditions</a>
       </nav>
     </div>
   </div>
   <div class="container border-t border-border py-6 text-sm text-ink/60">
-    <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+    <div>
       <p>&copy; {year} Home Cleaning Services. Compare cleaning options before you book.</p>
-      <nav class="flex flex-wrap gap-4" aria-label="Footer legal">
-        <a class="hover:text-clay" href="/privacy">Privacy policy</a>
-        <a class="hover:text-clay" href="/terms">Terms and conditions</a>
-      </nav>
     </div>
   </div>
 </footer>
