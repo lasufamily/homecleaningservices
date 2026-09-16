@@ -46,5 +46,5 @@ export function getFaqBySlug(slug: string): FaqItem | undefined {
 }
 
 export function getFaqSitemapPaths(): string[] {
-  return ["/FAQ", ...faqItems.map((item) => `/FAQ/${item.slug}`)];
+  return ["/faq", ...faqItems.map((item) => `/faq/${item.slug}`)];
 }

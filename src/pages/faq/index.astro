@@ -11,7 +11,7 @@ const jsonLd = {
     getBreadcrumbJsonLd(
       [
         { label: "Home", href: "/" },
-        { label: "FAQ", href: "/FAQ/" }
+        { label: "FAQ", href: "/faq/" }
       ],
       origin
     ),
@@ -19,7 +19,7 @@ const jsonLd = {
       "@type": "CollectionPage",
       name: "FAQ",
       description: "Frequently asked questions about home cleaning services in Singapore.",
-      url: new URL("/FAQ/", origin).toString()
+      url: new URL("/faq/", origin).toString()
     }
   ]
 };
@@ -46,7 +46,7 @@ const jsonLd = {
   <section class="container py-14" data-pagefind-body>
     <div class="grid gap-4">
       {faqItems.map((item) => (
-        <a class="focus-ring border border-border bg-white p-5 text-lg font-semibold text-ink transition hover:border-clay hover:text-clay" href={`/FAQ/${item.slug}/`}>
+        <a class="focus-ring border border-border bg-white p-5 text-lg font-semibold text-ink transition hover:border-clay hover:text-clay" href={`/faq/${item.slug}/`}>
           {item.question}
         </a>
       ))}

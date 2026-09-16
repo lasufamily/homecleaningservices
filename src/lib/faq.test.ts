@@ -17,6 +17,6 @@ describe("FAQ content", () => {
     const firstItem = faqItems[0];
 
     expect(getFaqBySlug(firstItem.slug)?.question).toBe(firstItem.question);
-    expect(getFaqSitemapPaths()).toEqual(["/FAQ", ...faqItems.map((item) => `/FAQ/${item.slug}`)]);
+    expect(getFaqSitemapPaths()).toEqual(["/faq", ...faqItems.map((item) => `/faq/${item.slug}`)]);
   });
 });

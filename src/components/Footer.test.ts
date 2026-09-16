@@ -16,7 +16,7 @@ describe("Footer", () => {
       "/residential",
       "/commercial",
       "/guides",
-      "/FAQ",
+      "/faq",
       "/companies",
       "/nearme",
       "/privacy",

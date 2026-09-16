@@ -12,7 +12,7 @@ export function getStaticPaths() {
 }
 
 const { item } = Astro.props;
-const pagePath = `/FAQ/${item.slug}/`;
+const pagePath = `/faq/${item.slug}/`;
 const origin = (Astro.site ?? Astro.url.origin).toString();
 const jsonLd = {
   "@context": "https://schema.org",
@@ -20,7 +20,7 @@ const jsonLd = {
     getBreadcrumbJsonLd(
       [
         { label: "Home", href: "/" },
-        { label: "FAQ", href: "/FAQ/" },
+        { label: "FAQ", href: "/faq/" },
         { label: item.question, href: pagePath }
       ],
       origin
@@ -39,7 +39,7 @@ const jsonLd = {
   <Breadcrumbs
     crumbs={[
       { label: "Home", href: "/" },
-      { label: "FAQ", href: "/FAQ/" },
+      { label: "FAQ", href: "/faq/" },
       { label: item.question }
     ]}
   />
