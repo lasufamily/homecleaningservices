@@ -28,4 +28,19 @@ describe("H1 scale", () => {
 
     expect(oversizedHeadings).toEqual([]);
   });
+
+  it("keeps non-homepage H1 headings from using compressed line height", () => {
+    const compressedHeadings = astroFiles(srcDir)
+      .filter((path) => path !== homepagePath)
+      .flatMap((path) => {
+        const source = readFileSync(path, "utf8");
+        const h1Classes = [...source.matchAll(/<h1[^>]*class="([^"]+)"/g)].map((match) => match[1]);
+
+        return h1Classes
+          .filter((className) => className.split(/\s+/).includes("leading-[0.9]"))
+          .map((className) => `${relative(srcDir, path)}: ${className}`);
+      });
+
+    expect(compressedHeadings).toEqual([]);
+  });
 });
