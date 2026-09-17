@@ -1,5 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { commercialServices, getRelatedServices, getServiceByGroupAndSlug, residentialServices, services } from "./services";
+import {
+  commercialServices,
+  getRelatedServices,
+  getServiceByGroupAndSlug,
+  getServiceByName,
+  residentialServices,
+  services
+} from "./services";
 
 const residentialSlugs = [
   "spring-cleaning",
@@ -59,6 +66,12 @@ describe("service catalogue", () => {
     expect(getServiceByGroupAndSlug("residential", "home-disinfection")?.name).toBe("Home Disinfection");
     expect(getServiceByGroupAndSlug("commercial", "food-and-beverage-cleaning")?.name).toBe("F&B Cleaning");
     expect(getServiceByGroupAndSlug("residential", "missing-service")).toBeUndefined();
+  });
+
+  it("returns service pages by display name or short name", () => {
+    expect(getServiceByName("Spring Cleaning")?.slug).toBe("spring-cleaning");
+    expect(getServiceByName("Facade Cleaning")?.slug).toBe("external-facade-cleaning");
+    expect(getServiceByName("Unknown Cleaning")).toBeUndefined();
   });
 
   it("only links related services that exist in the same service group", () => {

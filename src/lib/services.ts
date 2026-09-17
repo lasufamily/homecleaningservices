@@ -972,8 +972,22 @@ export const commercialServices: ServicePage[] = commercialServiceContent.map((s
 
 export const services: ServicePage[] = [...residentialServices, ...commercialServices];
 
+function normalizeServiceName(name: string): string {
+  return name.trim().toLowerCase().replace(/\s+/g, " ");
+}
+
 export function getServiceByGroupAndSlug(group: ServiceGroup, slug: string): ServicePage | undefined {
   return services.find((service) => service.group === group && service.slug === slug);
+}
+
+export function getServiceByName(name: string): ServicePage | undefined {
+  const normalizedName = normalizeServiceName(name);
+
+  return services.find((service) =>
+    [service.name, service.shortName, service.title]
+      .map(normalizeServiceName)
+      .includes(normalizedName)
+  );
 }
 
 export function getRelatedServices(service: ServicePage): ServicePage[] {

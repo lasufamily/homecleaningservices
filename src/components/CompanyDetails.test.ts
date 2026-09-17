@@ -11,4 +11,10 @@ describe("company details", () => {
     expect(companyDetailsSource).toContain("Services available from");
     expect(companyDetailsSource).not.toContain("is listed for");
   });
+
+  it("links known service labels to their service pages", () => {
+    expect(companyDetailsSource).toContain('import { getServiceByName } from "../lib/services"');
+    expect(companyDetailsSource).toContain("linkedService");
+    expect(companyDetailsSource).toContain('href={`/${service.linkedService.group}/${service.linkedService.slug}`}');
+  });
 });
