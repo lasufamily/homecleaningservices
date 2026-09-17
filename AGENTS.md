@@ -90,6 +90,7 @@ slug from the company name.
 - Preserve the normalized `Business` model in `src/lib/airtable.ts` as the contract between Airtable and pages/components.
 - Keep URL state for filters and search shareable with query parameters.
 - Preserve SEO basics: descriptive titles, meta descriptions, canonical URLs, sitemap, robots, and JSON-LD where already used.
+- For SEO-targeted pages, keep the target keyword present in the URL slug, page title, H1, and first paragraph. If a page title and H1 have already been set, use the same target term in the first paragraph too.
 - Do not append `| Home Cleaning Services` or `| Home Cleaning Services Singapore` to page titles. The only exception is individual company profile pages, which may use `Company Name | Home Cleaning Services Singapore`.
 - Do not commit secrets. `.env` is local-only; use `.env.example` for placeholders.
 - Prefer small, focused components and existing Tailwind tokens/classes over introducing new styling systems.
