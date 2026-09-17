@@ -24,6 +24,14 @@ describe("home page", () => {
     expect(homePageSource).not.toContain("Get a clear quote for regular housekeeping");
   });
 
+  it("uses the requested hero benefit points", () => {
+    expect(homePageSource).toContain("Flat Rate (No Hidden Fees)");
+    expect(homePageSource).toContain("Fast Quote");
+    expect(homePageSource).toContain("Flexible Scheduling");
+    expect(homePageSource).toContain("Satisfaction Guaranteed");
+    expect(homePageSource).not.toContain("Housekeeping, deep cleaning, and handover cleans");
+  });
+
   it("includes the quote form in the hero", () => {
     expect(homePageSource).toContain("<QuoteForm");
     expect(homePageSource).toContain('formAction="https://submit-form.com/TmT9DZNtR"');
