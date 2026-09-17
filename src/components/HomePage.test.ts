@@ -17,7 +17,7 @@ describe("home page", () => {
   it("uses the requested hero heading copy", () => {
     expect(homePageSource).toContain("Home Cleaning Services in Singapore.");
     expect(homePageSource).toContain('class="serif text-5xl font-semibold leading-[0.9] text-white md:text-7xl"');
-    expect(homePageSource).toContain("Home Cleaning Services Singapore matches you with trusted experts in home cleaning.");
+    expect(homePageSource).toContain("Looking for Home Cleaning Services Singapore? We help you find trusted experts for the cleaning job you need.");
     expect(homePageSource).not.toContain(">Professional cleaning</p>");
     expect(homePageSource).not.toContain("Singapore home cleaning company");
     expect(homePageSource).not.toContain("Home cleaning services in Singapore");

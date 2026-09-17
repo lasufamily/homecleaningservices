@@ -17,7 +17,7 @@ const { service } = Astro.props;
 const related = getRelatedServices(service);
 const servicePath = `/${service.group}/${service.slug}`;
 const canonical = new URL(servicePath, Astro.site ?? Astro.url.origin).toString();
-const serviceIntro = `${service.title} is scoped for ${service.summary.charAt(0).toLowerCase()}${service.summary.slice(1)}`;
+const serviceIntro = `${service.description} ${service.summary}`;
 const faqJsonLd = {
   "@context": "https://schema.org",
   "@type": "FAQPage",

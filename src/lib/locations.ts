@@ -14,7 +14,7 @@ const curatedLocationProfiles: Record<string, Omit<LocationContent, "companies">
     residential:
       "Ang Mo Kio homes often need dependable upkeep around kitchens, bathrooms, service yards, and shared living spaces. Shortlist cleaners who can handle routine housekeeping, spring cleaning, and deeper resets around your schedule.",
     commercial:
-      "For clinics, tuition centres, shops, and offices around Ang Mo Kio, commercial cleaning should be scoped around opening hours, foot traffic, and the areas customers or staff use most."
+      "For clinics, tuition centres, shops, and offices around Ang Mo Kio, commercial cleaning should be planned around opening hours, foot traffic, and the areas customers or staff use most."
   },
   bedok: {
     intro:
@@ -98,7 +98,7 @@ const curatedLocationProfiles: Record<string, Omit<LocationContent, "companies">
   },
   chinatown: {
     intro:
-      "Compare home cleaning services in Chinatown for city apartments, shophouse units, and compact homes that need efficient, well-scoped cleaning.",
+      "Compare home cleaning services in Chinatown for city apartments, shophouse units, and compact homes that need efficient cleaning with a clear task list.",
     residential:
       "Chinatown homes can involve tight access, compact kitchens, and older building details. A good quote should clarify what is included before the cleaner arrives.",
     commercial:
@@ -110,7 +110,7 @@ const curatedLocationProfiles: Record<string, Omit<LocationContent, "companies">
     residential:
       "Choa Chu Kang homes may need recurring upkeep for family routines or fuller spring cleaning before holidays, guests, or moving dates.",
     commercial:
-      "Commercial cleaning in Choa Chu Kang should be scoped around the workplace type, cleaning frequency, and practical needs like pantry, washroom, and floor maintenance."
+      "Commercial cleaning in Choa Chu Kang should be matched to the workplace type, cleaning frequency, and practical needs like pantry, washroom, and floor maintenance."
   },
   clementi: {
     intro:
@@ -198,7 +198,7 @@ const curatedLocationProfiles: Record<string, Omit<LocationContent, "companies">
     residential:
       "Mandai households should compare cleaners by travel coverage, scope, and whether they can handle routine cleaning, detailed resets, or move-related cleaning.",
     commercial:
-      "Mandai commercial cleaning should be scoped around the type of premises, safety requirements, frequency, and the areas that need routine upkeep."
+      "Mandai commercial cleaning should be planned around the type of premises, safety requirements, frequency, and the areas that need routine upkeep."
   },
   "marine-parade": {
     intro:
@@ -236,7 +236,7 @@ const curatedLocationProfiles: Record<string, Omit<LocationContent, "companies">
     intro:
       "Explore home cleaning services in Pioneer for west-side homes and workers' households comparing practical cleaning help near industrial and residential areas.",
     residential:
-      "Pioneer residential cleaning should be scoped around the home type, room count, and whether the job is routine upkeep, a deep clean, or a move-related clean.",
+      "Pioneer residential cleaning should be matched to the home type, room count, and whether the job is routine upkeep, a deep clean, or a move-related clean.",
     commercial:
       "Commercial cleaning in Pioneer may involve offices and operational spaces where dust, floors, bins, toilets, and pantry areas need a dependable schedule."
   },
@@ -318,7 +318,7 @@ const curatedLocationProfiles: Record<string, Omit<LocationContent, "companies">
     residential:
       "Tengah households should compare cleaners who can handle new-home dust, cabinet wiping, bathroom cleaning, floor care, and recurring maintenance after settling in.",
     commercial:
-      "Commercial cleaning in Tengah should be scoped around emerging neighbourhood businesses, office spaces, and the practical cleaning needs of new premises."
+      "Commercial cleaning in Tengah should be planned around emerging neighbourhood businesses, office spaces, and the practical cleaning needs of new premises."
   },
   "tiong-bahru": {
     intro:
@@ -340,7 +340,7 @@ const curatedLocationProfiles: Record<string, Omit<LocationContent, "companies">
     intro:
       "Review home cleaning services in Tuas for nearby residences and work-linked properties where access, timing, and travel coverage should be confirmed upfront.",
     residential:
-      "Residential cleaning around Tuas should be scoped carefully, especially when the home needs move-related cleaning, deep cleaning, or a larger one-off clean.",
+      "Residential cleaning around Tuas should be planned carefully, especially when the home needs move-related cleaning, deep cleaning, or a larger one-off clean.",
     commercial:
       "Tuas commercial cleaning often needs to support offices and industrial-adjacent spaces, with attention to dust, floors, toilets, pantries, and site access rules."
   },
@@ -423,7 +423,7 @@ export function getLocationContent(town: string, businesses: Business[]): Locati
   return {
     intro: `Compare home cleaning services in ${town} from providers such as ${companyText}, with local options for ${categoryText} and related cleaning work.`,
     residential: `For homes in ${town}, start by matching the cleaner to the actual job: ${categoryText}, room-by-room upkeep, or a one-time reset before guests, moving, or handover.`,
-    commercial: `Commercial cleaning in ${town} should be scoped around opening hours, staff areas, toilets, floors, and how often the space is used by customers or visitors.`,
+    commercial: `Commercial cleaning in ${town} should be planned around opening hours, staff areas, toilets, floors, and how often the space is used by customers or visitors.`,
     companies
   };
 }

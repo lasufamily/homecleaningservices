@@ -133,7 +133,7 @@ const residentialServiceContent: ServicePageContent[] = [
     shortName: "Move In/Out Cleaning",
     title: "Move In Move Out Cleaning Singapore",
     description:
-      "Request move in and move out cleaning in Singapore for handovers, new homes, rental transitions, kitchens, bathrooms, cabinets, floors, and windows.",
+      "Request move-in/move-out cleaning in Singapore for handovers, new homes, rental transitions, kitchens, bathrooms, cabinets, floors, and windows.",
     summary:
       "Cleaning support for tenants, homeowners, and landlords preparing a home before moving in or handing it over.",
     audience: ["New homeowners before moving in", "Tenants preparing for handover", "Landlords cleaning a unit between occupants"],
@@ -521,7 +521,7 @@ const commercialServiceContent: ServicePageContent[] = [
       {
         question: "Do you support serviced apartments?",
         answer:
-          "Yes. Serviced apartment housekeeping can be scoped around room turnover, long-stay units, and shared facilities."
+          "Yes. Serviced apartment housekeeping can be planned around room turnover, long-stay units, and shared facilities."
       }
     ],
     relatedSlugs: ["commercial-building-cleaning", "office-cleaning", "end-of-tenancy-cleaning"]
@@ -540,7 +540,7 @@ const commercialServiceContent: ServicePageContent[] = [
       "Lobby, corridor, and lift landing cleaning",
       "Shared toilet and amenity area cleaning",
       "High-touch surface wiping",
-      "Bin centre or refuse area cleaning where scoped",
+      "Bin centre or refuse area cleaning where included",
       "Routine schedule planning for common areas"
     ],
     exclusions: [
@@ -576,7 +576,7 @@ const commercialServiceContent: ServicePageContent[] = [
       "Desk, meeting room, and common surface wiping",
       "Pantry and toilet cleaning where included",
       "Floor vacuuming, sweeping, and mopping",
-      "Bin clearing and liner replacement where scoped",
+      "Bin clearing and liner replacement where included",
       "After-hours or scheduled cleaning planning"
     ],
     exclusions: [
@@ -646,7 +646,7 @@ const commercialServiceContent: ServicePageContent[] = [
     audience: ["Commercial buildings", "Property managers", "Mixed-use premises"],
     scope: [
       "Lobby, corridor, and common-area cleaning",
-      "Toilet and pantry cleaning where scoped",
+      "Toilet and pantry cleaning where included",
       "High-touch surface wiping",
       "Floor care for shared circulation areas",
       "Recurring cleaning schedule planning"
@@ -719,7 +719,7 @@ const commercialServiceContent: ServicePageContent[] = [
     scope: [
       "Renovation dust removal from reachable surfaces",
       "Interior glass, ledge, switch, and fixture wiping where accessible",
-      "Pantry, toilet, and room cleaning where scoped",
+      "Pantry, toilet, and room cleaning where included",
       "Floor vacuuming, sweeping, and mopping",
       "Final clean planning after contractors complete works"
     ],
@@ -737,7 +737,7 @@ const commercialServiceContent: ServicePageContent[] = [
       {
         question: "Can this prepare a space for opening day?",
         answer:
-          "Yes. Share the opening date, floor plan, and priority areas so the clean can be scoped around readiness."
+          "Yes. Share the opening date, floor plan, and priority areas so the clean can be planned around opening-day readiness."
       }
     ],
     relatedSlugs: ["post-construction-cleaning", "commercial-building-cleaning", "commercial-kitchen-cleaning"]
@@ -791,7 +791,7 @@ const commercialServiceContent: ServicePageContent[] = [
     scope: [
       "Equipment touchpoint wiping",
       "Studio and workout floor cleaning",
-      "Changing room and toilet cleaning where scoped",
+      "Changing room and toilet cleaning where included",
       "Mirrors, counters, and common surfaces",
       "Recurring schedule planning around class or operating hours"
     ],
@@ -845,7 +845,7 @@ const commercialServiceContent: ServicePageContent[] = [
       {
         question: "Is kitchen cleaning included?",
         answer:
-          "Light surface cleaning can be scoped, but heavier kitchen degreasing should be requested as commercial kitchen cleaning."
+          "Light surface cleaning can be included, but heavier kitchen degreasing should be requested as commercial kitchen cleaning."
       }
     ],
     relatedSlugs: ["commercial-kitchen-cleaning", "retail-store-cleaning", "commercial-building-cleaning"]
@@ -864,7 +864,7 @@ const commercialServiceContent: ServicePageContent[] = [
       "Sales floor and display surface cleaning",
       "Counter, mirror, and fitting room wiping where included",
       "Floor vacuuming, sweeping, and mopping",
-      "Stockroom surface cleaning where scoped",
+      "Stockroom surface cleaning where included",
       "Before-opening or after-closing schedule planning"
     ],
     exclusions: [
@@ -900,7 +900,7 @@ const commercialServiceContent: ServicePageContent[] = [
       "Food prep surface cleaning where accessible",
       "Equipment exterior wiping where safe",
       "Kitchen floor cleaning",
-      "Wall, splashback, and high-touch surface attention where scoped",
+      "Wall, splashback, and high-touch surface attention where included",
       "After-hours scheduling around service times"
     ],
     exclusions: [
@@ -935,7 +935,7 @@ const commercialServiceContent: ServicePageContent[] = [
     scope: [
       "Classroom and play area surface cleaning",
       "Floor vacuuming, sweeping, and mopping",
-      "Toilet and sink cleaning where scoped",
+      "Toilet and sink cleaning where included",
       "High-touch surface wiping",
       "Schedule planning around centre operating hours"
     ],
