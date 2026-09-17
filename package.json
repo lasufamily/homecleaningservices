@@ -6,10 +6,10 @@
   "scripts": {
     "dev": "astro dev",
     "test": "vitest run",
-    "build": "astro build && pagefind --site dist",
-    "build:astro": "astro build",
+    "build": "astro build && node scripts/clean-build-output.mjs dist && pagefind --site dist && node scripts/clean-build-output.mjs dist",
+    "build:astro": "astro build && node scripts/clean-build-output.mjs dist",
     "preview": "astro preview",
-    "pages:deploy": "wrangler pages deploy dist"
+    "pages:deploy": "node scripts/clean-build-output.mjs dist && wrangler pages deploy dist"
   },
   "dependencies": {
     "@lucide/astro": "^1.45.0",
