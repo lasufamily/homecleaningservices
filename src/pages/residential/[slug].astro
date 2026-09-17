@@ -2,6 +2,7 @@
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import ContactCTA from "../../components/ContactCTA.astro";
 import Layout from "../../layouts/Layout.astro";
+import QuoteForm from "../../components/QuoteForm.astro";
 import ServiceCard from "../../components/ServiceCard.astro";
 import { getRelatedServices, residentialServices } from "../../lib/services";
 
@@ -16,7 +17,6 @@ const { service } = Astro.props;
 const related = getRelatedServices(service);
 const servicePath = `/${service.group}/${service.slug}`;
 const canonical = new URL(servicePath, Astro.site ?? Astro.url.origin).toString();
-const contactHref = `/contact?customer_type=Home&service=${encodeURIComponent(service.name)}`;
 const faqJsonLd = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -62,30 +62,27 @@ const jsonLd = {
   />
 
   <section class="bg-white">
-    <div class="container grid gap-10 py-12 md:grid-cols-[1.05fr_0.95fr] md:items-end md:py-16">
+    <div class="container grid gap-10 py-12 md:grid-cols-[0.95fr_0.85fr] md:items-center md:py-16">
       <div>
         <h1 class="serif max-w-4xl text-6xl font-semibold leading-[0.9] text-ink md:text-8xl">
           {service.name} Singapore
         </h1>
         <p class="mt-7 max-w-2xl text-lg leading-8 text-ink/68">{service.summary}</p>
+        <ul class="mt-8 grid gap-3 text-sm font-semibold text-ink/72 sm:grid-cols-2">
+          {service.audience.map((item) => (
+            <li class="border-l-2 border-clay pl-3">
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
         <div class="mt-9 flex flex-wrap gap-3">
-          <a class="focus-ring bg-clay px-6 py-4 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:bg-ink" href={contactHref}>
-            Get a quote
-          </a>
           <a class="focus-ring border border-border bg-white px-6 py-4 text-sm font-bold uppercase tracking-[0.12em] text-ink transition hover:border-clay hover:text-clay" href="/residential">
             All residential services
           </a>
         </div>
       </div>
-      <div class="border border-border bg-linen p-7">
-        <ul class="space-y-4">
-          {service.audience.map((item) => (
-            <li class="flex gap-3 text-ink/72">
-              <span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-clay" aria-hidden="true"></span>
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
+      <div>
+        <QuoteForm selectedCustomerType="Home" selectedService={service.name} />
       </div>
     </div>
   </section>
