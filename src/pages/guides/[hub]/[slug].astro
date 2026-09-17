@@ -20,6 +20,7 @@ const { guide } = Astro.props;
 const hub = getGuideHub(guide.hub);
 const relatedGuides = getRelatedGuides(guide);
 const origin = (Astro.site ?? Astro.url.origin).toString();
+const guideKeyword = guide.h1.split(":")[0];
 const sectionId = (heading: string) => heading.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 const breadcrumbItems = [
   { label: "Home", href: "/" },
@@ -63,7 +64,9 @@ const jsonLd = {
           <h1 class="serif max-w-4xl text-5xl font-semibold leading-[0.95] text-ink md:text-7xl">
             {guide.h1}
           </h1>
-          <p class="mt-7 max-w-3xl text-lg leading-8 text-ink/70">{guide.intro}</p>
+          <p class="mt-7 max-w-3xl text-lg leading-8 text-ink/70">
+            {guideKeyword} guidance starts with the right surface, soil, and safety checks. {guide.intro}
+          </p>
         </div>
         <aside class="border border-border bg-linen p-7">
           <h2 class="serif text-3xl font-semibold text-ink">In this guide</h2>

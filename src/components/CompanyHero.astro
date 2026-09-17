@@ -18,6 +18,9 @@ const { business } = Astro.props;
         <span>{business.town}</span>
         {business.categories.map((category) => <span>{category}</span>)}
       </div>
+      <p class="mt-6 max-w-2xl text-lg leading-8 text-ink/68">
+        {business.name} is listed as a Singapore cleaning provider so you can review its location, service categories, and contact details before asking for a quote.
+      </p>
     </div>
     <InitialsImage name={business.name} size="hero" />
   </div>

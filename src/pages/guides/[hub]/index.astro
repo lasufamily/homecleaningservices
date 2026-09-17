@@ -13,6 +13,7 @@ export function getStaticPaths() {
 const { hub } = Astro.props;
 const children = getGuideChildren(hub.id as GuideHubId);
 const origin = (Astro.site ?? Astro.url.origin).toString();
+const hubKeyword = hub.title.split(":")[0];
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
@@ -49,7 +50,9 @@ const jsonLd = {
         <h1 class="serif max-w-4xl text-6xl font-semibold leading-[0.9] text-ink md:text-8xl">
           {hub.name}
         </h1>
-        <p class="mt-7 max-w-2xl text-lg leading-8 text-ink/68">{hub.summary}</p>
+        <p class="mt-7 max-w-2xl text-lg leading-8 text-ink/68">
+          {hubKeyword} guides help you choose the right cleaning advice. {hub.summary}
+        </p>
       </div>
       <div class="border border-border bg-linen p-7">
         <h2 class="serif text-3xl font-semibold text-ink">How to use this hub</h2>
