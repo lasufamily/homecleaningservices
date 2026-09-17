@@ -32,6 +32,24 @@ describe("home page", () => {
     expect(homePageSource).not.toContain("Housekeeping, deep cleaning, and handover cleans");
   });
 
+  it("uses the requested why choose section", () => {
+    expect(homePageSource).toContain("Why Choose Home Cleaning Services?");
+    expect(homePageSource).toContain("Affordable Pricing");
+    expect(homePageSource).toContain("Background Checked &amp; Vetted Cleaners");
+    expect(homePageSource).toContain("Local Experts");
+    expect(homePageSource).toContain("Efficient Cleaning");
+    expect(homePageSource).toContain("We believe professional cleaning should be accessible to everyone");
+    expect(homePageSource).toContain("All of our cleaners go through rigorous vetting process");
+    expect(homePageSource).toContain("We understand the cleaning industry in Singapore");
+    expect(homePageSource).toContain("Jobs are completed by crews of 2-3 cleaners");
+    expect(homePageSource).toContain("sm:grid-cols-2 lg:grid-cols-4");
+    expect(homePageSource).toContain("<BadgeDollarSign");
+    expect(homePageSource).toContain("<ShieldCheck");
+    expect(homePageSource).toContain("<MapPin");
+    expect(homePageSource).toContain("<Users");
+    expect(homePageSource).not.toContain("Cleaning scopes for lived-in Singapore homes.");
+  });
+
   it("includes the quote form in the hero", () => {
     expect(homePageSource).toContain("<QuoteForm");
     expect(homePageSource).toContain('formAction="https://submit-form.com/TmT9DZNtR"');
