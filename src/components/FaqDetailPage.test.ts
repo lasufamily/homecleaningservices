@@ -13,4 +13,13 @@ describe("FAQ detail page", () => {
     expect(source).toContain("<p class=\"mt-7 max-w-3xl text-lg leading-8 text-ink/70\">\n        {item.answer}\n      </p>");
     expect(source).not.toContain("<strong>{item.question}</strong>");
   });
+
+  it("shows the shared Get a Free Quote form below the answer", () => {
+    const source = readFileSync(faqDetailPagePath, "utf8");
+    const answerIndex = source.indexOf("{item.answer}");
+    const quoteFormIndex = source.indexOf('<QuoteForm title="Get a Free Quote" />');
+
+    expect(source).toContain('import QuoteForm from "../../components/QuoteForm.astro";');
+    expect(quoteFormIndex).toBeGreaterThan(answerIndex);
+  });
 });

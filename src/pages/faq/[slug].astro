@@ -1,5 +1,6 @@
 ---
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import QuoteForm from "../../components/QuoteForm.astro";
 import Layout from "../../layouts/Layout.astro";
 import { faqItems } from "../../lib/faq";
 import { getBreadcrumbJsonLd } from "../../lib/guides";
@@ -52,6 +53,9 @@ const jsonLd = {
       <p class="mt-7 max-w-3xl text-lg leading-8 text-ink/70">
         {item.answer}
       </p>
+      <div class="mt-12 max-w-3xl">
+        <QuoteForm title="Get a Free Quote" />
+      </div>
     </div>
   </article>
 </Layout>
