@@ -11,16 +11,16 @@ describe("Footer", () => {
     }
 
     for (const href of [
-      "/about",
-      "/contact",
-      "/residential",
-      "/commercial",
-      "/guides",
-      "/faq",
-      "/companies",
-      "/nearme",
-      "/privacy",
-      "/terms"
+      "/about/",
+      "/contact/",
+      "/residential/",
+      "/commercial/",
+      "/guides/",
+      "/faq/",
+      "/companies/",
+      "/nearme/",
+      "/privacy/",
+      "/terms/"
     ]) {
       expect(footerSource).toContain(`href="${href}"`);
     }

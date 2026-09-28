@@ -9,7 +9,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
   name: "Cleaning Services Near Me in Singapore",
-  url: new URL("/nearme", Astro.site ?? Astro.url.origin).toString(),
+  url: new URL("/nearme/", Astro.site ?? Astro.url.origin).toString(),
   mainEntity: {
     "@type": "ItemList",
     itemListElement: towns.map((town, index) => ({

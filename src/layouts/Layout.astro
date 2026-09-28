@@ -8,10 +8,13 @@ type Props = {
   description: string;
   image?: string;
   jsonLd?: Record<string, unknown>;
+  noindex?: boolean;
 };
 
-const { title, description, image, jsonLd } = Astro.props;
-const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
+const { title, description, image, jsonLd, noindex = false } = Astro.props;
+const normalizedPath =
+  Astro.url.pathname === "/" || Astro.url.pathname.endsWith("/") ? Astro.url.pathname : `${Astro.url.pathname}/`;
+const canonical = new URL(normalizedPath, Astro.site ?? Astro.url.origin);
 ---
 
 <!doctype html>
@@ -29,6 +32,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex,follow" />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.svg" />
     <title>{title}</title>

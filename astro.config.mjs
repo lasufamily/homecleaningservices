@@ -2,5 +2,6 @@ import { defineConfig } from "astro/config";
 
 export default defineConfig({
   output: "static",
-  site: "https://homecleaningservices.sg"
+  site: "https://homecleaningservices.sg",
+  trailingSlash: "always"
 });

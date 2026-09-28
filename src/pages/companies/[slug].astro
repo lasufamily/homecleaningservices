@@ -20,6 +20,7 @@ const related = getRelatedBusinesses(business, businesses);
 const categories = business.categories.length ? business.categories.join(", ") : "Home cleaning";
 const title = `${business.name} | Home Cleaning Services Singapore`;
 const description = `${business.name} provides ${categories} in ${business.town}, Singapore. View address, phone, map, hours, and related cleaning services.`;
+const canonicalPath = `/companies/${business.slug}/`;
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "HomeAndConstructionBusiness",
@@ -27,7 +28,7 @@ const jsonLd = {
   telephone: business.phone,
   address: business.address || business.streetName,
   areaServed: business.town,
-  url: new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin).toString(),
+  url: new URL(canonicalPath, Astro.site ?? Astro.url.origin).toString(),
   sameAs: [business.facebookUrl, business.instagramUrl, business.tiktokUrl].filter(Boolean),
   openingHours: business.openingHours,
   makesOffer: business.categories.map((category) => ({ "@type": "Offer", itemOffered: category }))

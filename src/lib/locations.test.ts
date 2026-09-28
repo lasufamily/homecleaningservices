@@ -58,7 +58,7 @@ describe("location helpers", () => {
   it("creates stable town slugs and location paths", () => {
     expect(getTownSlug("Ang Mo Kio")).toBe("ang-mo-kio");
     expect(getTownSlug("Punggol Digital District")).toBe("punggol-digital-district");
-    expect(getLocationPath("Bukit Timah")).toBe("/nearme/bukit-timah");
+    expect(getLocationPath("Bukit Timah")).toBe("/nearme/bukit-timah/");
   });
 
   it("filters businesses for a town case-insensitively", () => {

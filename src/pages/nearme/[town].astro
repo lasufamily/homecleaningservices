@@ -43,7 +43,7 @@ const jsonLd = {
       "@type": "ListItem",
       position: index + 1,
       name: business.name,
-      url: new URL(`/companies/${business.slug}`, Astro.site ?? Astro.url.origin).toString()
+      url: new URL(`/companies/${business.slug}/`, Astro.site ?? Astro.url.origin).toString()
     }))
   }
 };
@@ -64,7 +64,7 @@ const jsonLd = {
           <a class="focus-ring bg-clay px-6 py-4 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:bg-ink" href="#quote">
             Get a quote
           </a>
-          <a class="focus-ring border border-border bg-white px-6 py-4 text-sm font-bold uppercase tracking-[0.12em] text-ink transition hover:border-clay hover:text-clay" href="/nearme">
+          <a class="focus-ring border border-border bg-white px-6 py-4 text-sm font-bold uppercase tracking-[0.12em] text-ink transition hover:border-clay hover:text-clay" href="/nearme/">
             Browse nearby towns
           </a>
         </div>

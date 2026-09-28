@@ -367,7 +367,7 @@ export function getTownSlug(town: string): string {
 }
 
 export function getLocationPath(town: string): string {
-  return `/nearme/${getTownSlug(town)}`;
+  return `/nearme/${getTownSlug(town)}/`;
 }
 
 export function getLocationTowns(businesses: Business[]): string[] {

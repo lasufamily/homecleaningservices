@@ -14,7 +14,7 @@ export const GET: APIRoute = async ({ site }) => {
   const origin = site?.origin ?? "https://homecleaningservices.sg";
   const businesses = await getBusinesses();
   const towns = getLocationTowns(businesses);
-  const staticPaths = ["/", "/residential", "/commercial", "/about", "/contact", "/companies", "/nearme", "/search", "/privacy", "/terms"];
+  const staticPaths = ["/", "/residential", "/commercial", "/about", "/contact", "/companies", "/nearme", "/privacy", "/terms"];
   const faqPaths = getFaqSitemapPaths();
   const guidePaths = getGuideSitemapPaths();
   const servicePaths = [

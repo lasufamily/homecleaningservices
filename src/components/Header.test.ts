@@ -20,8 +20,8 @@ describe("Header", () => {
   });
 
   it("links to residential and commercial service sections", () => {
-    expect(headerSource).toContain('href="/residential"');
-    expect(headerSource).toContain('href="/commercial"');
+    expect(headerSource).toContain('href="/residential/"');
+    expect(headerSource).toContain('href="/commercial/"');
     expect(headerSource).not.toContain('href="/services"');
   });
 
@@ -30,9 +30,9 @@ describe("Header", () => {
     const mobileNav = headerSource.match(/aria-label="Mobile navigation links"[\s\S]*?<\/nav>/)?.[0] ?? "";
 
     for (const nav of [desktopNav, mobileNav]) {
-      expect(nav).toContain('href="/residential"');
-      expect(nav).toContain('href="/commercial"');
-      expect(nav).toContain('href="/contact"');
+      expect(nav).toContain('href="/residential/"');
+      expect(nav).toContain('href="/commercial/"');
+      expect(nav).toContain('href="/contact/"');
       expect(nav).not.toContain('href="/guides"');
       expect(nav).not.toContain('href="/nearme"');
       expect(nav).not.toContain('href="/about"');

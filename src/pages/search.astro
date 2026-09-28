@@ -8,6 +8,7 @@ const query = Astro.url.searchParams.get("q") ?? "";
 <Layout
   title="Search"
   description="Search Singapore home cleaning companies by name, service, town, address, and phone number."
+  noindex={true}
 >
   <section class="container py-12">
     <h1 class="serif text-5xl font-semibold leading-none text-ink md:text-7xl">Find a cleaning company</h1>

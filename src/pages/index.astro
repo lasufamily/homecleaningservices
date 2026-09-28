@@ -31,7 +31,7 @@ const jsonLd = {
     itemOffered: {
       "@type": "Service",
       name: service.name,
-      url: new URL(`/residential/${service.slug}`, Astro.site ?? Astro.url.origin).toString()
+      url: new URL(`/residential/${service.slug}/`, Astro.site ?? Astro.url.origin).toString()
     }
   }))
 };
@@ -66,7 +66,7 @@ const jsonLd = {
           <span class="border-l-2 border-clay pl-3">Satisfaction Guaranteed</span>
         </div>
         <div class="mt-9 flex flex-wrap gap-3">
-          <a class="focus-ring border border-white/36 bg-white px-7 py-4 text-sm font-bold uppercase tracking-[0.12em] text-ink transition hover:border-clay hover:bg-clay hover:text-white" href="/residential">
+          <a class="focus-ring border border-white/36 bg-white px-7 py-4 text-sm font-bold uppercase tracking-[0.12em] text-ink transition hover:border-clay hover:bg-clay hover:text-white" href="/residential/">
             View services
           </a>
         </div>
@@ -132,7 +132,7 @@ const jsonLd = {
       <div>
         <h2 class="serif text-4xl font-semibold text-ink md:text-5xl">Our Residential Cleaning Services</h2>
       </div>
-      <a href="/residential" class="focus-ring text-sm font-bold uppercase tracking-[0.14em] text-clay hover:text-ink">View all services</a>
+      <a href="/residential/" class="focus-ring text-sm font-bold uppercase tracking-[0.14em] text-clay hover:text-ink">View all services</a>
     </div>
     <div class="grid gap-6 md:grid-cols-3">
       {featuredServices.map((service) => <ServiceCard service={service} />)}
@@ -168,7 +168,7 @@ const jsonLd = {
         <h2 class="serif text-4xl font-semibold text-ink">Cleaning categories</h2>
         <div class="mt-7 flex flex-wrap gap-3">
           {categories.map((category) => (
-            <a class="focus-ring border border-border px-4 py-3 text-sm font-semibold text-ink transition hover:border-clay hover:text-clay" href={`/companies?category=${encodeURIComponent(category)}`}>
+            <a class="focus-ring border border-border px-4 py-3 text-sm font-semibold text-ink transition hover:border-clay hover:text-clay" href={`/companies/?category=${encodeURIComponent(category)}`}>
               {category}
             </a>
           ))}
@@ -183,7 +183,7 @@ const jsonLd = {
         <div>
           <h2 class="serif text-4xl font-semibold text-ink md:text-5xl">Cleaning companies to compare</h2>
         </div>
-        <a href="/companies" class="focus-ring text-sm font-bold uppercase tracking-[0.14em] text-clay hover:text-ink">View companies</a>
+        <a href="/companies/" class="focus-ring text-sm font-bold uppercase tracking-[0.14em] text-clay hover:text-ink">View companies</a>
       </div>
       <div class="grid gap-6 md:grid-cols-3">
         {featured.map((business) => <ListingCard business={business} />)}
@@ -195,7 +195,7 @@ const jsonLd = {
     <h2 class="serif mx-auto max-w-3xl text-4xl font-semibold leading-tight text-ink md:text-5xl">
       Need a quote for your own home cleaning job?
     </h2>
-    <a class="focus-ring mt-8 inline-flex bg-clay px-7 py-4 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:bg-white hover:text-clay" href="/contact">
+    <a class="focus-ring mt-8 inline-flex bg-clay px-7 py-4 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:bg-white hover:text-clay" href="/contact/">
       Contact us
     </a>
   </section>

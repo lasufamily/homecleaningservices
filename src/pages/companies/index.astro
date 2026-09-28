@@ -33,7 +33,7 @@ const categories = getCategories(businesses);
   <section class="container py-10" data-pagefind-body>
     <div class="mb-6 flex items-center justify-between gap-4 text-sm text-ink/60">
       <p><span data-results-count>{businesses.length}</span> <span data-results-label>{businesses.length === 1 ? "company" : "companies"}</span> found</p>
-      <a class="focus-ring font-semibold text-clay hover:text-ink" href="/companies" data-clear-filters hidden>Clear filters</a>
+      <a class="focus-ring font-semibold text-clay hover:text-ink" href="/companies/" data-clear-filters hidden>Clear filters</a>
     </div>
     <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" data-companies-grid>
       {businesses.map((business) => (
@@ -105,7 +105,7 @@ const categories = getCategories(businesses);
       if (state.sort === "name-desc") params.set("sort", state.sort);
 
       const query = params.toString();
-      history.pushState(state, "", query ? `/companies?${query}` : "/companies");
+      history.pushState(state, "", query ? `/companies/?${query}` : "/companies/");
     }
 
     function applyFilters(state) {

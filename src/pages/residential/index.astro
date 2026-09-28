@@ -12,7 +12,7 @@ const jsonLd = {
     "@type": "ListItem",
     position: index + 1,
     name: service.name,
-    url: new URL(`/residential/${service.slug}`, Astro.site ?? Astro.url.origin).toString()
+    url: new URL(`/residential/${service.slug}/`, Astro.site ?? Astro.url.origin).toString()
   }))
 };
 ---
@@ -32,10 +32,10 @@ const jsonLd = {
         households choose a scope that fits the home, timing, and condition.
       </p>
       <div class="mt-9 flex flex-wrap gap-3">
-        <a class="focus-ring bg-clay px-6 py-4 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:bg-ink" href="/contact">
+        <a class="focus-ring bg-clay px-6 py-4 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:bg-ink" href="/contact/">
           Get a quote
         </a>
-        <a class="focus-ring border border-border bg-white px-6 py-4 text-sm font-bold uppercase tracking-[0.12em] text-ink transition hover:border-clay hover:text-clay" href="/commercial">
+        <a class="focus-ring border border-border bg-white px-6 py-4 text-sm font-bold uppercase tracking-[0.12em] text-ink transition hover:border-clay hover:text-clay" href="/commercial/">
           Commercial services
         </a>
       </div>

@@ -12,13 +12,13 @@ const categories = business.categories.length ? business.categories.join(", ") :
 ---
 
 <article class="group grid h-full overflow-hidden border border-border bg-white transition hover:-translate-y-1 hover:shadow-soft" data-pagefind-body>
-  <a href={`/companies/${business.slug}`} class="focus-ring block" aria-label={`View ${business.name}`}>
+  <a href={`/companies/${business.slug}/`} class="focus-ring block" aria-label={`View ${business.name}`}>
     <InitialsImage name={business.name} />
   </a>
   <div class="flex flex-col gap-4 p-6">
     <div>
       <h2 class="serif text-3xl font-semibold leading-none text-ink">
-        <a href={`/companies/${business.slug}`} class="focus-ring hover:text-clay">{business.name}</a>
+        <a href={`/companies/${business.slug}/`} class="focus-ring hover:text-clay">{business.name}</a>
       </h2>
       <p class="mt-3 text-sm font-semibold text-moss">{business.town} - {categories}</p>
     </div>

@@ -58,7 +58,7 @@ describe("home page", () => {
   });
 
   it("links service content through the residential route family", () => {
-    expect(homePageSource).toContain('href="/residential"');
+    expect(homePageSource).toContain('href="/residential/"');
     expect(homePageSource).toContain("residentialServices.slice(0, 6)");
     expect(homePageSource).not.toContain('href="/services"');
     expect(homePageSource).not.toContain("/services/${service.slug}");

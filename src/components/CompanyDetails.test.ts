@@ -15,6 +15,6 @@ describe("company details", () => {
   it("links known service labels to their service pages", () => {
     expect(companyDetailsSource).toContain('import { getServiceByName } from "../lib/services"');
     expect(companyDetailsSource).toContain("linkedService");
-    expect(companyDetailsSource).toContain('href={`/${service.linkedService.group}/${service.linkedService.slug}`}');
+    expect(companyDetailsSource).toContain('href={`/${service.linkedService.group}/${service.linkedService.slug}/`}');
   });
 });
