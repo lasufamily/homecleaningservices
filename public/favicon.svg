@@ -1,59 +1,66 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="639" height="639" viewBox="158 134 639 639" role="img" aria-labelledby="title desc">
-  <title id="title">Editable sparkle icon in circle</title>
-  <desc id="desc">Vectorized circle and individual sparkles, with each component separated for recoloring in Canva.</desc>
-
-  <path
-    id="outer-circle-ring"
-    data-name="Outer circle ring"
-    fill="#307FD3"
-    fill-rule="evenodd"
-    d="M477.5 134C654.1 134 797 276.9 797 453.5C797 630.1 654.1 773 477.5 773C300.9 773 158 630.1 158 453.5C158 276.9 300.9 134 477.5 134ZM477.5 179C325.8 179 203 301.8 203 453.5C203 605.2 325.8 728 477.5 728C629.2 728 752 605.2 752 453.5C752 301.8 629.2 179 477.5 179Z"/>
-
-  <path
-    id="sparkle-large-top"
-    data-name="Large top sparkle"
-    fill="#307FD3"
-    d="M505 227C493 303 478 328 400 344C478 360 493 386 505 463C517 386 532 360 608 344C532 328 517 303 505 227Z"/>
-
-  <path
-    id="sparkle-large-bottom"
-    data-name="Large bottom sparkle"
-    fill="#307FD3"
-    d="M452 502C445 544 432 558 395 566C432 574 445 588 452 630C459 588 471 574 508 566C471 558 459 544 452 502Z"/>
-
-  <path
-    id="sparkle-left"
-    data-name="Left sparkle"
-    fill="#f8718c"
-    d="M371 384C365 415 356 427 326 433C356 439 365 452 371 483C377 452 386 439 415 433C386 427 377 415 371 384Z"/>
-
-  <path
-    id="sparkle-right"
-    data-name="Right sparkle"
-    fill="#f8718c"
-    d="M589 413C584 441 575 452 549 458C575 464 584 474 589 502C594 474 603 464 628 458C603 452 594 441 589 413Z"/>
-
-  <path
-    id="sparkle-top-left-small"
-    data-name="Top left small sparkle"
-    fill="#307FD3"
-    d="M395 273C392 286 388 290 378 293C388 296 392 300 395 311C398 300 402 296 412 293C402 290 398 286 395 273Z"/>
-
-  <path
-    id="sparkle-center-small"
-    data-name="Center small sparkle"
-    fill="#307FD3"
-    d="M454 444C451 456 447 460 437 463C447 466 451 470 454 481C457 470 461 466 470 463C461 460 457 456 454 444Z"/>
-
-  <path
-    id="sparkle-bottom-left-small"
-    data-name="Bottom left small sparkle"
-    fill="#307FD3"
-    d="M395 628C391 645 386 651 371 654C386 657 391 663 395 680C399 663 403 657 418 654C403 651 399 645 395 628Z"/>
-
-  <path
-    id="sparkle-bottom-right-small"
-    data-name="Bottom right small sparkle"
-    fill="#307FD3"
-    d="M519 606C515 623 510 629 495 632C510 635 515 641 519 658C523 641 527 635 542 632C527 629 523 623 519 606Z"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">Spray bottle favicon</title>
+  <desc id="desc">A blue outlined cleaning spray bottle with pale cream body, light blue liquid, and pink heart label.</desc>
+  <defs>
+    <linearGradient id="blue" x1="216" y1="960" x2="742" y2="84" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0f6fc6"/>
+      <stop offset="0.52" stop-color="#1879d3"/>
+      <stop offset="1" stop-color="#2895ef"/>
+    </linearGradient>
+    <linearGradient id="body" x1="337" y1="139" x2="671" y2="919" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fffdf5"/>
+      <stop offset="1" stop-color="#fff8e7"/>
+    </linearGradient>
+    <linearGradient id="liquid" x1="242" y1="585" x2="785" y2="895" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#9edcff"/>
+      <stop offset="1" stop-color="#66bff1"/>
+    </linearGradient>
+    <linearGradient id="pink" x1="456" y1="722" x2="655" y2="866" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f74787"/>
+      <stop offset="1" stop-color="#ff6b89"/>
+    </linearGradient>
+    <filter id="shadow" x="-8%" y="-8%" width="116%" height="116%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#0968bd" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+  <g filter="url(#shadow)">
+    <path
+      fill="url(#body)"
+      stroke="url(#blue)"
+      stroke-linejoin="round"
+      stroke-width="56"
+      d="M390 232c0-78 64-142 142-142h206c39 0 70 31 70 70v35c0 37-30 66-66 66h-61l45 145c7 22-4 46-25 56-20 10-45 4-58-15l-99-145v71c0 25-20 45-45 45v108c0 28 9 55 26 77l127 170c45 60 58 139 35 210-23 72-90 121-165 121H302c-75 0-142-49-165-121-23-71-10-150 35-210l127-170c17-22 26-49 26-77V418c-25 0-45-20-45-45v-91c0-28 22-50 50-50h60Z"/>
+    <path
+      fill="url(#blue)"
+      d="M322 226c17-88 93-152 182-152h318c34 0 62 28 62 62v51c0 32-26 58-58 58h-82l-143 46c-42 14-71 53-71 97H350c0-38-31-69-69-69h-78c-29 0-51-27-45-55l5-25c16-8 36-13 59-13h100Z"/>
+    <path
+      fill="url(#body)"
+      d="M250 200c22-57 77-96 138-96h309v50l-119 39c-67 22-116 78-130 146H314c-14-49-59-84-110-84h-61c9-31 28-55 107-55Z"/>
+    <path
+      fill="#ff5b88"
+      d="M729 105h43c8 0 14 6 14 14v43c0 8-6 14-14 14h-43c-8 0-14-6-14-14v-43c0-8 6-14 14-14Z"/>
+    <path
+      fill="#ff5b88"
+      d="M641 271l47-15 39 150c-40-32-69-77-86-135Z"/>
+    <path
+      fill="#91d6fb"
+      d="M381 420h116c13 0 23 10 23 23v45H358v-45c0-13 10-23 23-23Z"/>
+    <path
+      fill="url(#liquid)"
+      d="M212 675c59-34 141-47 238-27 90 19 159 43 241 5l9 145c8 129-95 237-224 237H306c-88 0-160-71-160-160v-77c0-48 24-93 66-123Z"/>
+    <path
+      fill="url(#body)"
+      stroke="url(#blue)"
+      stroke-width="44"
+      d="M330 721h285c31 0 56 25 56 56v180c0 31-25 56-56 56H330c-31 0-56-25-56-56V777c0-31 25-56 56-56Z"/>
+    <path
+      fill="none"
+      stroke="url(#pink)"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="44"
+      d="M438 828c0-32 26-58 58-58 25 0 45 15 54 37 9-22 29-37 54-37 32 0 58 26 58 58 0 60-112 130-112 130S438 888 438 828Z"/>
+    <circle cx="620" cy="574" r="27" fill="#8ed1f7"/>
+    <circle cx="569" cy="607" r="18" fill="#8ed1f7"/>
+  </g>
 </svg>
