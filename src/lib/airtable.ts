@@ -66,6 +66,23 @@ function asString(value: unknown): string | undefined {
   return trimmed.length > 0 ? trimmed : undefined;
 }
 
+function asExternalUrl(value: unknown): string | undefined {
+  const text = asString(value);
+  if (!text) return undefined;
+
+  const urlText = text.startsWith("//")
+    ? `https:${text}`
+    : /^[a-z][a-z0-9+.-]*:\/\//i.test(text)
+      ? text
+      : `https://${text}`;
+
+  try {
+    return new URL(urlText).toString();
+  } catch {
+    return undefined;
+  }
+}
+
 function asStringList(value: unknown): string[] {
   if (Array.isArray(value)) {
     return value.map((item) => asString(item)).filter(Boolean) as string[];
@@ -102,12 +119,14 @@ export function normalizeBusiness(record: AirtableRecord): Business {
     displayAddress,
     openingHours: asString(fields["Opening Hours"]),
     phone: asString(fields.Phone),
-    googleMapsUrl: asString(fields["Google Maps URL"]),
-    facebookUrl: asString(fields["Facebook URL"]),
-    instagramUrl: asString(fields["Instagram URL"]),
-    tiktokUrl: asString(fields["TikTok URL"]),
-    imageUrl: asString(fields["Image URL"]),
+    googleMapsUrl: asExternalUrl(fields["Google Maps URL"]),
+    facebookUrl: asExternalUrl(fields["Facebook URL"]),
+    instagramUrl: asExternalUrl(fields["Instagram URL"]),
+    tiktokUrl: asExternalUrl(fields["TikTok URL"]),
+    imageUrl: asExternalUrl(fields["Image URL"]),
     galleryImages: asStringList(fields["Gallery Images URL"])
+      .map((url) => asExternalUrl(url))
+      .filter(Boolean) as string[]
   };
 }
 

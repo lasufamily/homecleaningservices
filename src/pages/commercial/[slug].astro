@@ -15,7 +15,7 @@ export function getStaticPaths() {
 
 const { service } = Astro.props;
 const related = getRelatedServices(service);
-const servicePath = `/${service.group}/${service.slug}`;
+const servicePath = `/${service.group}/${service.slug}/`;
 const canonical = new URL(servicePath, Astro.site ?? Astro.url.origin).toString();
 const serviceIntro = `${service.description} ${service.summary}`;
 const faqJsonLd = {
@@ -57,7 +57,7 @@ const jsonLd = {
   <Breadcrumbs
     crumbs={[
       { label: "Home", href: "/" },
-      { label: "Commercial", href: "/commercial" },
+      { label: "Commercial", href: "/commercial/" },
       { label: service.name }
     ]}
   />

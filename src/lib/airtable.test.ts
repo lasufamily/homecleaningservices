@@ -48,6 +48,25 @@ describe("airtable business helpers", () => {
     expect(business.displayAddress).toBe("Bedok North Street 3");
   });
 
+  it("normalizes protocol-less external URLs from Airtable", () => {
+    const business = normalizeBusiness({
+      id: "rec_links",
+      fields: {
+        Name: "Social Cleaner",
+        Slug: "social-cleaner",
+        "Google Maps URL": "maps.google.com/?cid=123",
+        "Facebook URL": "facebook.com/socialcleaner",
+        "Instagram URL": "www.instagram.com/socialcleaner",
+        "TikTok URL": "https://www.tiktok.com/@socialcleaner"
+      }
+    });
+
+    expect(business.googleMapsUrl).toBe("https://maps.google.com/?cid=123");
+    expect(business.facebookUrl).toBe("https://facebook.com/socialcleaner");
+    expect(business.instagramUrl).toBe("https://www.instagram.com/socialcleaner");
+    expect(business.tiktokUrl).toBe("https://www.tiktok.com/@socialcleaner");
+  });
+
   it("uses the live Services field when Category is not present", () => {
     const business = normalizeBusiness({
       id: "rec_services",

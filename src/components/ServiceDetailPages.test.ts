@@ -25,4 +25,11 @@ describe("service detail pages", () => {
     expect(commercialDetailSource).toContain('selectedCustomerType="Business"');
     expect(commercialDetailSource).toContain("selectedService={service.name}");
   });
+
+  it("uses trailing-slash canonical service paths and breadcrumbs", () => {
+    expect(residentialDetailSource).toContain("const servicePath = `/${service.group}/${service.slug}/`;");
+    expect(commercialDetailSource).toContain("const servicePath = `/${service.group}/${service.slug}/`;");
+    expect(residentialDetailSource).toContain('{ label: "Residential", href: "/residential/" }');
+    expect(commercialDetailSource).toContain('{ label: "Commercial", href: "/commercial/" }');
+  });
 });
