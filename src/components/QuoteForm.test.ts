@@ -11,7 +11,8 @@ describe("quote form", () => {
     expect(formSource).toContain("action={formAction}");
 
     const fieldNames = Array.from(formSource.matchAll(/\sname="([^"]+)"/g), ([, name]) => name);
-    expect(fieldNames).toEqual(["source_path", "name", "phone", "email", "customer_type", "customer_type", "service", "message"]);
+    expect(fieldNames).toEqual(["_email.from", "source_path", "name", "phone", "email", "customer_type", "customer_type", "service", "message"]);
+    expect(formSource).toContain('<input type="hidden" name="_email.from" value="Home Cleaning Services" />');
 
     for (const name of ["name", "phone", "email", "service", "message"]) {
       const fieldPattern = new RegExp(`<(?:input|select|textarea)[^>]*name="${name}"[^>]*required`);
