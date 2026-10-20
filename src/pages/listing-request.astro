@@ -11,31 +11,36 @@ import Breadcrumbs from "../components/Breadcrumbs.astro";
     <form id="listing-request-form" action="https://submit-form.com/0xkfgAzfo" method="POST" class="mt-8 grid gap-5 border border-border bg-linen p-6 md:p-8">
       <input type="hidden" name="_email.from" value="Home Cleaning Services" />
       <input type="hidden" name="_email.subject" value="Company listing correction or removal request" />
+      <p class="text-sm text-ink/68">All fields are required. Required fields are marked with a <span class="text-red-600" aria-hidden="true">*</span>.</p>
       <label class="grid gap-2 text-sm font-semibold text-ink">
-        <span>Request type</span>
+        <span>Request type <span class="text-red-600" aria-hidden="true">*</span></span>
         <select name="request_type" required class="focus-ring w-full min-w-0 border border-border bg-white px-4 py-3 font-normal">
           <option value="correction">Suggest a correction</option>
           <option value="removal">Request listing removal</option>
         </select>
       </label>
       <label class="grid gap-2 text-sm font-semibold text-ink">
-        <span>Company name</span>
+        <span>Company name <span class="text-red-600" aria-hidden="true">*</span></span>
         <input name="company_name" required maxlength="200" class="focus-ring w-full min-w-0 border border-border bg-white px-4 py-3 font-normal" />
       </label>
       <label class="grid gap-2 text-sm font-semibold text-ink">
-        <span>Listing URL</span>
+        <span>Listing URL <span class="text-red-600" aria-hidden="true">*</span></span>
         <input name="listing_url" type="url" required class="focus-ring w-full min-w-0 border border-border bg-white px-4 py-3 font-normal" />
       </label>
       <label class="grid gap-2 text-sm font-semibold text-ink">
-        <span>Your name</span>
+        <span>Your name <span class="text-red-600" aria-hidden="true">*</span></span>
         <input name="name" required autocomplete="name" class="focus-ring w-full min-w-0 border border-border bg-white px-4 py-3 font-normal" />
       </label>
       <label class="grid gap-2 text-sm font-semibold text-ink">
-        <span>Your email</span>
+        <span>Your email <span class="text-red-600" aria-hidden="true">*</span></span>
         <input name="email" type="email" required autocomplete="email" class="focus-ring w-full min-w-0 border border-border bg-white px-4 py-3 font-normal" />
       </label>
       <label class="grid gap-2 text-sm font-semibold text-ink">
-        <span>Details of the correction or reason for removal</span>
+        <span>Your phone <span class="text-red-600" aria-hidden="true">*</span></span>
+        <input name="phone" type="tel" required autocomplete="tel" class="focus-ring w-full min-w-0 border border-border bg-white px-4 py-3 font-normal" />
+      </label>
+      <label class="grid gap-2 text-sm font-semibold text-ink">
+        <span>Details of the correction or reason for removal <span class="text-red-600" aria-hidden="true">*</span></span>
         <textarea name="message" required rows="5" class="focus-ring w-full min-w-0 border border-border bg-white px-4 py-3 font-normal"></textarea>
       </label>
       <button type="submit" class="focus-ring bg-clay px-6 py-3 text-sm font-bold text-white transition hover:bg-ink disabled:cursor-not-allowed disabled:opacity-70">Send listing request</button>
