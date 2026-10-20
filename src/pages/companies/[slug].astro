@@ -3,7 +3,6 @@ import Layout from "../../layouts/Layout.astro";
 import CompanyDetails from "../../components/CompanyDetails.astro";
 import CompanyHero from "../../components/CompanyHero.astro";
 import ListingCard from "../../components/ListingCard.astro";
-import QuoteForm from "../../components/QuoteForm.astro";
 import { getBusinesses, getRelatedBusinesses } from "../../lib/airtable";
 
 export async function getStaticPaths() {
@@ -38,9 +37,6 @@ const jsonLd = {
 <Layout title={title} description={description} jsonLd={jsonLd}>
   <CompanyHero business={business} />
   <CompanyDetails business={business} />
-  <section class="container py-12">
-    <QuoteForm title="Get a Free Quote" />
-  </section>
   {related.length > 0 && (
     <section class="container py-12">
       <h2 class="serif text-4xl font-semibold text-ink md:text-5xl">More services to compare</h2>
