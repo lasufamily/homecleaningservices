@@ -1,5 +1,9 @@
 ---
 import { Menu, X } from "@lucide/astro";
+
+const isCompanyProfile = /^\/companies\/[^/]+\/?$/.test(Astro.url.pathname);
+const ctaHref = isCompanyProfile ? "/companies/" : "/contact/";
+const ctaLabel = isCompanyProfile ? "Browse companies" : "Request a quote";
 ---
 
 <header class="relative z-40 border-b border-border/80 bg-pearl/90 backdrop-blur">
@@ -17,10 +21,10 @@ import { Menu, X } from "@lucide/astro";
       <a class="focus-ring hover:text-clay" href="/contact/">Contact</a>
     </nav>
     <a
-      href="/contact/"
+      href={ctaHref}
       class="focus-ring hidden bg-clay px-5 py-3 text-sm font-bold text-white transition hover:bg-ink md:inline-flex"
     >
-      Request a quote
+      {ctaLabel}
     </a>
     <input class="peer sr-only" type="checkbox" id="mobile-menu-toggle" />
     <label
@@ -58,10 +62,10 @@ import { Menu, X } from "@lucide/astro";
         <a class="focus-ring hover:text-clay" href="/contact/">Contact</a>
       </nav>
       <a
-        href="/contact/"
+        href={ctaHref}
         class="focus-ring mt-8 inline-flex justify-center bg-clay px-5 py-3 text-sm font-bold text-white transition hover:bg-ink"
       >
-        Request a quote
+        {ctaLabel}
       </a>
     </aside>
   </div>

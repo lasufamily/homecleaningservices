@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import CompanyDetails from "../../components/CompanyDetails.astro";
 import CompanyHero from "../../components/CompanyHero.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import ListingCard from "../../components/ListingCard.astro";
 import { getBusinesses, getRelatedBusinesses } from "../../lib/airtable";
 
@@ -20,6 +21,7 @@ const categories = business.categories.length ? business.categories.join(", ") :
 const title = `${business.name} | Home Cleaning Services Singapore`;
 const description = `${business.name} provides ${categories} in ${business.town}, Singapore. View address, phone, map, hours, and related cleaning services.`;
 const canonicalPath = `/companies/${business.slug}/`;
+const listingRequestParams = new URLSearchParams({ company: business.name, listing: canonicalPath });
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "HomeAndConstructionBusiness",
@@ -35,8 +37,20 @@ const jsonLd = {
 ---
 
 <Layout title={title} description={description} jsonLd={jsonLd}>
+  <Breadcrumbs crumbs={[
+    { label: "Home", href: "/" },
+    { label: "Companies", href: "/companies/" },
+    { label: business.name }
+  ]} />
   <CompanyHero business={business} />
   <CompanyDetails business={business} />
+  <section class="container border-t border-border py-8" aria-label="Manage listing information">
+    <p class="text-sm text-ink/68">Contact the directory team about this listing.</p>
+    <div class="mt-4 flex flex-wrap gap-3">
+      <a class="focus-ring inline-flex items-center justify-center border border-border bg-white px-5 py-3 text-sm font-semibold text-ink transition hover:border-clay hover:text-clay" href={`/listing-request/?${listingRequestParams}&type=correction`}>Suggest a correction</a>
+      <a class="focus-ring inline-flex items-center justify-center border border-border bg-white px-5 py-3 text-sm font-semibold text-ink transition hover:border-clay hover:text-clay" href={`/listing-request/?${listingRequestParams}&type=removal`}>Request listing removal</a>
+    </div>
+  </section>
   {related.length > 0 && (
     <section class="container py-12">
       <h2 class="serif text-4xl font-semibold text-ink md:text-5xl">More services to compare</h2>
